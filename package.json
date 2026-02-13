@@ -13,6 +13,9 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.95.3",
+    "dotenv": "^17.3.1",
+    "mime-types": "^3.0.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
