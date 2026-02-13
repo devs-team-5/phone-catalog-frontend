@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "lint": "eslint . --fix",
+    "preview": "vite preview",
+    "format": "prettier . --ignore-path .gitignore --write",
+    "fix-style": "npm run format && npm run lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -29,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^16.5.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.55.0",
@@ -40,12 +44,6 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{json,css,scss,md}": [
-      "prettier --write"
-    ]
+    "*": "npm run fix-style"
   }
 }
