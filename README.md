@@ -26,13 +26,13 @@ For adding new feature
 - compare: `{branch_name}` ex: `feat/PC-2-api-fetch`
 - Give a name to PR ex: `feat(PC-2): implement api fetch`
 
-6. add description :
+12. add description :
 
 - Що зроблено?
 - Чи є залежності від інших PR?
 - Чи потрібні додаткові перевірки?
 - Чи є щось, на що варто звернути увагу при код-рев’ю?
 
-7. Add reviewers(or just Dimononon).
+13. Add reviewers(or just Dimononon).
 
-8. Press "Create pull request".
+14. Press "Create pull request".
