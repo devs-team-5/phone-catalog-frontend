@@ -9,7 +9,7 @@ For adding new feature
 1. be sure that you are in `main` branch localy. If not - `git switch main`
 2. update repo `git pull origin main`
 3. create your personal branch `git checkout -b {branch_name}`
-   ex: `git checkout -b "feat/PC-2-api-fetch"`
+   ex: `git checkout -b feat/PC-2-api-fetch`
 4. implement your task
 5. run `git add .`
 6. run `git commit -m "{commit_name}"`
