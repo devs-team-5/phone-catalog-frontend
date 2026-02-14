@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# Current deployed version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Link](https://devs-team-5.github.io/phone-catalog-frontend/)
 
-Currently, two official plugins are available:
+# Workflow
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+For adding new feature
 
-## React Compiler
+1. be sure that you are in `main` branch localy. If not - `git switch main`
+2. update repo `git pull origin main`
+3. create your personal branch `git checkout -b {branch_name}`
+   ex: `git checkout -b "feat/PC-2-api-fetch"`
+4. implement your task
+5. run `git add .`
+6. run `git commit -m "{commit_name}"`
+   ex: `git commit -m "feat(PC-2): implement api fetch"`
+7. run `git pull origin main`
+8. run `git push origin {branch_name}`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+9. go to GitHub repo
+10. Find tab `Pull requests` and press `New pull request`.
 
-## Expanding the ESLint configuration
+11. choose branches:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- base: main.
+- compare: `{branch_name}` ex: `feat/PC-2-api-fetch`
+- Give a name to PR ex: `feat(PC-2): implement api fetch`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+6. add description :
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Що зроблено?
+- Чи є залежності від інших PR?
+- Чи потрібні додаткові перевірки?
+- Чи є щось, на що варто звернути увагу при код-рев’ю?
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+7. Add reviewers(or just Dimononon).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+8. Press "Create pull request".
