@@ -26,7 +26,20 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<h1>Team 5</h1>}
+            element={<h1>Home Page</h1>}
+          />
+          <Route
+            path="/home"
+            element={
+              <Navigate
+                to="/"
+                replace
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={<PageNotFound />}
           />
         </Routes>
       </main>
