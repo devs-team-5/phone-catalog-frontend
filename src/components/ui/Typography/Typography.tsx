@@ -15,11 +15,11 @@ type Variant =
 type Color =
   | 'primary'
   | 'secondary'
-  | 'accent'
   | 'red'
   | 'green'
   | 'white'
-  | 'icons';
+  | 'icons'
+  | 'inherit';
 
 type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div' | 'label';
 
