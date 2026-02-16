@@ -3,10 +3,13 @@ import { Route, Routes } from 'react-router';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { Footer } from '@/components/common/Footer/Footer';
 
 function App() {
   return (
     <>
+      <Footer />
+
       <Typography variant="body">
         Apple iPhone Xs 64GB Silver (iMT9G2FS/A)999
       </Typography>
