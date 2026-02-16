@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './NotFoundPage';
+import { Button } from '@/components/ui/Button';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 import {
   Select,
@@ -23,6 +25,14 @@ function App() {
         </SelectContent>
       </Select>
 
+      <Button
+        variant="default"
+        size="32"
+        shape="circle"
+        baseColor="GREEN"
+      >
+        <ICON_MAP.CHEVRON_DOWN />
+      </Button>
       <main>
         <Routes>
           <Route
