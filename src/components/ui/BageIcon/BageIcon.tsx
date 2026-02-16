@@ -17,13 +17,11 @@ export const BadgeIcon = ({
     <div className="badge-container">
       <Icon
         name={name}
-        size={16}
+        size={20}
         className={className}
       />
 
-      {count !== undefined && count > 0 && (
-        <span className="icon-badge">{count}</span>
-      )}
+      {count > 0 && <span className="icon-badge">{count}</span>}
     </div>
   );
 };

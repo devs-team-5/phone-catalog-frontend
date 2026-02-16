@@ -1,0 +1,85 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: $white-color;
+  border-bottom: 1px solid $elements-color;
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    height: 64px;
+
+    padding: 0 16px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__actions {
+    display: none;
+  }
+
+  &__burger {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+
+    border-left: 1px solid $elements-color;
+  }
+
+  @include on-tablet {
+    &__flex {
+      padding: 0 16px;
+    }
+
+    &__nav {
+      display: flex;
+      margin-left: 32px;
+    }
+
+    &__actions {
+      display: flex;
+      margin-left: auto;
+      gap: 16px;
+    }
+
+    &__burger {
+      display: none;
+    }
+  }
+
+  @include on-desktop {
+    &__flex {
+      padding: 0 24px;
+    }
+
+    &__nav {
+      margin-left: 48px;
+    }
+
+    &__actions {
+      gap: 16px;
+    }
+  }
+}
