@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter as Router } from 'react-router';
-import './styles/main.scss';
+import '@/styles/main.scss';
 import './styles/tailwind.css';
 import App from './modules/Core/App.tsx';
 
