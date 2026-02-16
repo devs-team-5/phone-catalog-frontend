@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { PageNotFound } from './NotFoundPage';
 
 import {
   Select,
