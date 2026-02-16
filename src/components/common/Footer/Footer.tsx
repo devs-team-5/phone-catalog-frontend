@@ -1,6 +1,5 @@
 import { ICON_MAP } from '@/components/ui/Icon/icons';
-import logo from '@/assets/nice_gadgets_logo.png';
-import './Footer.css';
+import logo from '@/assets/nice_gadgets_logo.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './Footer.module.scss';
 
@@ -9,11 +8,13 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
         <div className={styles.footer__logo}>
-          <img
-            src={logo}
-            alt="NICE GADGETS"
-            className={styles.footer__logo_img}
-          />
+          <a href="#">
+            <img
+              src={logo}
+              alt="NICE GADGETS"
+              className={styles.footer__logo_img}
+            />
+          </a>
         </div>
 
         <nav className={styles.footer__nav}>

@@ -1,6 +1,6 @@
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import './Header.scss';
-import logo from '@/assets/nice_gadgets_logo.png';
+import logo from '@/assets/nice_gadgets_logo.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Icon } from '@/components/ui/Icon/Icon';
 
@@ -9,66 +9,81 @@ export const Header = () => {
     <header className="header">
       <div className="header__flex">
         <div className="header__logo">
-          {/* добавити а */}
-          <img
-            src={logo}
-            alt="Nice Gadgets"
-          />
+          <a href="#">
+            <img
+              src={logo}
+              alt="Nice Gadgets"
+            />
+          </a>
         </div>
 
         <nav className="header__nav">
           <ul className="header__menu">
             <li>
-              <Typography
-                color="secondary"
-                variant="uppercase"
-              >
-                HOME
-              </Typography>
+              <a href="#1">
+                <Typography
+                  color="secondary"
+                  variant="uppercase"
+                >
+                  HOME
+                </Typography>
+              </a>
             </li>
             <li>
-              <Typography
-                color="secondary"
-                variant="uppercase"
-              >
-                PHONES
-              </Typography>
+              <a href="#2">
+                <Typography
+                  color="secondary"
+                  variant="uppercase"
+                >
+                  PHONES
+                </Typography>
+              </a>
             </li>
             <li>
-              <Typography
-                color="secondary"
-                variant="uppercase"
-              >
-                TABLETS
-              </Typography>
+              <a href="#3">
+                <Typography
+                  color="secondary"
+                  variant="uppercase"
+                >
+                  TABLETS
+                </Typography>
+              </a>
             </li>
             <li>
-              <Typography
-                color="secondary"
-                variant="uppercase"
-              >
-                ACCESSORIES
-              </Typography>
+              <a href="#4">
+                <Typography
+                  color="secondary"
+                  variant="uppercase"
+                >
+                  ACCESSORIES
+                </Typography>
+              </a>
             </li>
           </ul>
         </nav>
 
         <div className="header__actions">
-          <BadgeIcon
-            name="WISHLIST"
-            count={2}
-          />
-          <BadgeIcon
-            name="CART"
-            count={3}
-          />
+          <a href="#1">
+            <BadgeIcon
+              name="WISHLIST"
+              count={2}
+            />
+          </a>
+          <a href="#1">
+            <BadgeIcon
+              name="CART"
+              count={3}
+            />
+          </a>
         </div>
 
         <div className="header__burger">
-          <Icon
-            name="MENU"
-            size={24}
-          />
+          <a href="#">
+            <Icon
+              name="MENU"
+              size={24}
+            />
+          </a>
         </div>
       </div>
     </header>

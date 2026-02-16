@@ -11,7 +11,7 @@
     align-items: center;
     height: 64px;
 
-    padding: 0 16px;
+    padding-left: 16px;
   }
 
   &__logo {
@@ -44,6 +44,7 @@
     align-items: center;
     justify-content: center;
     height: 64px;
+    aspect-ratio: 1 / 1;
 
     border-left: 1px solid $elements-color;
   }

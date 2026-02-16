@@ -1,15 +1,17 @@
+.aboba {
+  color: red;
+}
+
 .container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 .title {
   padding: 24px 0;
-  font-size: 48px;
-  font-weight: $fw-bold;
-  color: $primary-color;
 }
 
 .button {
