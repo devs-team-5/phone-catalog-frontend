@@ -1,0 +1,31 @@
+.badge-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.icon-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  height: 14px;
+  aspect-ratio: 1 / 1;
+
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: bold;
+
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  z-index: 2;
+}
