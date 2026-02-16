@@ -1,39 +1,21 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './NotFoundPage';
 
-import { ICON_MAP } from '@/components/ui/Icon/icons';
-import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
-import { Typography } from '@/components/ui/Typography/Typography';
 import { Footer } from '@/components/common/Footer/Footer';
+import { Header } from '@/components/common/Header';
+import { Typography } from '@/components/ui/Typography/Typography';
 
 function App() {
   return (
     <>
-      <Footer />
-
-      <Typography variant="body">
-        Apple iPhone Xs 64GB Silver (iMT9G2FS/A)999
-      </Typography>
-      <Typography
-        variant="uppercase"
-        color="red"
-      >
-        Team 5 project999
-      </Typography>
-      <Typography variant="h2">All css reset by _reset.scss999</Typography>
-      <p>asfdasfas</p>
-      <ICON_MAP.HOME />
-      <ICON_MAP.CART />
-      <ICON_MAP.CHEVRON_DOWN />
-      <BadgeIcon
-        name="CART"
-        count={1}
-      />
+      <header>
+        <Header />
+      </header>
       <main>
         <Routes>
           <Route
             path="/"
-            element={<h1>Home Page</h1>}
+            element={<Typography variant="h1">Home Page</Typography>}
           />
           <Route
             path="/home"
@@ -50,6 +32,9 @@ function App() {
           />
         </Routes>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
