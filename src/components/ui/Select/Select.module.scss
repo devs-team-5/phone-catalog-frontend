@@ -1,0 +1,130 @@
+.trigger {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+
+  background-color: $white-color;
+  border: 1px solid $elements-color;
+  border-radius: 0;
+
+  color: $primary-color;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &[data-placeholder] {
+    color: $secondary-color;
+  }
+
+  &:hover {
+    border-color: $secondary-color;
+  }
+
+  &:focus,
+  &[data-state='open'] {
+    outline: none;
+    border: 1px solid $primary-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: $secondary-color;
+  opacity: 0.5;
+  transition: transform 0.2s;
+
+  .trigger[data-state='open'] & {
+    transform: rotate(180deg);
+  }
+}
+
+.content {
+  z-index: 50;
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+  box-sizing: border-box;
+  margin-left: -10px;
+  overflow: hidden;
+
+  background-color: $white-color;
+  border: 1px solid $elements-color;
+  border-radius: 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+
+  &[data-state='open'] {
+    animation: fadeIn 0.15s ease-out;
+  }
+  &[data-state='closed'] {
+    animation: fadeOut 0.1s ease-in;
+  }
+}
+
+.viewport {
+  padding: 0;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  padding: 6px 12px;
+
+  color: $secondary-color;
+  outline: none;
+
+  &:focus,
+  &[data-highlighted] {
+    background-color: $bg-hover-color;
+    color: $primary-color;
+  }
+
+  &[data-state='checked'] {
+    color: $primary-color;
+  }
+
+  &[data-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.label {
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $secondary-color;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+}
