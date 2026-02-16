@@ -8,16 +8,18 @@
 .title {
   padding: 24px 0;
   font-size: 48px;
+  font-weight: $fw-bold;
+  color: $primary-color;
 }
 
 .button {
   padding-inline: 24px;
   padding-block: 12px;
-  border: 1px solid rgb(226, 230, 233);
+  border: 1px solid $elements-color;
   box-sizing: border-box;
-  color: #89939a;
+  color: $icons-color;
 
   &:hover {
-    border: 1px solid rgb(49, 50, 55);
+    border: 1px solid $primary-color;
   }
 }

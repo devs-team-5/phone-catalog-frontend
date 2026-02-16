@@ -1,5 +1,6 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import styles from './NotFoundPage.module.scss';
+import { Typography } from '@/components/ui/Typography/Typography';
 
 export const PageNotFound = () => (
   <div className={styles.container}>
@@ -8,7 +9,12 @@ export const PageNotFound = () => (
       to="/"
       className={styles.button}
     >
-      Back to home
+      <Typography
+        variant="buttons"
+        color={'secondary'}
+      >
+        Back to home
+      </Typography>
     </Link>
   </div>
 );
