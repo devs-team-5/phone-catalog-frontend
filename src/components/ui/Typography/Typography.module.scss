@@ -2,7 +2,7 @@
   font-family: $font-family;
   margin: 0;
   padding: 0;
-  color: $primary-color;
+  color: inherit;
 }
 
 .primary {
@@ -27,6 +27,10 @@
 
 .icons {
   color: $icons-color;
+}
+
+.inherit {
+  color: inherit;
 }
 
 .h1 {

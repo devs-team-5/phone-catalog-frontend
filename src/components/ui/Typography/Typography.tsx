@@ -12,7 +12,14 @@ type Variant =
   | 'body'
   | 'small';
 
-type Color = 'primary' | 'secondary' | 'red' | 'green' | 'white' | 'icons';
+type Color =
+  | 'primary'
+  | 'secondary'
+  | 'red'
+  | 'green'
+  | 'white'
+  | 'icons'
+  | 'inherit';
 
 type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div' | 'label';
 
