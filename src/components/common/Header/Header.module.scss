@@ -1,0 +1,118 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: $white-color;
+  border-bottom: 1px solid $elements-color;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  height: $header-height-mobile;
+
+  @include on-tablet {
+    height: $header-height-tablet;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.nav {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+}
+
+.actions {
+  display: none;
+}
+
+.burger {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  aspect-ratio: 1 / 1;
+
+  border-left: 1px solid $elements-color;
+
+  @include on-tablet {
+    height: 64px;
+  }
+}
+
+@include on-tablet {
+  .flex {
+    padding: 0 16px;
+  }
+
+  .nav {
+    display: flex;
+    margin-left: 32px;
+  }
+
+  .actions {
+    display: flex;
+    margin-left: auto;
+    gap: 16px;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+@include on-desktop {
+  .flex {
+    padding: 0 24px;
+  }
+
+  .nav {
+    margin-left: 48px;
+  }
+
+  .actions {
+    gap: 16px;
+  }
+}
+
+.link {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 12px;
+  color: $secondary-color;
+  padding-block: 26px;
+}
+
+.isActive {
+  color: $primary-color;
+  position: relative;
+  margin: 0;
+}
+
+.isActive::after {
+  position: absolute;
+  color: $primary-color;
+  content: '';
+  width: 100%;
+  height: 4px;
+  left: 0;
+  bottom: 0;
+  background-color: $primary-color;
+}
