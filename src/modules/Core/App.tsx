@@ -1,7 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './NotFoundPage';
-import { Button } from '@/components/ui/Button';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
