@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  overflow: visible;
+  margin-bottom: 80px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.button {
+  justify-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid $secondary-color;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+}
+
+.div :global(.swiper-slide) {
+  height: auto;
+  display: flex;
+}

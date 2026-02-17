@@ -51,3 +51,14 @@ export const getHotProducts = () => {
     });
   });
 };
+
+export const getNewProducts = () => {
+  return getProducts().then((products) => {
+    return products.sort((a, b) => {
+      const yearA = a.year;
+      const yearB = b.year;
+
+      return yearB - yearA;
+    });
+  });
+};
