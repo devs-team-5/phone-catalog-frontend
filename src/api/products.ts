@@ -44,10 +44,18 @@ export const getImageUrl = (imagePath: string): string => {
 
 export const getHotProducts = () => {
   return getProducts().then((products) => {
-    return products.sort((a, b) => {
-      const discountA = a.fullPrice - a.price;
-      const discountB = b.fullPrice - b.price;
-      return discountB - discountA;
-    });
+    return products
+      .filter((product) => product.year < 2022)
+      .sort((a, b) => {
+        const discountA = a.fullPrice - a.price;
+        const discountB = b.fullPrice - b.price;
+        return discountB - discountA;
+      });
+  });
+};
+
+export const getNewProducts = () => {
+  return getProducts().then((products) => {
+    return products.filter((product) => product.year === 2022);
   });
 };
