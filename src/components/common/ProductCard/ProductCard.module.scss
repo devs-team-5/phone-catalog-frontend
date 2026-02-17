@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 8px;
   padding: 32px;
-  width: 288px;
+  width: 100%;
   border: 1px solid #e2e6e9;
 
   @include on-tablet {
@@ -135,6 +135,7 @@
 }
 
 .favorite {
+  justify-items: center;
   font-size: 14px;
   font-weight: 700;
 
