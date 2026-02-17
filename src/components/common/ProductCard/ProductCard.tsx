@@ -6,8 +6,9 @@ import type React from 'react';
 import { getImageUrl } from '@/api/products';
 type Props = {
   product: Product;
+  discount?: boolean;
 };
-export const ProductCard: React.FC<Props> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({ product, discount }) => {
   const { itemId, name, image, price, fullPrice, ram, capacity, screen } =
     product;
   const imageUrl = getImageUrl(image);
@@ -27,8 +28,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       </Link>
 
       <div className={styles.price}>
-        <span className={styles.price_current}>{price}</span>
-        <span className={styles.price_discount}>{fullPrice}</span>
+        <span className={styles.price_current}>{`$${price}`}</span>
+        {discount && <span className={styles.price_discount}>{fullPrice}</span>}
       </div>
 
       <hr className={styles.separateLine} />

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import styles from './HotPrices.module.scss';
 import type { Product } from '@/types/Product';
 import { getHotProducts } from '@/api/products';
 import { ProductSlider } from '../ProductSlider';
@@ -14,5 +15,13 @@ export const HotPrices = () => {
     getHotProducts().then(setProducts);
   }, []);
 
-  return <ProductSlider products={products} />;
+  return (
+    <div className={styles.container}>
+      <ProductSlider
+        products={products}
+        discount={true}
+        title={'Hot Prices'}
+      />
+    </div>
+  );
 };

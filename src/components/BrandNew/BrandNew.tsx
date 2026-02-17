@@ -14,5 +14,10 @@ export const BrandNew = () => {
     getNewProducts().then(setProducts);
   }, []);
 
-  return <ProductSlider products={products} />;
+  return (
+    <ProductSlider
+      products={products}
+      title={'Brand new models'}
+    />
+  );
 };
