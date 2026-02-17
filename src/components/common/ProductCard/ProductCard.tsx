@@ -6,12 +6,12 @@ import type React from 'react';
 import { getImageUrl } from '@/api/products';
 type Props = {
   product: Product;
-  discount?: boolean;
 };
-export const ProductCard: React.FC<Props> = ({ product, discount }) => {
-  const { itemId, name, image, price, fullPrice, ram, capacity, screen } =
+export const ProductCard: React.FC<Props> = ({ product }) => {
+  const { itemId, name, image, price, fullPrice, ram, capacity, screen, year } =
     product;
   const imageUrl = getImageUrl(image);
+  const isProductOld = year < 2022;
 
   return (
     <div className={styles.product}>
@@ -29,7 +29,9 @@ export const ProductCard: React.FC<Props> = ({ product, discount }) => {
 
       <div className={styles.price}>
         <span className={styles.price_current}>{`$${price}`}</span>
-        {discount && <span className={styles.price_discount}>{fullPrice}</span>}
+        {isProductOld ?
+          <span className={styles.price_discount}>{fullPrice}</span>
+        : null}
       </div>
 
       <hr className={styles.separateLine} />

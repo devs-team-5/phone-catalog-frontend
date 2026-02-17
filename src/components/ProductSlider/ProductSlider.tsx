@@ -15,14 +15,9 @@ import { ICON_MAP } from '@/components/ui/Icon/icons';
 type Props = {
   products: Product[];
   title: string;
-  discount?: boolean;
 };
 
-export const ProductSlider: React.FC<Props> = ({
-  products,
-  title,
-  discount = false,
-}) => {
+export const ProductSlider: React.FC<Props> = ({ products, title }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
@@ -74,10 +69,7 @@ export const ProductSlider: React.FC<Props> = ({
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCard
-              product={product}
-              discount={discount}
-            />
+            <ProductCard product={product} />
           </SwiperSlide>
         ))}
       </Swiper>
