@@ -11,6 +11,7 @@ import styles from './ProductSlider.module.scss';
 import type { Product } from '@/types/Product';
 import React, { useRef } from 'react';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { Button } from '../ui/Button';
 
 type Props = {
   products: Product[];
@@ -32,17 +33,15 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
         </Typography>
 
         <div className={styles.buttonsContainer}>
-          <button
-            ref={prevRef}
-            className={styles.button}
-          >
-            <ICON_MAP.CHEVRON_LEFT />
+          <button ref={prevRef}>
+            <Button size="32">
+              <ICON_MAP.CHEVRON_LEFT />
+            </Button>
           </button>
-          <button
-            ref={nextRef}
-            className={styles.button}
-          >
-            <ICON_MAP.CHEVRON_RIGHT />
+          <button ref={nextRef}>
+            <Button size="32">
+              <ICON_MAP.CHEVRON_RIGHT />
+            </Button>
           </button>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { STATIC_IMAGES } from '@/constants/images';
 
 export const ShopByCategory = () => {
   return (
-    <section className={styles.section}>
+    <section>
       <Typography variant="h2">Shop by category</Typography>
 
       <div className={styles.categories}>

@@ -131,19 +131,5 @@
 }
 
 .favorite {
-  justify-items: center;
-  font-size: 14px;
-  font-weight: 700;
-
-  width: 52px;
-  height: 40px;
-
-  background-color: white;
-  border: 1px solid #b4bdc3;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  &:hover {
-    border: 1px solid #0f0f11;
-  }
+  aspect-ratio: 1 / 1;
 }
