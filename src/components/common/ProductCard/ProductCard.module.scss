@@ -6,10 +6,6 @@
   padding: 32px;
   width: 100%;
   border: 1px solid #e2e6e9;
-
-  @include on-tablet {
-    width: 272px;
-  }
 }
 
 .image {

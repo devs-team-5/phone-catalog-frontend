@@ -49,7 +49,7 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
 
       <Swiper
         modules={[Navigation]}
-        slidesPerView={1.1}
+        slidesPerView={'auto'}
         spaceBetween={16}
         slidesPerGroup={1}
         navigation={true}
@@ -63,12 +63,14 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
           }
         }}
         breakpoints={{
-          640: { slidesPerView: 2.5 },
           1200: { slidesPerView: 4 },
         }}
       >
         {products.map((product) => (
-          <SwiperSlide key={product.id}>
+          <SwiperSlide
+            key={product.id}
+            className={styles.swiper}
+          >
             <ProductCard product={product} />
           </SwiperSlide>
         ))}

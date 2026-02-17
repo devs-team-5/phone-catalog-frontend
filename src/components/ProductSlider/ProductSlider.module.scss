@@ -27,6 +27,18 @@
   }
 }
 
+.swiper {
+  width: 237px;
+
+  @include on-tablet {
+    width: 212;
+  }
+
+  @include on-desktop {
+    width: 272;
+  }
+}
+
 .div :global(.swiper-slide) {
   height: auto;
   display: flex;
