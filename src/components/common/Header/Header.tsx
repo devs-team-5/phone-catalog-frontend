@@ -3,7 +3,7 @@ import './Header.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Icon } from '@/components/ui/Icon/Icon';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Header = () => {
   return (
