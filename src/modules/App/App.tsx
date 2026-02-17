@@ -29,6 +29,39 @@ function App() {
               />
             }
           />
+          <Route path="/phones">
+            <Route
+              index
+              element={<h1>Phones</h1>}
+            />
+            <Route
+              path=":slug"
+              element={<h1>Phones</h1>}
+            />
+          </Route>
+
+          <Route path="/tablets">
+            <Route
+              index
+              element={<h1>Tablets</h1>}
+            />
+            <Route
+              path=":slug"
+              element={<h1>Tablets</h1>}
+            />
+          </Route>
+
+          <Route path="/accessories">
+            <Route
+              index
+              element={<h1>Accessories</h1>}
+            />
+            <Route
+              path=":slug"
+              element={<h1>Accessories</h1>}
+            />
+          </Route>
+
           <Route
             path="/test"
             element={<Test />}
