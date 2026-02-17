@@ -1,9 +1,10 @@
-import { LuHeart } from 'react-icons/lu';
 import styles from './ProductCard.module.scss';
 import { Link } from 'react-router-dom';
 import type { Product } from '@/types/Product';
 import type React from 'react';
 import { getImageUrl } from '@/api/products';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { Button } from '@/components/ui/Button';
 type Props = {
   product: Product;
 };
@@ -60,9 +61,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         >
           Add to cart
         </button>
-        <button className={styles.favorite}>
-          <LuHeart size={16} />
-        </button>
+        <Button
+          size="40"
+          className={styles.favorite}
+        >
+          <ICON_MAP.WISHLIST />
+        </Button>
       </div>
     </div>
   );
