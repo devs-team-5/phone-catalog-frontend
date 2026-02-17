@@ -1,15 +1,14 @@
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
-import './Header.scss';
+import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
-import { Typography } from '@/components/ui/Typography/Typography';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
 
 export const Header = () => {
   return (
-    <header className="header">
-      <div className="header__flex">
-        <div className="header__logo">
+    <header className={styles.header}>
+      <div className={styles.flex}>
+        <div className={styles.logo}>
           <a href="#">
             <img
               src={logo}
@@ -18,75 +17,56 @@ export const Header = () => {
           </a>
         </div>
 
-        <nav className="header__nav">
-          <ul className="header__menu">
+        <nav className={styles.nav}>
+          <ul className={styles.menu}>
             <li>
               <NavLink
                 to="/"
                 end
-                className={({ isActive }) => (isActive ? 'is-active' : '')}
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
               >
-                <Typography
-                  color="secondary"
-                  variant="uppercase"
-                >
-                  Home
-                </Typography>
+                Home
               </NavLink>
             </li>
             <li>
               <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
                 to="/phones"
-                className={({ isActive }) => (isActive ? 'is-active' : '')}
               >
-                <Typography
-                  color="secondary"
-                  variant="uppercase"
-                >
-                  Phones
-                </Typography>
+                Phones
               </NavLink>
             </li>
             <li>
               <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
                 to="/tablets"
-                className={({ isActive }) => (isActive ? 'is-active' : '')}
               >
-                <Typography
-                  color="secondary"
-                  variant="uppercase"
-                >
-                  Tablets
-                </Typography>
+                Tablets
               </NavLink>
             </li>
             <li>
               <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
                 to="/accessories"
-                className={({ isActive }) => (isActive ? 'is-active' : '')}
               >
-                <Typography
-                  color="secondary"
-                  variant="uppercase"
-                >
-                  Accessories
-                </Typography>
+                Accessories
               </NavLink>
             </li>
             <li>
-              <Link to="/test">
-                <Typography
-                  color="secondary"
-                  variant="uppercase"
-                >
-                  TEST
-                </Typography>
-              </Link>
+              <Link to="/test">TEST</Link>
             </li>
           </ul>
         </nav>
 
-        <div className="header__actions">
+        <div className={styles.actions}>
           <Link to="/favorites">
             <BadgeIcon
               name="WISHLIST"
@@ -101,7 +81,7 @@ export const Header = () => {
           </Link>
         </div>
 
-        <div className="header__burger">
+        <div className={styles.burger}>
           <a href="#">
             <Icon
               name="MENU"
