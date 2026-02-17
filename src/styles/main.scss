@@ -1,4 +1,5 @@
 @import './reset';
+@import './mixins';
 
 @font-face {
   font-family: 'Mont';
@@ -37,4 +38,22 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container {
+  max-width: 1136px;
+  margin: 0 auto;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @include on-tablet {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @include on-desktop {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }

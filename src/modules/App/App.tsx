@@ -4,8 +4,9 @@ import { PageNotFound } from '../Core/NotFoundPage';
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
 import styles from './App.module.scss';
-import { Typography } from '@/components/ui/Typography/Typography';
+// import { Typography } from '@/components/ui/Typography/Typography';
 import { Test } from '../Test';
+import { HomePage } from '../HomePage/HomePage';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Typography variant="h1">Home Page</Typography>}
+            element={<HomePage />}
           />
           <Route
             path="/home"
