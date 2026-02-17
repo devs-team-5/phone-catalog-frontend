@@ -3,6 +3,7 @@ import './Header.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Icon } from '@/components/ui/Icon/Icon';
+import { Link } from 'react-router';
 
 export const Header = () => {
   return (
@@ -58,6 +59,16 @@ export const Header = () => {
                   ACCESSORIES
                 </Typography>
               </a>
+            </li>
+            <li>
+              <Link to="/test">
+                <Typography
+                  color="secondary"
+                  variant="uppercase"
+                >
+                  Test
+                </Typography>
+              </Link>
             </li>
           </ul>
         </nav>

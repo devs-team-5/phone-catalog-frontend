@@ -1,0 +1,152 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 32px;
+  width: 288px;
+  border: 1px solid #e2e6e9;
+
+  @include on-tablet {
+    width: 272px;
+  }
+}
+
+.image {
+  display: block;
+  height: 208px;
+  margin: 0 auto;
+  object-fit: contain;
+  cursor: pointer;
+
+  transition: transform 150ms;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include on-tablet {
+    height: 196px;
+  }
+}
+
+.title {
+  display: block;
+  height: 58px;
+  padding-top: 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f0f11;
+  line-height: 21px;
+
+  cursor: pointer;
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+  font-size: 22px;
+
+  &_current {
+    font-weight: 800;
+    color: #0f0f11;
+  }
+
+  &_discount {
+    text-decoration: line-through;
+    font-weight: 500;
+    color: #89939a;
+  }
+}
+
+.separateLine {
+  border: none;
+  border-top: 1px solid #e2e6e9;
+  width: 100%;
+}
+
+.details {
+  padding-block: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #89939a;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+}
+
+.info {
+  font-weight: 600;
+}
+
+.value {
+  font-weight: 700;
+  color: #0f0f11;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.button {
+  width: 100%;
+  height: 40px;
+
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+
+  background-color: #313237;
+  border: none;
+  transition: box-shadow 300ms;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 3px 13px 0 #17203166;
+    color: white;
+  }
+}
+
+.active {
+  width: 100%;
+  height: 40px;
+
+  color: #27ae60;
+  font-size: 14px;
+  font-weight: 700;
+
+  background-color: white;
+  border: none;
+  border: 1px solid #e2e6e9;
+
+  transition: box-shadow 300ms;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 3px 13px 0 #17203166;
+  }
+}
+
+.favorite {
+  font-size: 14px;
+  font-weight: 700;
+
+  width: 52px;
+  height: 40px;
+
+  background-color: white;
+  border: 1px solid #b4bdc3;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    border: 1px solid #0f0f11;
+  }
+}

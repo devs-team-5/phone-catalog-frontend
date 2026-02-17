@@ -1,0 +1,7 @@
+.main {
+  min-height: calc(100vh - $header-height-mobile - $footer-height-mobile);
+
+  @include on-tablet {
+    min-height: calc(100vh - $header-height-tablet - $footer-height-tablet);
+  }
+}
