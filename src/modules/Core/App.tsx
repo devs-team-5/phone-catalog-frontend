@@ -3,41 +3,21 @@ import { PageNotFound } from './NotFoundPage';
 import { Button } from '@/components/ui/Button';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/Select/Select';
+import { Footer } from '@/components/common/Footer/Footer';
+import { Header } from '@/components/common/Header';
+import { Typography } from '@/components/ui/Typography/Typography';
 
 function App() {
   return (
     <>
-      <Select defaultValue="newest">
-        <SelectTrigger>
-          <SelectValue placeholder="Select sorting" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="newest">Newest</SelectItem>
-          <SelectItem value="alphabetically">Alphabetically</SelectItem>
-          <SelectItem value="cheapest">Cheapest</SelectItem>
-        </SelectContent>
-      </Select>
-
-      <Button
-        variant="default"
-        size="32"
-        shape="circle"
-        baseColor="GREEN"
-      >
-        <ICON_MAP.CHEVRON_DOWN />
-      </Button>
+      <header>
+        <Header />
+      </header>
       <main>
         <Routes>
           <Route
             path="/"
-            element={<h1>Home Page</h1>}
+            element={<Typography variant="h1">Home Page</Typography>}
           />
           <Route
             path="/home"
@@ -54,6 +34,9 @@ function App() {
           />
         </Routes>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
