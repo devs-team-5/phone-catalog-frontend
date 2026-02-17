@@ -1,0 +1,66 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid $elements-color;
+  background-color: $white-color;
+  padding: 0;
+
+  // Розміри
+  &--size-32 {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  &--size-40 {
+    width: 40px;
+    height: 40px;
+  }
+  &--size-48 {
+    width: 48px;
+    height: 48px;
+  }
+  &--size-64 {
+    width: 64px;
+    height: 64px;
+  }
+
+  // Форми
+  &--square {
+    border-radius: 0px;
+  }
+  &--circle {
+    border-radius: 50%;
+    border: 1px solid $elements-color;
+    box-shadow: inset 0 0 0 2px $white-color;
+  }
+
+  // Варіанти
+  &--default {
+    &:hover {
+      border-color: $primary-color;
+    }
+  }
+
+  &--selected {
+    &.button--circle {
+      border: 1px solid $primary-color;
+      box-shadow: inset 0 0 0 1px $white-color;
+    }
+
+    &.button--square {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: $white-color;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: $elements-color;
+  }
+}
