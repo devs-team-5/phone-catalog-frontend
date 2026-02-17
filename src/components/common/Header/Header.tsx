@@ -3,7 +3,7 @@ import './Header.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Icon } from '@/components/ui/Icon/Icon';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 export const Header = () => {
   return (
@@ -21,44 +21,57 @@ export const Header = () => {
         <nav className="header__nav">
           <ul className="header__menu">
             <li>
-              <a href="#1">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) => (isActive ? 'is-active' : '')}
+              >
                 <Typography
                   color="secondary"
                   variant="uppercase"
                 >
-                  HOME
+                  Home
                 </Typography>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#2">
+              <NavLink
+                to="/phones"
+                className={({ isActive }) => (isActive ? 'is-active' : '')}
+              >
                 <Typography
                   color="secondary"
                   variant="uppercase"
                 >
-                  PHONES
+                  Phones
                 </Typography>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#3">
+              <NavLink
+                to="/tablets"
+                className={({ isActive }) => (isActive ? 'is-active' : '')}
+              >
                 <Typography
                   color="secondary"
                   variant="uppercase"
                 >
-                  TABLETS
+                  Tablets
                 </Typography>
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#4">
+              <NavLink
+                to="/accessories"
+                className={({ isActive }) => (isActive ? 'is-active' : '')}
+              >
                 <Typography
                   color="secondary"
                   variant="uppercase"
                 >
-                  ACCESSORIES
+                  Accessories
                 </Typography>
-              </a>
+              </NavLink>
             </li>
             <li>
               <Link to="/test">
@@ -66,7 +79,7 @@ export const Header = () => {
                   color="secondary"
                   variant="uppercase"
                 >
-                  Test
+                  TEST
                 </Typography>
               </Link>
             </li>
@@ -74,18 +87,18 @@ export const Header = () => {
         </nav>
 
         <div className="header__actions">
-          <a href="#1">
+          <Link to="/favorites">
             <BadgeIcon
               name="WISHLIST"
               count={2}
             />
-          </a>
-          <a href="#1">
+          </Link>
+          <Link to="/cart">
             <BadgeIcon
               name="CART"
               count={3}
             />
-          </a>
+          </Link>
         </div>
 
         <div className="header__burger">
