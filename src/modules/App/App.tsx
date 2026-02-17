@@ -1,9 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { PageNotFound } from './NotFoundPage';
+import { PageNotFound } from '../Core/NotFoundPage';
 
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
+import styles from './App.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { Test } from '../Test';
 
 function App() {
   return (
@@ -11,7 +13,8 @@ function App() {
       <header>
         <Header />
       </header>
-      <main>
+
+      <main className={styles.main}>
         <Routes>
           <Route
             path="/"
@@ -27,11 +30,16 @@ function App() {
             }
           />
           <Route
+            path="/test"
+            element={<Test />}
+          />
+          <Route
             path="*"
             element={<PageNotFound />}
           />
         </Routes>
       </main>
+
       <footer>
         <Footer />
       </footer>
