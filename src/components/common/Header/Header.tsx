@@ -20,6 +20,7 @@ export const Header = () => {
   }, [isMenuOpen]);
 
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.flex}>
         <div className={styles.logo}>
