@@ -1,0 +1,40 @@
+.title {
+  margin-bottom: 8px;
+  margin-top: 24px;
+
+  @include on-tablet {
+    margin-top: 40px;
+  }
+}
+
+.count {
+  margin-bottom: 32px;
+  @include on-tablet {
+    margin-bottom: 40px;
+  }
+}
+
+.filters {
+  @include page_grid;
+  margin-bottom: 24px;
+
+  &__item {
+    grid-column: span 2;
+
+    @include on-tablet {
+      grid-column: span 4;
+    }
+
+    &:nth-child(2) {
+      grid-column: span 2;
+
+      @include on-tablet {
+        grid-column: span 3;
+      }
+    }
+  }
+}
+
+.pagination {
+  margin-bottom: 80px;
+}
