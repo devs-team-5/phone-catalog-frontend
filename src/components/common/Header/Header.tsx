@@ -5,8 +5,10 @@ import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
+import { useFavourites } from '@/context/FavouritesContext';
 
 export const Header = () => {
+  const { getFavouritesCount } = useFavourites();
   return (
     <header className={styles.header}>
       <div className={styles.flex}>
@@ -103,7 +105,10 @@ export const Header = () => {
         <div className={styles.actions}>
           <Link to="/favourites">
             <Button size="64">
-              <BadgeIcon name="WISHLIST" />
+              <BadgeIcon
+                name="WISHLIST"
+                count={getFavouritesCount()}
+              />
             </Button>
           </Link>
           <Link to="/cart">

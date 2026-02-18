@@ -20,12 +20,12 @@
   height: 14px;
 
   border-radius: 50%;
-  background-color: #ef4444;
-  color: #ffffff;
+  background-color: $red-color;
+  color: $white-color;
 
   font-size: 9px;
   font-weight: 700;
 
-  border: 1px solid #ffffff;
+  border: 1px solid $white-color;
   box-sizing: border-box;
 }
