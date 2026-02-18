@@ -59,3 +59,66 @@ export const getNewProducts = () => {
     return products.filter((product) => product.year === 2022);
   });
 };
+
+interface GetProductsParams {
+  category?: Categories;
+  sort?: 'age' | 'title' | 'price' | string;
+  page?: number;
+  perPage?: string;
+}
+
+interface ProductsResponse {
+  products: Product[];
+  totalCount: number;
+}
+
+export const getProductsWithParams = async ({
+  category,
+  sort = 'age',
+  page = 1,
+  perPage = '16',
+}: GetProductsParams): Promise<ProductsResponse> => {
+  let query = supabase.from('products').select('*', { count: 'exact' });
+
+  if (category) {
+    query = query.eq('category', category);
+  }
+
+  switch (sort) {
+    case 'title':
+      query = query.order('name', { ascending: true });
+      break;
+    case 'price':
+    case 'cheapest':
+      query = query.order('price', { ascending: true });
+      break;
+    case 'expensive':
+      query = query.order('price', { ascending: false });
+      break;
+    case 'age':
+    default:
+      query = query.order('year', { ascending: false });
+      break;
+  }
+
+  if (perPage !== 'all') {
+    const itemsPerPage = Number(perPage);
+
+    const from = (page - 1) * itemsPerPage;
+    const to = from + itemsPerPage - 1;
+
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
+
+  if (error) {
+    console.error('Error fetching products:', error);
+    throw new Error(error.message);
+  }
+
+  return {
+    products: (data as Product[]) || [],
+    totalCount: count || 0,
+  };
+};

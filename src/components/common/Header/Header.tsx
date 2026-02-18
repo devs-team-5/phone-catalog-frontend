@@ -35,7 +35,7 @@ export const Header = () => {
                 className={({ isActive }) =>
                   `${styles.link} ${isActive ? styles.isActive : ''}`
                 }
-                to="/phones"
+                to={'/phones'}
               >
                 Phones
               </NavLink>
