@@ -7,6 +7,7 @@ import styles from './App.module.scss';
 // import { Typography } from '@/components/ui/Typography/Typography';
 import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
+import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 
 function App() {
   return (
@@ -66,6 +67,10 @@ function App() {
           <Route
             path="/test"
             element={<Test />}
+          />
+          <Route
+            path="/favourites"
+            element={<FavouritesPage />}
           />
           <Route
             path="*"
