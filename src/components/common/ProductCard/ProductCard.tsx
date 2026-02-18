@@ -61,9 +61,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         >
           Add to cart
         </button>
+        <button></button>
         <Button
-          size="40"
           className={styles.favorite}
+          size="40"
         >
           <ICON_MAP.WISHLIST />
         </Button>

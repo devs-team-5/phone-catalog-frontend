@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 
 import type { Product } from '@/types/Product';
 import { getNewProducts } from '@/api/products';
-import { ProductSlider } from '../ProductSlider';
+import { ProductSlider } from '@/components/common/ProductSlider';
 
 export const BrandNew = () => {
   const [products, setProducts] = useState<Product[]>([]);

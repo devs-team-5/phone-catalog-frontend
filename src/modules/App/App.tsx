@@ -4,9 +4,10 @@ import { PageNotFound } from '../Core/NotFoundPage';
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
 import styles from './App.module.scss';
-// import { Typography } from '@/components/ui/Typography/Typography';
 import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
+import { CatalogPage } from '../CatalogPage';
+import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 
 function App() {
   return (
@@ -33,7 +34,12 @@ function App() {
           <Route path="/phones">
             <Route
               index
-              element={<h1>Phones</h1>}
+              element={
+                <CatalogPage
+                  category="phones"
+                  title="Mobile phones"
+                />
+              }
             />
             <Route
               path=":slug"
@@ -44,7 +50,12 @@ function App() {
           <Route path="/tablets">
             <Route
               index
-              element={<h1>Tablets</h1>}
+              element={
+                <CatalogPage
+                  category="tablets"
+                  title="Tablets"
+                />
+              }
             />
             <Route
               path=":slug"
@@ -55,7 +66,12 @@ function App() {
           <Route path="/accessories">
             <Route
               index
-              element={<h1>Accessories</h1>}
+              element={
+                <CatalogPage
+                  category="accessories"
+                  title="Accessories"
+                />
+              }
             />
             <Route
               path=":slug"
@@ -66,6 +82,10 @@ function App() {
           <Route
             path="/test"
             element={<Test />}
+          />
+          <Route
+            path="/favourites"
+            element={<FavouritesPage />}
           />
           <Route
             path="*"

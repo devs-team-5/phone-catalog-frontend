@@ -1,0 +1,42 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.container {
+  padding: 24px 16px;
+
+  @include on-tablet {
+    padding: 40px 32px;
+  }
+
+  @include on-desktop {
+    padding: 56px 152px;
+  }
+}
+
+.title {
+  margin-bottom: 4px;
+}
+
+.count {
+  color: $secondary-color;
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  gap: 40px 16px; // вертикальний та горизонтальний відступи
+  grid-template-columns: repeat(1, 1fr); // Mobile: 1 в ряду
+
+  @include on-tablet {
+    grid-template-columns: repeat(2, 1fr); // Tablet: 2 в ряду
+  }
+
+  @include on-desktop {
+    grid-template-columns: repeat(4, 1fr); // Desktop: 4 в ряду
+  }
+}
+
+.grid_item {
+  display: flex;
+  justify-content: center;
+}
