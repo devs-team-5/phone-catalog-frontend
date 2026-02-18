@@ -3,13 +3,26 @@ import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { MobileMenu } from './MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/context/FavouritesContext';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
+
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.flex}>
         <div className={styles.logo}>
@@ -118,15 +131,21 @@ export const Header = () => {
           </Link>
         </div>
 
-        <div className={styles.burger}>
-          <a href="#">
-            <Icon
-              name="MENU"
-              size={24}
-            />
-          </a>
+          <div className={styles.burger}>
+            <button onClick={() => setIsMenuOpen(true)}>
+              <Icon
+                name="MENU"
+                size={24}
+              />
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+      />
+    </>
   );
 };
