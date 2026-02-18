@@ -5,14 +5,19 @@ import type React from 'react';
 import { getImageUrl } from '@/api/products';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Button } from '@/components/ui/Button';
+import { useFavourites } from '@/context/FavouritesContext';
 type Props = {
   product: Product;
 };
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { itemId, name, image, price, fullPrice, ram, capacity, screen, year } =
     product;
+
   const imageUrl = getImageUrl(image);
   const isProductOld = year < 2022;
+  const { isFavourite, toggleFavourite } = useFavourites();
+
+  const isFav = isFavourite(itemId);
 
   return (
     <div className={styles.product}>
@@ -65,8 +70,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <Button
           className={styles.favorite}
           size="40"
+          onClick={() => toggleFavourite(itemId)}
         >
-          <ICON_MAP.WISHLIST />
+          {isFav ?
+            <ICON_MAP.WISHLIST_RED />
+          : <ICON_MAP.WISHLIST />}
         </Button>
       </div>
     </div>

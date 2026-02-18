@@ -7,8 +7,10 @@ import { useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
+import { useFavourites } from '@/context/FavouritesContext';
 
 export const Header = () => {
+  const { getFavouritesCount } = useFavourites();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -116,7 +118,10 @@ export const Header = () => {
         <div className={styles.actions}>
           <Link to="/favourites">
             <Button size="64">
-              <BadgeIcon name="WISHLIST" />
+              <BadgeIcon
+                name="WISHLIST"
+                count={getFavouritesCount()}
+              />
             </Button>
           </Link>
           <Link to="/cart">
