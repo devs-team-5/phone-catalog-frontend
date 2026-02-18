@@ -1,21 +1,142 @@
-.slider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.home-slider {
+  @include page-grid;
+  padding: 0 16px;
+  margin-top: 24px;
+  max-width: 1200px;
 
-.arrow {
-  width: 32px;
-  height: 32px;
-}
+  @include on-tablet {
+    padding: 0 32px;
+  }
 
-.viewport {
-  flex: 1;
-  overflow: hidden;
-}
+  &__content {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
 
-.slide {
-  width: 100%;
-  height: 200px; // тимчасово
-  background: #ddd;
+    @include on-tablet {
+      gap: 16px;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    @include on-tablet {
+      width: 100%;
+    }
+
+    @include on-desktop {
+      width: 1040px;
+    }
+  }
+
+  &__swiper {
+    width: 100%;
+
+    height: 320px;
+
+    @include on-tablet {
+      height: 189px;
+    }
+
+    @include on-desktop {
+      height: 400px;
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  &__slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__nav-btn {
+    display: none;
+    width: 32px;
+    background: #fafbfc;
+    border: 1px solid #e2e6e9;
+    color: #313237;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    align-self: stretch;
+    flex-shrink: 0;
+
+    &:hover {
+      background: #bb5507;
+      color: #000;
+    }
+
+    @include on-tablet {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover {
+      background: #f1f2f4;
+      color: #000;
+    }
+
+    &:global(.swiper-button-disabled) {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__pagination-wrapper {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    :global(.swiper-pagination-bullet) {
+      width: 12px;
+      height: 4px;
+      background: #e2e6e9;
+      opacity: 1;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 !important;
+
+      &:global(.swiper-pagination-bullet-active) {
+        background: #313237;
+        width: 24px;
+      }
+    }
+  }
 }
