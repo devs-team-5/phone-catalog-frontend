@@ -1,0 +1,282 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 16px;
+
+  @include on-tablet {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @include on-desktop {
+    grid-template-columns: repeat(24, 1fr);
+  }
+}
+
+.about {
+  margin-bottom: 16px;
+  grid-column: 1 / -1;
+
+  @include on-desktop {
+    grid-column: 1 / 12;
+  }
+}
+
+.main_image {
+  display: block;
+  width: 288px;
+  height: 288px;
+  grid-column: 1 / -1;
+  object-fit: contain;
+
+  @include on-desktop {
+    padding: 8px 16px;
+    width: 464px;
+    height: 464px;
+    grid-column: 3 / 13;
+    margin-bottom: 80px;
+  }
+}
+
+.images {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+
+  @include on-tablet {
+    flex-direction: column;
+  }
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  grid-column: 1 / -1;
+  gap: 8px;
+  margin-bottom: 56px;
+
+  @include on-tablet {
+    margin-bottom: 64;
+  }
+
+  @include on-desktop {
+    grid-column: 14 / -1;
+    margin-bottom: 0;
+  }
+}
+
+.tech {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article {
+  margin-bottom: 32px;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.line {
+  margin-bottom: 30px;
+
+  @include on-tablet {
+    margin-bottom: 25px;
+  }
+}
+
+.slider {
+  grid-column: 1 / -1;
+}
+
+.action {
+  grid-column: 1 / -1;
+
+  @include on-tablet {
+    grid-column: 8 / -1;
+  }
+
+  @include on-desktop {
+    grid-column: 14 / 21;
+  }
+}
+
+.mainTitle {
+  grid-column: 1 / -1;
+  margin-bottom: 32px;
+
+  @include on-tablet {
+    margin-bottom: 40px;
+  }
+}
+
+.colors_title {
+  grid-column: 1/ -1;
+  display: flex;
+  justify-content: space-between;
+}
+.colors {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.capacity {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.capacity_val {
+  padding: 8px 7px 8px 4px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  height: 32px;
+  background-color: $primary-color;
+  color: $white-color;
+}
+
+.gray {
+  background-color: #5f7170;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.addToCart {
+  display: flex;
+  height: 48px;
+  width: 100%;
+  background-color: $primary-color;
+  color: $white-color;
+  align-items: center;
+  justify-content: center;
+}
+
+.wish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border: 1px solid $secondary-color;
+}
+.product_gallery_wrapper {
+  grid-column: 1 / -1;
+  display: flex;
+
+  flex-direction: column;
+  height: auto;
+  gap: 16px;
+  margin-bottom: 40px;
+
+  @include on-tablet {
+    flex-direction: row;
+    grid-column: 1 / 8;
+    height: 400px;
+    width: 300px;
+
+    margin-bottom: 91px;
+    margin-left: 0;
+  }
+
+  @include on-desktop {
+    flex-direction: row;
+    grid-column: 1 / 13;
+    height: 400px;
+    width: 300px;
+    margin-bottom: 91px;
+    margin-left: 0;
+  }
+}
+
+.thumbs_container {
+  width: 100%;
+  height: 64px;
+  flex-shrink: 0;
+  order: 2;
+
+  @include on-tablet {
+    width: 80px;
+    height: 100%;
+    order: 0;
+  }
+}
+
+.myThumbsSlider {
+  height: 100%;
+  width: 100%;
+}
+
+.thumb_item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 100%;
+}
+
+.thumb_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
+.swiper-slide-thumb-active .thumb-item {
+  border: 2px solid #000;
+}
+
+.main_container {
+  height: 300px;
+  order: 1;
+
+  @include on-tablet {
+    flex: 1;
+    height: 100%;
+  }
+}
+
+.myMainSlider {
+  width: 300px;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}

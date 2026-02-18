@@ -8,6 +8,7 @@ import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
 import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
+import { ProductDetalisPage } from './ProductDetalisPage';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Phones</h1>}
+              element={<ProductDetalisPage />}
             />
           </Route>
 
@@ -57,7 +58,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Tablets</h1>}
+              element={<ProductDetalisPage />}
             />
           </Route>
 
@@ -73,7 +74,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Accessories</h1>}
+              element={<ProductDetalisPage />}
             />
           </Route>
 

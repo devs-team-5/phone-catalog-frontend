@@ -10,7 +10,7 @@ type Props = {
   product: Product;
 };
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { itemId, name, image, price, fullPrice, ram, capacity, screen, year } =
+  const { category, itemId, name, image, price, fullPrice, ram, capacity, screen, year } =
     product;
 
   const imageUrl = getImageUrl(image);
@@ -27,7 +27,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         alt={name}
       ></img>
       <Link
-        to={`/test/${itemId}`}
+        to={`/${category}/${itemId}`}
         className={styles.title}
       >
         {name}
