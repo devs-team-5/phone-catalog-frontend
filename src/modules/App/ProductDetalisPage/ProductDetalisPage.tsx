@@ -1,4 +1,3 @@
-import { BrandNew } from '@/components/BrandNew/BrandNew';
 import styles from './ProductDetalisPage.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
@@ -10,6 +9,8 @@ import 'swiper/css/thumbs';
 import { useState } from 'react';
 import { FreeMode, Thumbs } from 'swiper/modules';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
+import { RecommendedProducts } from './components/RecommendedProducts';
 
 const images = [
   'src/modules/App/ProductDetalisPage/img.png',
@@ -21,10 +22,11 @@ const images = [
   'src/modules/App/ProductDetalisPage/img.png',
 ];
 
-export const ProductDetalisPage = () => {
+export const ProductDetailsPage = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   return (
     <>
+      <Breadcrumbs />
       <div className={styles.container}>
         <Typography
           variant="h2"
@@ -117,9 +119,30 @@ export const ProductDetalisPage = () => {
               Select capacity
             </Typography>
             <div className={styles.capacity}>
-              <div className={styles.capacity_val}>64 GB</div>
-              <div className={styles.capacity_val}>256 GB</div>
-              <div className={styles.capacity_val}>512 GB</div>
+              <div className={styles.value}>
+                <Typography
+                  variant="body"
+                  color="white"
+                >
+                  64 GB
+                </Typography>
+              </div>
+              <div className={styles.value}>
+                <Typography
+                  variant="body"
+                  color="white"
+                >
+                  256 GB
+                </Typography>
+              </div>
+              <div className={styles.value}>
+                <Typography
+                  variant="body"
+                  color="white"
+                >
+                  512 GB
+                </Typography>
+              </div>
             </div>
           </article>
 
@@ -135,7 +158,7 @@ export const ProductDetalisPage = () => {
             <Typography
               variant="h2"
               color="secondary"
-              className="text-decoration: line-through "
+              className="text-decoration: line-through"
             >
               $1199
             </Typography>
@@ -143,7 +166,7 @@ export const ProductDetalisPage = () => {
 
           <section className={styles.buttons}>
             <div className={styles.addToCart}>Add to cart</div>
-            <div className={styles.wish}>
+            <div className={styles.wishlist}>
               <ICON_MAP.WISHLIST />{' '}
             </div>
           </section>
@@ -266,7 +289,7 @@ export const ProductDetalisPage = () => {
         <section className={styles.specs}>
           <Typography
             variant="h3"
-            className={styles.title}
+            className={styles.title_tech}
           >
             Tech specs
           </Typography>
@@ -348,7 +371,7 @@ export const ProductDetalisPage = () => {
           </article>
         </section>
         <div className={styles.slider}>
-          <BrandNew />
+          <RecommendedProducts />
         </div>
       </div>
     </>
