@@ -1,0 +1,13 @@
+.grid {
+  @include page_grid;
+
+  margin-bottom: 24px;
+}
+
+.card {
+  grid-column: span 4;
+
+  @include on-desktop {
+    grid-column: span 6;
+  }
+}

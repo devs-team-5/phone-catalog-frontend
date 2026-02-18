@@ -11,7 +11,7 @@ import styles from './ProductSlider.module.scss';
 import type { Product } from '@/types/Product';
 import React, { useRef } from 'react';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
-import { Button } from '../ui/Button';
+import { Button } from '@/components/ui/Button';
 
 type Props = {
   products: Product[];

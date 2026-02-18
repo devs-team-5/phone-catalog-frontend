@@ -5,6 +5,8 @@ import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu/MobileMenu';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { Button } from '@/components/ui/Button';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,81 +20,110 @@ export const Header = () => {
   }, [isMenuOpen]);
 
   return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.flex}>
-          <div className={styles.logo}>
-            <a href="#">
-              <img
-                src={logo}
-                alt="Nice Gadgets"
-              />
-            </a>
-          </div>
+    <header className={styles.header}>
+      <div className={styles.flex}>
+        <div className={styles.logo}>
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Nice Gadgets"
+            />
+          </Link>
+        </div>
 
-          <nav className={styles.nav}>
-            <ul className={styles.menu}>
-              <li>
-                <NavLink
-                  to="/"
-                  end
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
+        <nav className={styles.nav}>
+          <ul className={styles.menu}>
+            <li>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+              >
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
                 >
                   Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/phones"
+                </Typography>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+                to={'/phones'}
+              >
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
                 >
                   Phones
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/tablets"
+                </Typography>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+                to="/tablets"
+              >
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
                 >
                   Tablets
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/accessories"
+                </Typography>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+                to="/accessories"
+              >
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
                 >
                   Accessories
-                </NavLink>
-              </li>
-              <li>
-                <Link to="/test">TEST</Link>
-              </li>
-            </ul>
-          </nav>
+                </Typography>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+                to="/test"
+              >
+                <Typography
+                  variant="uppercase"
+                  color="red"
+                >
+                  Test
+                </Typography>
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
 
-          <div className={styles.actions}>
-            <Link to="/favorites">
-              <BadgeIcon
-                name="WISHLIST"
-                count={2}
-              />
-            </Link>
-            <Link to="/cart">
-              <BadgeIcon
-                name="CART"
-                count={3}
-              />
-            </Link>
-          </div>
+        <div className={styles.actions}>
+          <Link to="/favourites">
+            <Button size="64">
+              <BadgeIcon name="WISHLIST" />
+            </Button>
+          </Link>
+          <Link to="/cart">
+            <Button size="64">
+              <BadgeIcon name="CART" />
+            </Button>
+          </Link>
+        </div>
 
           <div className={styles.burger}>
             <button onClick={() => setIsMenuOpen(true)}>

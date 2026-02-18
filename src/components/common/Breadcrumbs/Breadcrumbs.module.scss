@@ -1,0 +1,29 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    color: $primary-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  &__separator {
+    display: flex;
+    align-items: center;
+    color: $secondary-color;
+  }
+}
