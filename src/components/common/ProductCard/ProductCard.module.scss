@@ -4,12 +4,8 @@
   justify-content: space-between;
   gap: 8px;
   padding: 32px;
-  width: 288px;
+  width: 100%;
   border: 1px solid #e2e6e9;
-
-  @include on-tablet {
-    width: 272px;
-  }
 }
 
 .image {
@@ -135,18 +131,5 @@
 }
 
 .favorite {
-  font-size: 14px;
-  font-weight: 700;
-
-  width: 52px;
-  height: 40px;
-
-  background-color: white;
-  border: 1px solid #b4bdc3;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  &:hover {
-    border: 1px solid #0f0f11;
-  }
+  aspect-ratio: 1 / 1;
 }

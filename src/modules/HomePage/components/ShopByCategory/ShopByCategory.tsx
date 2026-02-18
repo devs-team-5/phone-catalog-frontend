@@ -1,28 +1,35 @@
+import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './ShopByCategory.module.scss';
+import { CategoryCard } from '../CategoryCard';
+import { STATIC_IMAGES } from '@/constants/images';
 
 export const ShopByCategory = () => {
   return (
-    <section className={styles.shop}>
-      <h2 className={styles.title}>Shop by category</h2>
+    <section>
+      <Typography variant="h2">Shop by category</Typography>
 
       <div className={styles.categories}>
-        <div className={styles.card}>
-          <div className={styles.image} />
-          <h3 className={styles.cardTitle}>Mobile phones</h3>
-          <p className={styles.count}>95 models</p>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.image} />
-          <h3 className={styles.cardTitle}>Tablets</h3>
-          <p className={styles.count}>24 models</p>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.image} />
-          <h3 className={styles.cardTitle}>Accessories</h3>
-          <p className={styles.count}>100 models</p>
-        </div>
+        <CategoryCard
+          to="/phones"
+          video={STATIC_IMAGES.videos.phones}
+          image={STATIC_IMAGES.categories.phones}
+          title="Mobile phones"
+          count={120}
+        />
+        <CategoryCard
+          to="/tablets"
+          video={STATIC_IMAGES.videos.tablets}
+          image={STATIC_IMAGES.categories.tablets}
+          title="Tablets"
+          count={120}
+        />
+        <CategoryCard
+          to="/accessories"
+          video={STATIC_IMAGES.videos.accessories}
+          image={STATIC_IMAGES.categories.accessories}
+          title="Accessories"
+          count={120}
+        />
       </div>
     </section>
   );
