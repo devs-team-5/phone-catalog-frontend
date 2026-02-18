@@ -77,7 +77,7 @@ export const ProductDetailsPage = () => {
               modules={[FreeMode, Thumbs]}
               className={styles.myMainSlider}
             >
-              {images.map((img, index) => (
+              {images.map((_, index) => (
                 <SwiperSlide key={index}>
                   <img
                     src={'src/modules/App/ProductDetalisPage/img.png'}
