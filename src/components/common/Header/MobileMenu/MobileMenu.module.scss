@@ -1,0 +1,131 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.open {
+  pointer-events: all;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.open .overlay {
+  opacity: 1;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  background: white;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 1;
+}
+
+.open .panel {
+  transform: translateX(0);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 48px;
+  padding-left: 16px;
+
+  border-bottom: 1px solid $elements-color;
+}
+
+.logo img {
+  height: 28px;
+  display: block;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+  aspect-ratio: 1 / 1;
+
+  border-left: 1px solid $elements-color;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 24px;
+  gap: 32px;
+}
+
+.link {
+  position: relative;
+  color: $secondary-color;
+}
+
+.active {
+  color: $primary-color;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  background-color: $primary-color;
+}
+
+.bottom {
+  display: flex;
+  margin-top: auto;
+  border-top: 1px solid $elements-color;
+}
+
+.bottomLink {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 64px;
+
+  border-right: 1px solid $elements-color;
+  position: relative;
+}
+
+.bottomLink:last-child {
+  border-right: none;
+}
+
+.bottomActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: $primary-color;
+}

@@ -54,9 +54,19 @@
 
   border-left: 1px solid $elements-color;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @include on-tablet {
     // height: 100%; // Inherited
   }
+}
+
+.burger button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
 @include on-tablet {
