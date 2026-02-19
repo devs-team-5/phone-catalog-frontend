@@ -8,6 +8,7 @@ import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
 import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
+import { CartPage } from '../CartPage/CartPage';
 
 function App() {
   return (
@@ -84,6 +85,10 @@ function App() {
           <Route
             path="/favourites"
             element={<FavouritesPage />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage />}
           />
           <Route
             path="*"
