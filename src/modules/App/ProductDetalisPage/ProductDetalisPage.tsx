@@ -6,24 +6,59 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FreeMode, Thumbs } from 'swiper/modules';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { RecommendedProducts } from './components/RecommendedProducts';
+import { Button } from '@/components/ui/Button';
+import { useParams } from 'react-router-dom';
+import { getImageUrl, getProductDetails } from '@/api/products';
+import type { Categories } from '@/types/Categories';
+import type { ProductDetails } from '@/types/ProductDetails';
+import { useFavourites } from '@/context/FavouritesContext';
 
-const images = [
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-  'src/modules/App/ProductDetalisPage/img.png',
-];
+type Props = {
+  category: Categories;
+};
 
-export const ProductDetailsPage = () => {
+export const ProductDetailsPage: React.FC<Props> = ({ category }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
+  const { slug } = useParams();
+  const [product, setProduct] = useState<ProductDetails | null>(null);
+  const { isFavourite, toggleFavourite } = useFavourites();
+
+  useEffect(() => {
+    if (!slug) {
+      return;
+    }
+
+    getProductDetails(category, slug).then(setProduct);
+  }, []);
+
+  if (!product) {
+    return null;
+  }
+
+  const {
+    namespaceId,
+    name,
+    images,
+    capacityAvailable,
+    camera,
+    cell,
+    capacity,
+    priceDiscount,
+    priceRegular,
+    screen,
+    resolution,
+    processor,
+    zoom,
+    description,
+    ram,
+  } = product;
+  const isFav = isFavourite(namespaceId);
+
   return (
     <>
       <Breadcrumbs />
@@ -32,7 +67,7 @@ export const ProductDetailsPage = () => {
           variant="h2"
           className={styles.mainTitle}
         >
-          Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+          {name}
         </Typography>
 
         <div className={styles.product_gallery_wrapper}>
@@ -58,7 +93,7 @@ export const ProductDetailsPage = () => {
                 <SwiperSlide key={index}>
                   <div className={styles.thumb_item}>
                     <img
-                      src={img}
+                      src={getImageUrl(img)}
                       alt={`Thumb ${index}`}
                     />
                   </div>
@@ -77,10 +112,10 @@ export const ProductDetailsPage = () => {
               modules={[FreeMode, Thumbs]}
               className={styles.myMainSlider}
             >
-              {images.map((_, index) => (
+              {images.map((img, index) => (
                 <SwiperSlide key={index}>
                   <img
-                    src={'src/modules/App/ProductDetalisPage/img.png'}
+                    src={getImageUrl(img)}
                     alt="Product view"
                   />
                 </SwiperSlide>
@@ -105,9 +140,22 @@ export const ProductDetailsPage = () => {
           </article>
 
           <article className={styles.colors}>
-            <div className={styles.gray}></div>
-            <div className={styles.gray}></div>
-            <div className={styles.gray}></div>
+            <Button
+              shape="circle"
+              baseColor="SAND"
+            />
+            <Button
+              shape="circle"
+              baseColor="GREY"
+            />
+            <Button
+              shape="circle"
+              baseColor="DARK"
+            />
+            <Button
+              shape="circle"
+              baseColor="LIGHT"
+            />
           </article>
           <hr className={styles.line} />
 
@@ -119,30 +167,19 @@ export const ProductDetailsPage = () => {
               Select capacity
             </Typography>
             <div className={styles.capacity}>
-              <div className={styles.value}>
-                <Typography
-                  variant="body"
-                  color="white"
+              {capacityAvailable.map((capacity) => (
+                <div
+                  className={styles.value}
+                  key={capacity}
                 >
-                  64 GB
-                </Typography>
-              </div>
-              <div className={styles.value}>
-                <Typography
-                  variant="body"
-                  color="white"
-                >
-                  256 GB
-                </Typography>
-              </div>
-              <div className={styles.value}>
-                <Typography
-                  variant="body"
-                  color="white"
-                >
-                  512 GB
-                </Typography>
-              </div>
+                  <Typography
+                    variant="body"
+                    color="primary"
+                  >
+                    {capacity}
+                  </Typography>
+                </div>
+              ))}
             </div>
           </article>
 
@@ -153,22 +190,27 @@ export const ProductDetailsPage = () => {
               variant="h2"
               color="primary"
             >
-              $799
+              {priceDiscount}
             </Typography>
             <Typography
               variant="h2"
               color="secondary"
               className="text-decoration: line-through"
             >
-              $1199
+              {priceRegular}
             </Typography>
           </section>
 
           <section className={styles.buttons}>
             <div className={styles.addToCart}>Add to cart</div>
-            <div className={styles.wishlist}>
-              <ICON_MAP.WISHLIST />{' '}
-            </div>
+            <Button
+              size="48"
+              onClick={() => toggleFavourite(namespaceId)}
+            >
+              {isFav ?
+                <ICON_MAP.WISHLIST_RED />
+              : <ICON_MAP.WISHLIST />}
+            </Button>
           </section>
 
           <section className={styles.info}>
@@ -179,7 +221,7 @@ export const ProductDetailsPage = () => {
               >
                 Screen
               </Typography>
-              <Typography variant="body">6.5” OLED</Typography>
+              <Typography variant="body">{screen}</Typography>
             </article>
 
             <article className={styles.tech}>
@@ -189,7 +231,7 @@ export const ProductDetailsPage = () => {
               >
                 Resolution
               </Typography>
-              <Typography variant="body">2688x1242</Typography>
+              <Typography variant="body">{resolution}</Typography>
             </article>
 
             <article className={styles.tech}>
@@ -199,7 +241,7 @@ export const ProductDetailsPage = () => {
               >
                 Processor
               </Typography>
-              <Typography variant="body">Apple A12 Bionic</Typography>
+              <Typography variant="body">{processor}</Typography>
             </article>
 
             <article className={styles.tech}>
@@ -209,7 +251,7 @@ export const ProductDetailsPage = () => {
               >
                 RAM
               </Typography>
-              <Typography variant="body">3 GB</Typography>
+              <Typography variant="body">{ram}</Typography>
             </article>
           </section>
         </div>
@@ -222,68 +264,29 @@ export const ProductDetailsPage = () => {
             About
           </Typography>
           <hr className={styles.line} />
-          <article className={styles.article}>
-            <Typography
-              variant="h4"
-              className={styles.title}
-            >
-              And then there was Pro
-            </Typography>
-            <Typography
-              variant="body"
-              color="secondary"
-            >
-              A transformative triple‑camera system that adds tons of capability
-              without complexity.
-              <br />
-              <br />
-              An unprecedented leap in battery life. And a mind‑blowing chip
-              that doubles down on machine learning and pushes the boundaries of
-              what a smartphone can do. Welcome to the first iPhone powerful
-              enough to be called Pro.
-            </Typography>
-          </article>
+          {description.map((desc) => {
+            const { text, title } = desc;
 
-          <article className={styles.article}>
-            <Typography
-              variant="h4"
-              className={styles.title}
-            >
-              Camera
-            </Typography>
-            <Typography
-              variant="body"
-              color="secondary"
-            >
-              Meet the first triple‑camera system to combine cutting‑edge
-              technology with the legendary simplicity of iPhone. Capture up to
-              four times more scene. Get beautiful images in drastically lower
-              light. Shoot the highest‑quality video in a smartphone — then edit
-              with the same tools you love for photos. You’ve never shot with
-              anything like it.
-            </Typography>
-          </article>
-
-          <article className={styles.article}>
-            <Typography
-              variant="h4"
-              className={styles.title}
-            >
-              Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it.
-              Love it.
-            </Typography>
-            <Typography
-              variant="body"
-              color="secondary"
-            >
-              iPhone 11 Pro lets you capture videos that are beautifully true to
-              life, with greater detail and smoother motion. Epic processing
-              power means it can shoot 4K video with extended dynamic range and
-              cinematic video stabilization — all at 60 fps. You get more
-              creative control, too, with four times more scene and powerful new
-              editing tools to play with.
-            </Typography>
-          </article>
+            return (
+              <article
+                className={styles.article}
+                key={title}
+              >
+                <Typography
+                  variant="h4"
+                  className={styles.title}
+                >
+                  {title}
+                </Typography>
+                <Typography
+                  variant="body"
+                  color="secondary"
+                >
+                  {text}
+                </Typography>
+              </article>
+            );
+          })}
         </section>
 
         <section className={styles.specs}>
@@ -302,7 +305,7 @@ export const ProductDetailsPage = () => {
             >
               Screen
             </Typography>
-            <Typography variant="body">6.5” OLED</Typography>
+            <Typography variant="body">{screen}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -311,7 +314,7 @@ export const ProductDetailsPage = () => {
             >
               Resolution
             </Typography>
-            <Typography variant="body">2688x1242</Typography>
+            <Typography variant="body">{resolution}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -320,7 +323,7 @@ export const ProductDetailsPage = () => {
             >
               Processor
             </Typography>
-            <Typography variant="body">Apple A12 Bionic</Typography>
+            <Typography variant="body">{processor}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -329,16 +332,16 @@ export const ProductDetailsPage = () => {
             >
               RAM
             </Typography>
-            <Typography variant="body">3 GB</Typography>
+            <Typography variant="body">{ram}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
               variant="body"
               color="secondary"
             >
-              RAM
+              Built in memory
             </Typography>
-            <Typography variant="body">64 GB</Typography>
+            <Typography variant="body">{capacity}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -347,9 +350,7 @@ export const ProductDetailsPage = () => {
             >
               Camera
             </Typography>
-            <Typography variant="body">
-              12 Mp + 12 Mp + 12 Mp (Triple)
-            </Typography>
+            <Typography variant="body">{camera}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -358,7 +359,7 @@ export const ProductDetailsPage = () => {
             >
               Zoom
             </Typography>
-            <Typography variant="body">Optical, 2x</Typography>
+            <Typography variant="body">{zoom}</Typography>
           </article>
           <article className={styles.tech}>
             <Typography
@@ -367,7 +368,7 @@ export const ProductDetailsPage = () => {
             >
               Cell
             </Typography>
-            <Typography variant="body">GSM, LTE, UMTS</Typography>
+            <Typography variant="body">{cell.join(', ')}</Typography>
           </article>
         </section>
         <div className={styles.slider}>
