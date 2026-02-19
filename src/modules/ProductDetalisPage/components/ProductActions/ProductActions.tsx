@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useFavourites } from '@/context/FavouritesContext';
 import type { MainSpecs } from '@/types/MainSpecs';
+import type { ButtonColor } from '@/components/ui/Button/constants';
 
 type Props = {
   colorsAvailable: string[];
@@ -61,7 +62,7 @@ export const ProductActions: React.FC<Props> = ({
             >
               <Button
                 shape="circle"
-                baseColor={normalizedColor(color)}
+                baseColor={normalizedColor(color) as ButtonColor}
               />
             </Link>
           );
