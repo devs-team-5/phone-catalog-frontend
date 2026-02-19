@@ -9,7 +9,7 @@ import { HomePage } from '../HomePage/HomePage';
 import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
-import { ProductDetalisPage } from './ProductDetalisPage';
+import { ProductDetailsPage } from './ProductDetalisPage';
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetalisPage />}
+              element={<ProductDetailsPage />}
             />
           </Route>
 
@@ -59,7 +59,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetalisPage />}
+              element={<ProductDetailsPage />}
             />
           </Route>
 
@@ -75,7 +75,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetalisPage />}
+              element={<ProductDetailsPage />}
             />
           </Route>
 
