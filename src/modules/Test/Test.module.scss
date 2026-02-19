@@ -1,0 +1,48 @@
+$color-main: #869096; // Колір цифр та лінії
+$color-bg: #ffffff; // Колір фону (обов'язково збігається з фоном сторінки)
+$line-thickness: 4px; // Товщина лінії (задаємо в пікселях для точності)
+
+.price-wrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 1; // Створюємо контекст накладання
+
+  // Сіра лінія на рівні 1
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: $line-thickness;
+    background-color: $color-main;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+.price-text {
+  position: relative;
+  display: inline-block;
+  z-index: 2; // Текст лежить жорстко ПОВЕРХ лінії
+
+  font-size: 120px;
+  font-weight: 500;
+  font-family: sans-serif;
+  line-height: 1; // Критично важливо для ідеального центрування градієнта
+  padding: 0 10px; // Щоб лінія трохи виступала по боках
+
+  // Градієнт, який зафарбовує текст у сірий, а рівно посередині робить білу смугу
+  background: linear-gradient(
+    to bottom,
+    $color-main 0%,
+    $color-main calc(50% - (#{$line-thickness} / 2)),
+    $color-bg calc(50% - (#{$line-thickness} / 2)),
+    $color-bg calc(50% + (#{$line-thickness} / 2)),
+    $color-main calc(50% + (#{$line-thickness} / 2)),
+    $color-main 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

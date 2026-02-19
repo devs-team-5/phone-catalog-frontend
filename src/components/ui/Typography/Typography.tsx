@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/static-components */
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Typography.module.scss';
@@ -10,7 +11,8 @@ type Variant =
   | 'uppercase'
   | 'buttons'
   | 'body'
-  | 'small';
+  | 'small'
+  | 'line-through';
 
 type Color =
   | 'primary'
@@ -40,8 +42,17 @@ export const Typography: React.FC<Props> = ({
 }) => {
   const Tag = tag || getDefaultTag(variant);
 
+  if (variant === 'line-through') {
+    return (
+      <div className={classNames(styles.lineThroughWrapper, className)}>
+        <Tag className={classNames(styles.text, styles.lineThroughText)}>
+          {children}
+        </Tag>
+      </div>
+    );
+  }
+
   return (
-    // eslint-disable-next-line react-hooks/static-components
     <Tag
       className={classNames(
         styles.text,
@@ -73,6 +84,8 @@ const getDefaultTag = (variant: Variant): Tag => {
       return 'p';
     case 'small':
       return 'p';
+    case 'line-through':
+      return 'span';
     default:
       return 'p';
   }

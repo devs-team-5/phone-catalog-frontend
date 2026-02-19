@@ -117,3 +117,49 @@
   line-height: 15px;
   letter-spacing: 0;
 }
+
+$line-thickness: 1px;
+
+.lineThroughWrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: $line-thickness;
+    background-color: $secondary-color;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+.lineThroughText {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0 4px;
+  font-size: 22px;
+  line-height: 31px;
+
+  background: linear-gradient(
+    to bottom,
+    $secondary-color 0%,
+    $secondary-color calc(50% - 1px),
+    $white-color calc(50% - 1px),
+    $white-color calc(50% + 1px),
+    $secondary-color calc(50% + 1px),
+    $secondary-color 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
