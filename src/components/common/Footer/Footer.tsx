@@ -4,6 +4,13 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './Footer.module.scss';
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
@@ -63,8 +70,10 @@ export const Footer = () => {
           </Typography>
 
           <button
+            type="button"
             className={styles.footer__back_button}
             aria-label="Scroll to top"
+            onClick={scrollToTop}
           >
             <ICON_MAP.CHEVRON_UP />
           </button>
