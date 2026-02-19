@@ -76,7 +76,7 @@ $color-button-border: #b4bdc3;
   &__back_to_top {
     display: flex;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     gap: 16px;
 
     @include on-tablet {
