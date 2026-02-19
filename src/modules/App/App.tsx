@@ -9,7 +9,7 @@ import { HomePage } from '../HomePage/HomePage';
 import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
-import { ProductDetailsPage } from './ProductDetalisPage';
+import { ProductDetailsPage } from '../ProductDetalisPage';
 
 function App() {
   return (
