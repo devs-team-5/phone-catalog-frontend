@@ -10,6 +10,7 @@ export interface BaseProductDetails {
   name: string;
   capacityAvailable: string[];
   capacity: string;
+  camera: string;
   priceRegular: number;
   priceDiscount: number;
   colorsAvailable: string[];
@@ -19,6 +20,7 @@ export interface BaseProductDetails {
   screen: string;
   resolution: string;
   processor: string;
+  zoom: string;
   ram: string;
   cell: string[];
 }
