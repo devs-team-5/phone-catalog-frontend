@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useFavourites } from '@/context/FavouritesContext';
-import type { MainSpecs } from '../../ProductDetalisPage';
+import type { MainSpecs } from '@/types/MainSpecs';
 
 type Props = {
   colorsAvailable: string[];
