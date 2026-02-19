@@ -30,6 +30,7 @@ export const Slider = () => {
             modules={[Parallax, Pagination, Navigation, Autoplay, Mousewheel]}
             speed={1200}
             parallax={true}
+            loop={true}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
             pagination={{
               clickable: true,
@@ -42,15 +43,15 @@ export const Slider = () => {
             mousewheel={{ forceToAxis: true }}
             className={styles['home-slider__swiper']}
           >
-            <div
-              slot="container-start"
-              className={styles['home-slider__bg']}
-              style={{ backgroundImage: `url(${bgImage})` }}
-              data-swiper-parallax="-20%"
-            ></div>
-
             {STATIC_IMAGES.banners.homeSlider.map((slide, index) => (
               <SwiperSlide key={index}>
+                <div
+                  slot="container-start"
+                  className={styles['home-slider__bg']}
+                  style={{ backgroundImage: `url(${bgImage})` }}
+                  data-swiper-parallax="-20%"
+                ></div>
+
                 <div className={styles['home-slider__slide-content']}>
                   <img
                     src={slide}
