@@ -1,0 +1,99 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  //   min-width: 300px;
+
+  padding: 16px;
+  border: 1px solid $secondary-color;
+  background: $white-color;
+  gap: 16px;
+
+  @include on-tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 128px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 16px;
+  }
+
+  &__img_wrapper {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  &__img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    @include on-tablet {
+      gap: 32px;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    flex-direction: row;
+    width: 96px;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  &__count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  &__btn {
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__price {
+    display: flex;
+    width: 80px;
+    justify-content: end;
+    overflow: hidden;
+  }
+  &__remove {
+    cursor: pointer;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
