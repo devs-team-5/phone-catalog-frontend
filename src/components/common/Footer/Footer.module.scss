@@ -9,6 +9,21 @@ $color-button-border: #b4bdc3;
   box-sizing: border-box;
   height: $footer-height-mobile;
 
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include on-tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+  }
+
   @include on-tablet {
     padding: 32px 24px;
     height: $footer-height-tablet;
@@ -19,30 +34,6 @@ $color-button-border: #b4bdc3;
   }
 
   &__container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-
-    @include on-tablet {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    @include on-desktop {
-      max-width: 1136px;
-      margin: 0 auto;
-    }
-  }
-
-  &__logo {
-    @include on-tablet {
-      flex: 0 0 192px;
-    }
-
-    @include on-desktop {
-      flex: 0 0 378.67px;
-    }
   }
 
   &__logo_img {
@@ -78,15 +69,6 @@ $color-button-border: #b4bdc3;
     align-items: center;
     justify-content: center;
     gap: 16px;
-
-    @include on-tablet {
-      flex: 0 0 192px;
-      justify-content: flex-end;
-    }
-
-    @include on-desktop {
-      flex: 0 0 378.67px;
-    }
   }
 
   &__back_button {

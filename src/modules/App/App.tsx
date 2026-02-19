@@ -42,7 +42,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetailsPage />}
+              element={<ProductDetailsPage category="phones" />}
             />
           </Route>
 
@@ -58,7 +58,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetailsPage />}
+              element={<ProductDetailsPage category="tablets" />}
             />
           </Route>
 
@@ -74,7 +74,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<ProductDetailsPage />}
+              element={<ProductDetailsPage category="accessories" />}
             />
           </Route>
 
