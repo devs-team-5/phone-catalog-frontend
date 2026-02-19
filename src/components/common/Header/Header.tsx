@@ -23,113 +23,113 @@ export const Header = () => {
 
   return (
     <>
-    <header className={styles.header}>
-      <div className={styles.flex}>
-        <div className={styles.logo}>
-          <Link to="/">
-            <img
-              src={logo}
-              alt="Nice Gadgets"
-            />
-          </Link>
-        </div>
-
-        <nav className={styles.nav}>
-          <ul className={styles.menu}>
-            <li>
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.isActive : ''}`
-                }
-              >
-                <Typography
-                  variant="uppercase"
-                  color="inherit"
-                >
-                  Home
-                </Typography>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.isActive : ''}`
-                }
-                to={'/phones'}
-              >
-                <Typography
-                  variant="uppercase"
-                  color="inherit"
-                >
-                  Phones
-                </Typography>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.isActive : ''}`
-                }
-                to="/tablets"
-              >
-                <Typography
-                  variant="uppercase"
-                  color="inherit"
-                >
-                  Tablets
-                </Typography>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.isActive : ''}`
-                }
-                to="/accessories"
-              >
-                <Typography
-                  variant="uppercase"
-                  color="inherit"
-                >
-                  Accessories
-                </Typography>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.isActive : ''}`
-                }
-                to="/test"
-              >
-                <Typography
-                  variant="uppercase"
-                  color="red"
-                >
-                  Test
-                </Typography>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-
-        <div className={styles.actions}>
-          <Link to="/favourites">
-            <Button size="64">
-              <BadgeIcon
-                name="WISHLIST"
-                count={getFavouritesCount()}
+      <header className={styles.header}>
+        <div className={styles.flex}>
+          <div className={styles.logo}>
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Nice Gadgets"
               />
-            </Button>
-          </Link>
-          <Link to="/cart">
-            <Button size="64">
-              <BadgeIcon name="CART" />
-            </Button>
-          </Link>
-        </div>
+            </Link>
+          </div>
+
+          <nav className={styles.nav}>
+            <ul className={styles.menu}>
+              <li>
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.isActive : ''}`
+                  }
+                >
+                  <Typography
+                    variant="uppercase"
+                    color="inherit"
+                  >
+                    Home
+                  </Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.isActive : ''}`
+                  }
+                  to={'/phones'}
+                >
+                  <Typography
+                    variant="uppercase"
+                    color="inherit"
+                  >
+                    Phones
+                  </Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.isActive : ''}`
+                  }
+                  to="/tablets"
+                >
+                  <Typography
+                    variant="uppercase"
+                    color="inherit"
+                  >
+                    Tablets
+                  </Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.isActive : ''}`
+                  }
+                  to="/accessories"
+                >
+                  <Typography
+                    variant="uppercase"
+                    color="inherit"
+                  >
+                    Accessories
+                  </Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `${styles.link} ${isActive ? styles.isActive : ''}`
+                  }
+                  to="/test"
+                >
+                  <Typography
+                    variant="uppercase"
+                    color="red"
+                  >
+                    Test
+                  </Typography>
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+
+          <div className={styles.actions}>
+            <Link to="/favourites">
+              <Button size="64">
+                <BadgeIcon
+                  name="WISHLIST"
+                  count={getFavouritesCount()}
+                />
+              </Button>
+            </Link>
+            <Link to="/cart">
+              <Button size="64">
+                <BadgeIcon name="CART" />
+              </Button>
+            </Link>
+          </div>
 
           <div className={styles.burger}>
             <button onClick={() => setIsMenuOpen(true)}>
