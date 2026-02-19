@@ -13,9 +13,7 @@ import { CartPage } from '../CartPage/CartPage';
 function App() {
   return (
     <>
-      <header>
-        <Header />
-      </header>
+      <Header />
 
       <main className={styles.main}>
         <Routes>

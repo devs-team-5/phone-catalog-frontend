@@ -1,6 +1,6 @@
 import { Icon } from '../Icon/Icon';
 import type { IconName } from '@/components/ui/Icon/IconName';
-import './BadgeIcon.css';
+import './BadgeIcon.scss';
 
 interface BadgeIconProps {
   name: IconName;

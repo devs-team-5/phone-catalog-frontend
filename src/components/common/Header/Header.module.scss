@@ -2,20 +2,22 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-
+  box-sizing: border-box;
   background: $white-color;
+
   border-bottom: 1px solid $elements-color;
+  height: $header-height-mobile;
+
+  @include on-tablet {
+    height: $header-height-tablet;
+  }
 }
 
 .flex {
   display: flex;
   align-items: center;
   padding-left: 16px;
-  height: $header-height-mobile;
-
-  @include on-tablet {
-    height: $header-height-tablet;
-  }
+  height: 100%;
 }
 
 .logo {
@@ -47,19 +49,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  height: 100%;
   aspect-ratio: 1 / 1;
 
   border-left: 1px solid $elements-color;
 
-  @include on-tablet {
-    height: 64px;
+  &:hover {
+    cursor: pointer;
   }
+
+  @include on-tablet {
+    // height: 100%; // Inherited
+  }
+}
+
+.burger button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
 @include on-tablet {
   .flex {
-    padding: 0 16px;
+    padding-left: 16px;
   }
 
   .nav {
@@ -70,7 +82,15 @@
   .actions {
     display: flex;
     margin-left: auto;
-    gap: 16px;
+
+    a + a {
+      margin-left: -1px;
+    }
+
+    a:hover {
+      position: relative;
+      z-index: 10;
+    }
   }
 
   .burger {
@@ -80,24 +100,23 @@
 
 @include on-desktop {
   .flex {
-    padding: 0 24px;
+    padding-left: 24px;
   }
 
   .nav {
     margin-left: 48px;
   }
-
-  .actions {
-    gap: 16px;
-  }
 }
 
 .link {
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 12px;
+  display: flex;
+  align-items: center;
   color: $secondary-color;
   padding-block: 26px;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .isActive {
@@ -111,8 +130,8 @@
   color: $primary-color;
   content: '';
   width: 100%;
-  height: 4px;
+  height: 3px;
   left: 0;
-  bottom: 0;
+  bottom: -1px;
   background-color: $primary-color;
 }

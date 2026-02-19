@@ -17,6 +17,21 @@ export const getProducts = () => {
     });
 };
 
+export const getProductById = (id: string) => {
+  return supabase
+    .from('products')
+    .select('*')
+    .eq('itemId', id)
+    .single()
+    .then(({ data, error }) => {
+      if (error) {
+        console.error('Error fetching product:', error);
+        throw new Error(error.message);
+      }
+      return data as Product;
+    });
+};
+
 export const getProductDetails = (category: Categories, itemId: string) => {
   return supabase
     .from(category)

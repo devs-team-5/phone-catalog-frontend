@@ -25,10 +25,23 @@ export const BUTTON_COLORS = {
   GREEN: '27AE60',
   RED: 'EB5757',
   // Кольори для вибору товару
-  SAND: 'FCDBC1',
-  GREY: '5F6661',
-  DARK: '4C4C4C',
-  LIGHT: 'F0F0F0',
+  PURPLE: '5E5CE6',
+  SPACEBLACK: '1C1C1E',
+  BLACK: '000000',
+  SILVER: 'F5F5F7',
+  SPACEGRAY: '8E8E93',
+  MIDNIGHTGREEN: '4E5851',
+  GRAPHITE: '2C2C2E',
+  GOLD: 'E7C9A9',
+  SIERRABLUE: 'A7C7E7',
+  YELLOW: 'FFD60A',
+  MIDNIGHT: '191970',
+  BLUE: '007AFF',
+  PINK: 'FF9EB5',
+  ROSEGOLD: 'B76E79',
+  CORAL: 'FF6F61',
+  STARLIGHT: 'F4EAD5',
+  SKYBLUE: '#A7C7E7',
 } as const;
 
 export type ButtonSize = keyof typeof BUTTON_SIZES;

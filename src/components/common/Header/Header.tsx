@@ -3,18 +3,35 @@ import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { MobileMenu } from './MobileMenu/MobileMenu';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { Button } from '@/components/ui/Button';
+import { useFavourites } from '@/context/FavouritesContext';
 
 export const Header = () => {
+  const { getFavouritesCount } = useFavourites();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
+
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.flex}>
         <div className={styles.logo}>
-          <a href="#">
+          <Link to="/">
             <img
               src={logo}
               alt="Nice Gadgets"
             />
-          </a>
+          </Link>
         </div>
 
         <nav className={styles.nav}>
@@ -27,7 +44,12 @@ export const Header = () => {
                   `${styles.link} ${isActive ? styles.isActive : ''}`
                 }
               >
-                Home
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
+                >
+                  Home
+                </Typography>
               </NavLink>
             </li>
             <li>
@@ -37,7 +59,12 @@ export const Header = () => {
                 }
                 to={'/phones'}
               >
-                Phones
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
+                >
+                  Phones
+                </Typography>
               </NavLink>
             </li>
             <li>
@@ -47,7 +74,12 @@ export const Header = () => {
                 }
                 to="/tablets"
               >
-                Tablets
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
+                >
+                  Tablets
+                </Typography>
               </NavLink>
             </li>
             <li>
@@ -57,39 +89,63 @@ export const Header = () => {
                 }
                 to="/accessories"
               >
-                Accessories
+                <Typography
+                  variant="uppercase"
+                  color="inherit"
+                >
+                  Accessories
+                </Typography>
               </NavLink>
             </li>
             <li>
-              <Link to="/test">TEST</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.isActive : ''}`
+                }
+                to="/test"
+              >
+                <Typography
+                  variant="uppercase"
+                  color="red"
+                >
+                  Test
+                </Typography>
+              </NavLink>
             </li>
           </ul>
         </nav>
 
         <div className={styles.actions}>
-          <Link to="/favorites">
-            <BadgeIcon
-              name="WISHLIST"
-              count={2}
-            />
+          <Link to="/favourites">
+            <Button size="64">
+              <BadgeIcon
+                name="WISHLIST"
+                count={getFavouritesCount()}
+              />
+            </Button>
           </Link>
           <Link to="/cart">
-            <BadgeIcon
-              name="CART"
-              count={3}
-            />
+            <Button size="64">
+              <BadgeIcon name="CART" />
+            </Button>
           </Link>
         </div>
 
-        <div className={styles.burger}>
-          <a href="#">
-            <Icon
-              name="MENU"
-              size={24}
-            />
-          </a>
+          <div className={styles.burger}>
+            <button onClick={() => setIsMenuOpen(true)}>
+              <Icon
+                name="MENU"
+                size={24}
+              />
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+      />
+    </>
   );
 };
