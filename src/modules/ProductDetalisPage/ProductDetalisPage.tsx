@@ -32,8 +32,9 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       return;
     }
 
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     getProductDetails(category, slug).then(setProduct);
-  }, [slug]);
+  }, [slug, category]);
 
   if (!product) {
     return null;
@@ -106,10 +107,12 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           {name}
         </Typography>
 
-        <ImageSlider
-          images={images}
-          getImageUrl={getImageUrl}
-        />
+        <div className={styles.slider_container}>
+          <ImageSlider
+            images={images}
+            getImageUrl={getImageUrl}
+          />
+        </div>
 
         <ProductActions
           id={id}
