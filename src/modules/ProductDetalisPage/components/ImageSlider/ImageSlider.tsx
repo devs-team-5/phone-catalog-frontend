@@ -47,7 +47,8 @@ export const ImageSlider: React.FC<Props> = ({ images, getImageUrl }) => {
       <div className={styles.main_container}>
         <Swiper
           loop={true}
-          spaceBetween={10}
+          slidesPerView={1}
+          spaceBetween={0}
           observer={true}
           observeParents={true}
           thumbs={{

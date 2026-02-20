@@ -107,10 +107,12 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           {name}
         </Typography>
 
-        <ImageSlider
-          images={images}
-          getImageUrl={getImageUrl}
-        />
+        <div className={styles.slider_container}>
+          <ImageSlider
+            images={images}
+            getImageUrl={getImageUrl}
+          />
+        </div>
 
         <ProductActions
           id={id}
