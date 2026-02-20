@@ -1,5 +1,6 @@
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './Test.module.scss';
+import { BackButton } from '@/components/common/BackButton/BackButton';
 
 export const Test = () => {
   return (
@@ -10,6 +11,7 @@ export const Test = () => {
         <span className={styles['price-text']}>$899</span>
       </div>
       <Typography variant="line-through">{`$899`}</Typography>
+      <BackButton />
     </>
   );
 };

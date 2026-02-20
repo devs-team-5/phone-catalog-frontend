@@ -1,6 +1,5 @@
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './CartPage.module.scss';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { CartItem } from './components/CartItem/CartItem';
 import { CartSummary } from './components/CartSummary/CartSummary';
 import { useCart } from '@/hooks/cart';
@@ -8,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getProductById } from '@/api/products';
 import type { ProductWithCount } from '@/types/ProductWithCount';
 import type { Product } from '@/types/Product';
+import { BackButton } from '@/components/common/BackButton/BackButton';
 import { Link } from 'react-router-dom';
 import { STATIC_IMAGES } from '@/constants/images';
 
@@ -46,19 +46,7 @@ export const CartPage = () => {
   return (
     <div className={styles.cart}>
       <main className={styles.cart__container}>
-        <div className={styles.cart__back}>
-          <div className={styles.cart__back_btn}>
-            <ICON_MAP.CHEVRON_LEFT />
-          </div>
-
-          <Typography
-            variant="small"
-            color="secondary"
-            className={styles.cart__back_title}
-          >
-            Back
-          </Typography>
-        </div>
+        <BackButton />
         <Typography variant="h1">Cart</Typography>
         {cartProducts.length > 0 ?
           <div className={styles.cart__content}>

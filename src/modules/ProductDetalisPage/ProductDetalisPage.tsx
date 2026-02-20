@@ -16,6 +16,7 @@ import type { ProductDetails } from '@/types/ProductDetails';
 import { ProductActions } from './components/ProductActions';
 import { ImageSlider } from './components/ImageSlider';
 import { Description } from './components/Description';
+import { BackButton } from '@/components/common/BackButton/BackButton';
 import { STATIC_IMAGES } from '@/constants/images';
 
 type ProductDetailsPageProps = {
@@ -128,6 +129,8 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
     <>
       <Breadcrumbs />
       <div className={styles.container}>
+        <BackButton />
+
         <Typography
           variant="h2"
           className={styles.mainTitle}
