@@ -12,6 +12,23 @@
   }
 }
 
+.slider_container {
+  grid-column: 1 / -1;
+  max-width: 100%;
+
+  @include on-tablet {
+    grid-column: 1 / 6;
+    max-height: 300px;
+    max-width: 300px;
+  }
+
+  @include on-desktop {
+    max-width: 500px;
+    max-height: 500px;
+    grid-column: span 9;
+  }
+}
+
 .slider {
   grid-column: 1 / -1;
 }
