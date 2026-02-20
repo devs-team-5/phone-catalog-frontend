@@ -6,6 +6,8 @@ import { ICON_MAP } from '@/components/ui/Icon/icons';
 import type { MainSpecs } from '@/types/MainSpecs';
 import type { ButtonColor } from '@/components/ui/Button/constants';
 import { useFavourites } from '@/hooks/favourites';
+import { useCart } from '@/hooks/cart';
+import cn from 'classnames';
 
 type Props = {
   colorsAvailable: string[];
@@ -29,7 +31,9 @@ export const ProductActions: React.FC<Props> = ({
   getCapacityUrl,
 }) => {
   const { isFavourite, toggleFavourite } = useFavourites();
+  const { isInCart, toggleCart } = useCart();
   const isFav = isFavourite(id);
+  const isCart = isInCart(id);
 
   const normalizedColor = (color: string) => {
     return color.replaceAll(' ', '').toUpperCase();
@@ -113,7 +117,14 @@ export const ProductActions: React.FC<Props> = ({
       </section>
 
       <section className={styles.buttons}>
-        <div className={styles.addToCart}>Add to cart</div>
+        <button
+          className={cn(styles.button, {
+            [styles.active]: isCart,
+          })}
+          onClick={() => toggleCart(id)}
+        >
+          {isCart ? 'Added' : 'Add to cart'}
+        </button>
         <Button
           size="48"
           onClick={() => toggleFavourite(id)}
