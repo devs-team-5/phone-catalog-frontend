@@ -32,8 +32,9 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       return;
     }
 
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     getProductDetails(category, slug).then(setProduct);
-  }, [slug]);
+  }, [slug, category]);
 
   if (!product) {
     return null;
