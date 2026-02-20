@@ -60,6 +60,13 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
     colorsAvailable,
   } = product;
 
+  const colors = [...colorsAvailable].sort((colorA, colorB) => {
+    const normalizedColorA = colorA.toLowerCase().replaceAll(' ', '');
+    const normalizedColorB = colorB.toLowerCase().replaceAll(' ', '');
+
+    return normalizedColorA.localeCompare(normalizedColorB);
+  });
+
   const mainSpecs = [
     { label: 'Screen', value: screen },
     { label: 'Resolution', value: resolution },
@@ -107,7 +114,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         <ProductActions
           id={id}
           priceRegular={priceRegular}
-          colorsAvailable={colorsAvailable}
+          colorsAvailable={colors}
           capacityAvailable={capacityAvailable}
           priceDiscount={priceDiscount}
           mainSpecs={mainSpecs}
