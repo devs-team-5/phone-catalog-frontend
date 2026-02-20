@@ -18,7 +18,7 @@ export const ImageSlider: React.FC<Props> = ({ images, getImageUrl }) => {
           onSwiper={setThumbsSwiper}
           direction="horizontal"
           spaceBetween={8}
-          slidesPerView={5}
+          slidesPerView={Math.min(images.length, 5)}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Thumbs]}
