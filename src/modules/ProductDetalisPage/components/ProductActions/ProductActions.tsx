@@ -6,8 +6,8 @@ import { ICON_MAP } from '@/components/ui/Icon/icons';
 import type { MainSpecs } from '@/types/MainSpecs';
 import type { ButtonColor } from '@/components/ui/Button/constants';
 import { useFavourites } from '@/hooks/favourites';
-import { cn } from '@/lib/utils';
 import { useCart } from '@/hooks/cart';
+import cn from 'classnames';
 
 type Props = {
   colorsAvailable: string[];

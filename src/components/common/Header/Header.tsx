@@ -150,6 +150,8 @@ export const Header = () => {
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
+        cartCount={getCartCount()}
+        favouritesCount={getFavouritesCount()}
       />
     </>
   );
