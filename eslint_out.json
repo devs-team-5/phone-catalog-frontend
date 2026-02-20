@@ -1,0 +1,25 @@
+[
+  {
+    "filePath": "F:\\projects\\phone-catalog-frontend\\src\\modules\\CartPage\\CartPage.tsx",
+    "messages": [
+      {
+        "ruleId": "react-hooks/set-state-in-effect",
+        "severity": 2,
+        "message": "Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\nF:\\projects\\phone-catalog-frontend\\src\\modules\\CartPage\\CartPage.tsx:33:7\n  31 |\n  32 |     if (products.some((p) => !currentIds.includes(p.itemId))) {\n> 33 |       setProducts((prev) => prev.filter((p) => currentIds.includes(p.itemId)));\n     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect\n  34 |     }\n  35 |   }, [cart, products]);\n  36 |",
+        "line": 33,
+        "column": 7,
+        "nodeType": null,
+        "endLine": 33,
+        "endColumn": 18
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { Typography } from '@/components/ui/Typography/Typography';\nimport styles from './CartPage.module.scss';\nimport { ICON_MAP } from '@/components/ui/Icon/icons';\nimport { CartItem } from './components/CartItem/CartItem';\nimport { CartSummary } from './components/CartSummary/CartSummary';\nimport { useCart } from '@/hooks/cart';\nimport { useEffect, useState } from 'react';\nimport { getProductById } from '@/api/products';\nimport type { ProductWithCount } from '@/types/ProductWithCount';\nimport type { Product } from '@/types/Product';\n\nexport const CartPage = () => {\n  const { cart } = useCart();\n\n  const [products, setProducts] = useState<Product[]>([]);\n\n  useEffect(() => {\n    const currentIds = cart.map((item) => item.itemId);\n    const loadedIds = products.map((product) => product.itemId);\n    const missingIds = currentIds.filter((id) => !loadedIds.includes(id));\n\n    if (missingIds.length > 0) {\n      Promise.all(missingIds.map((id) => getProductById(id)))\n        .then((newProducts) => {\n          setProducts((prev) => [...prev, ...newProducts]);\n        })\n        .catch((error) => {\n          console.error('Failed to fetch cart products', error);\n        });\n    }\n\n    if (products.some((p) => !currentIds.includes(p.itemId))) {\n      setProducts((prev) => prev.filter((p) => currentIds.includes(p.itemId)));\n    }\n  }, [cart, products]);\n\n  const cartProducts: ProductWithCount[] = cart\n    .map((item) => {\n      const product = products.find((p) => p.itemId === item.itemId);\n      if (!product) return null;\n      return {\n        ...product,\n        count: item.count,\n      };\n    })\n    .filter((p): p is ProductWithCount => p !== null);\n\n  return (\n    <div className={styles.cart}>\n      <main className={styles.cart__container}>\n        <div className={styles.cart__back}>\n          <div className={styles.cart__back_btn}>\n            <ICON_MAP.CHEVRON_LEFT />\n          </div>\n\n          <Typography\n            variant=\"small\"\n            color=\"secondary\"\n            className={styles.cart__back_title}\n          >\n            Back\n          </Typography>\n        </div>\n        <Typography\n          variant=\"h1\"\n          className={styles.cart__title}\n        >\n          Cart\n        </Typography>\n        <div className={styles.cart__content}>\n          <div className={styles.cart__list}>\n            {cartProducts.map((product) => (\n              <CartItem\n                product={product}\n                key={product.itemId}\n              />\n            ))}\n          </div>\n          <CartSummary products={cartProducts} />\n        </div>\n      </main>\n    </div>\n  );\n};\n",
+    "usedDeprecatedRules": []
+  }
+]

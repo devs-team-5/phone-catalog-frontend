@@ -7,10 +7,12 @@ import { useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
-import { useFavourites } from '@/context/FavouritesContext';
+import { useFavourites } from '@/hooks/favourites';
+import { useCart } from '@/hooks/cart';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
+  const { getCartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -126,7 +128,10 @@ export const Header = () => {
             </Link>
             <Link to="/cart">
               <Button size="64">
-                <BadgeIcon name="CART" />
+                <BadgeIcon
+                  name="CART"
+                  count={getCartCount()}
+                />
               </Button>
             </Link>
           </div>
@@ -145,6 +150,8 @@ export const Header = () => {
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
+        cartCount={getCartCount()}
+        favouritesCount={getFavouritesCount()}
       />
     </>
   );

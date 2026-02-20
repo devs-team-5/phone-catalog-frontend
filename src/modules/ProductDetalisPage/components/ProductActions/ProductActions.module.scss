@@ -6,15 +6,18 @@
   }
 
   @include on-desktop {
-    grid-column: 15 / 21;
+    grid-column: 14 / 21;
   }
 }
 
 .colors_title {
-  grid-column: 1/ -1;
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+
+  @include on-desktop {
+    width: 513px;
+  }
 }
 
 .colors {
@@ -55,25 +58,42 @@
   }
 }
 
-.addToCart {
-  display: flex;
-  height: 48px;
+.line {
+  margin-bottom: 24px;
+}
+
+.button {
   width: 100%;
-  background-color: $primary-color;
+  height: 48px;
+
   color: $white-color;
-  align-items: center;
-  justify-content: center;
+  font-size: 14px;
+  font-weight: $fw-semibold;
 
-  @include on-tablet {
-    width: 180px;
-  }
+  background-color: $primary-color;
+  border: none;
+  transition: box-shadow 300ms;
+  cursor: pointer;
 
-  @include on-desktop {
-    width: 263px;
+  &:hover {
+    box-shadow: 0 3px 13px 0 $box-shadow-color;
   }
+}
+
+.active {
+  color: $green-color;
+
+  background-color: $white-color;
+  border: 1px solid $elements-color;
+}
+
+.specs {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mainSpecs {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
 }

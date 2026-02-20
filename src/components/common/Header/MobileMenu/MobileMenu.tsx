@@ -6,13 +6,21 @@ import { Icon } from '@/components/ui/Icon/Icon';
 import { Typography } from '@/components/ui/Typography/Typography';
 
 import styles from './MobileMenu.module.scss';
+import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  cartCount: number;
+  favouritesCount: number;
 };
 
-export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
+export const MobileMenu: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  cartCount,
+  favouritesCount,
+}) => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(styles.link, {
       [styles.active]: isActive,
@@ -64,6 +72,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Home
             </Typography>
@@ -77,6 +86,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Phones
             </Typography>
@@ -90,6 +100,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Tablets
             </Typography>
@@ -103,6 +114,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Accessories
             </Typography>
@@ -115,9 +127,9 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             onClick={onClose}
             className={getBottomLinkClass}
           >
-            <Icon
+            <BadgeIcon
               name="WISHLIST"
-              size={24}
+              count={favouritesCount}
             />
           </NavLink>
 
@@ -126,9 +138,9 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             onClick={onClose}
             className={getBottomLinkClass}
           >
-            <Icon
+            <BadgeIcon
               name="CART"
-              size={24}
+              count={cartCount}
             />
           </NavLink>
         </div>
