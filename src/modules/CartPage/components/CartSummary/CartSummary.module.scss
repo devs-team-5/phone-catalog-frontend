@@ -1,13 +1,18 @@
 .summary {
   grid-column: 1 / -1;
   padding: 24px;
-  border: 1px solid #e2e6e9;
-  background: #fff;
+  border: 1px solid $elements-color;
+  background: $white-color;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 
-  @include on-tablet {
+  &:hover {
+    border-color: $primary-color;
+    box-shadow: 0 3px 13px 0 $box-shadow-color;
   }
 
   @include on-desktop {
@@ -22,30 +27,28 @@
   }
 
   &__text {
-    color: #89939a;
-    font-size: 14px;
     margin-top: 8px;
   }
 
   &__divider {
     width: 100%;
     height: 1px;
-    background: #e2e6e9;
+    background: $elements-color;
     margin-bottom: 16px;
   }
 
   &__checkout {
     width: 100%;
     height: 48px;
-    background: #313237;
-    color: #fff;
+    background: $primary-color;
+    color: $white-color;
     border: none;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: box-shadow 0.3s;
 
     &:hover {
-      background: #4a4d58;
+      box-shadow: 0 3px 13px 0 $box-shadow-color;
     }
   }
 }
