@@ -5,68 +5,126 @@ import type React from 'react';
 import { getImageUrl } from '@/api/products';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Button } from '@/components/ui/Button';
-import { useFavourites } from '@/context/FavouritesContext';
+import { useFavourites } from '@/hooks/favourites';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { useCart } from '@/hooks/cart';
+import { cn } from '@/lib/utils';
 type Props = {
   product: Product;
 };
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { itemId, name, image, price, fullPrice, ram, capacity, screen, year } =
-    product;
+  const {
+    category,
+    itemId,
+    name,
+    image,
+    price,
+    fullPrice,
+    ram,
+    capacity,
+    screen,
+    year,
+  } = product;
 
   const imageUrl = getImageUrl(image);
   const isProductOld = year < 2022;
   const { isFavourite, toggleFavourite } = useFavourites();
+  const { toggleCart, isInCart } = useCart();
 
   const isFav = isFavourite(itemId);
+  const isCart = isInCart(itemId);
 
   return (
     <div className={styles.product}>
-      <img
-        src={imageUrl}
-        className={styles.image}
-        alt={name}
-      ></img>
+      <Link to={`/test/${itemId}`}>
+        <img
+          src={imageUrl}
+          className={styles.image}
+          alt={name}
+        />
+      </Link>
+
       <Link
-        to={`/test/${itemId}`}
+        to={`/${category}/${itemId}`}
         className={styles.title}
       >
-        {name}
+        <Typography
+          variant="body"
+          color="primary"
+        >
+          {name}
+        </Typography>
       </Link>
 
       <div className={styles.price}>
-        <span className={styles.price_current}>{`$${price}`}</span>
-        {isProductOld ?
-          <span className={styles.price_discount}>{fullPrice}</span>
-        : null}
+        <Typography variant="h3">{`$${price}`}</Typography>
+        {isProductOld && (
+          <Typography variant="line-through">{`$${fullPrice}`}</Typography>
+        )}
       </div>
 
       <hr className={styles.separateLine} />
 
       <div className={styles.details}>
         <div className={styles.details__container}>
-          <span className={styles.info}>Screen</span>
-          <span className={styles.value}>{screen}</span>
+          <Typography
+            variant="small"
+            color="secondary"
+            className={styles.info}
+          >
+            Screen
+          </Typography>
+          <Typography
+            variant="uppercase"
+            className={styles.value}
+          >
+            {screen}
+          </Typography>
         </div>
 
         <div className={styles.details__container}>
-          <span className={styles.info}>Capacity</span>
-          <span className={styles.value}>{capacity}</span>
+          <Typography
+            variant="small"
+            color="secondary"
+            className={styles.info}
+          >
+            Capacity
+          </Typography>
+          <Typography
+            variant="uppercase"
+            className={styles.value}
+          >
+            {capacity}
+          </Typography>
         </div>
 
         <div className={styles.details__container}>
-          <span className={styles.info}>RAM</span>
-          <span className={styles.value}>{ram}</span>
+          <Typography
+            variant="small"
+            color="secondary"
+            className={styles.info}
+          >
+            RAM
+          </Typography>
+          <Typography
+            variant="uppercase"
+            className={styles.value}
+          >
+            {ram}
+          </Typography>
         </div>
       </div>
 
       <div className={styles.buttons}>
         <button
-          className={styles.button}
-          onClick={() => {}}
+          className={cn(styles.button, {
+            [styles.active]: isCart,
+          })}
+          onClick={() => toggleCart(itemId)}
         >
-          Add to cart
+          {isCart ? 'Added' : 'Add to cart'}
         </button>
-        <button></button>
+
         <Button
           className={styles.favorite}
           size="40"

@@ -8,6 +8,8 @@ import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
 import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
+import { CartPage } from '../CartPage/CartPage';
+import { ProductDetailsPage } from '../ProductDetalisPage';
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Phones</h1>}
+              element={<ProductDetailsPage category="phones" />}
             />
           </Route>
 
@@ -57,7 +59,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Tablets</h1>}
+              element={<ProductDetailsPage category="tablets" />}
             />
           </Route>
 
@@ -73,7 +75,7 @@ function App() {
             />
             <Route
               path=":slug"
-              element={<h1>Accessories</h1>}
+              element={<ProductDetailsPage category="accessories" />}
             />
           </Route>
 
@@ -84,6 +86,10 @@ function App() {
           <Route
             path="/favourites"
             element={<FavouritesPage />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage />}
           />
           <Route
             path="*"
