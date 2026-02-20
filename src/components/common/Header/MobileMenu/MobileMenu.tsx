@@ -64,6 +64,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Home
             </Typography>
@@ -77,6 +78,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Phones
             </Typography>
@@ -90,6 +92,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Tablets
             </Typography>
@@ -103,6 +106,7 @@ export const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
             <Typography
               variant="uppercase"
               color="inherit"
+              className={styles.menuItem}
             >
               Accessories
             </Typography>
