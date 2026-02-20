@@ -124,20 +124,22 @@ export const ProductActions: React.FC<Props> = ({
         </Button>
       </section>
 
-      {mainSpecs.map(({ label, value }) => (
-        <article
-          className={styles.mainSpecs}
-          key={label}
-        >
-          <Typography
-            variant="body"
-            color="secondary"
+      <section className={styles.mainSpecs}>
+        {mainSpecs.map(({ label, value }) => (
+          <article
+            className={styles.specs}
+            key={label}
           >
-            {label}
-          </Typography>
-          <Typography variant="body">{value}</Typography>
-        </article>
-      ))}
+            <Typography
+              variant="body"
+              color="secondary"
+            >
+              {label}
+            </Typography>
+            <Typography variant="body">{value}</Typography>
+          </article>
+        ))}
+      </section>
     </div>
   );
 };
