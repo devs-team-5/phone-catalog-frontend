@@ -8,6 +8,7 @@ import { ProductsList } from '@/components/common/ProductsList/ProductsList';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { STATIC_IMAGES } from '@/constants/images';
 import { Link } from 'react-router-dom';
+import { BackButton } from '@/components/common/BackButton/BackButton';
 
 export const FavouritesPage = () => {
   const { favourites } = useFavourites();
@@ -25,6 +26,8 @@ export const FavouritesPage = () => {
   return (
     <section>
       <Breadcrumbs />
+      <BackButton />
+
       <Typography
         variant="h1"
         className={styles.title}
