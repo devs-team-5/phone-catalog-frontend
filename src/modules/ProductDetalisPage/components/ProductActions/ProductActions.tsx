@@ -3,9 +3,9 @@ import styles from './ProductActions.module.scss';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
-import { useFavourites } from '@/context/FavouritesContext';
 import type { MainSpecs } from '@/types/MainSpecs';
 import type { ButtonColor } from '@/components/ui/Button/constants';
+import { useFavourites } from '@/hooks/favourites';
 
 type Props = {
   colorsAvailable: string[];
