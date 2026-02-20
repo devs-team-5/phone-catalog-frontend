@@ -12,6 +12,23 @@
   }
 }
 
+.slider_container {
+  grid-column: 1 / -1;
+  max-width: 100%;
+
+  @include on-tablet {
+    grid-column: 1 / 6;
+    max-height: 300px;
+    max-width: 300px;
+  }
+
+  @include on-desktop {
+    max-width: 500px;
+    max-height: 500px;
+    grid-column: span 9;
+  }
+}
+
 .slider {
   grid-column: 1 / -1;
 }
@@ -22,5 +39,23 @@
 
   @include on-tablet {
     margin-bottom: 40px;
+  }
+}
+
+.emptyImage {
+  display: block;
+  margin-inline: auto;
+  height: 40vh;
+
+  margin-top: 24px;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  @include on-tablet {
+    margin-top: 40px;
   }
 }

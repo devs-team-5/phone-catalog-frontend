@@ -11,6 +11,7 @@ import cn from 'classnames';
 
 type Props = {
   colorsAvailable: string[];
+  currentCapacity: string;
   capacityAvailable: string[];
   priceDiscount: number;
   priceRegular: number;
@@ -24,6 +25,7 @@ export const ProductActions: React.FC<Props> = ({
   id,
   priceRegular,
   colorsAvailable,
+  currentCapacity,
   capacityAvailable,
   priceDiscount,
   mainSpecs,
@@ -84,13 +86,13 @@ export const ProductActions: React.FC<Props> = ({
         <div className={styles.capacity}>
           {capacityAvailable.map((capacity) => (
             <Link
-              className={styles.value}
+              className={`${styles.value} ${currentCapacity === capacity ? styles.activeCapacity : ''}`}
               key={capacity}
               to={getCapacityUrl(capacity)}
             >
               <Typography
                 variant="body"
-                color="primary"
+                color={`${currentCapacity === capacity ? 'white' : 'primary'}`}
               >
                 {capacity}
               </Typography>

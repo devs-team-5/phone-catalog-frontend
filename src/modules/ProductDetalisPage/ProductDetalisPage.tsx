@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { RecommendedProducts } from './components/RecommendedProducts';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getImageUrl, getProductDetails } from '@/api/products';
 import type { Categories } from '@/types/Categories';
 import type { ProductDetails } from '@/types/ProductDetails';
@@ -17,6 +17,7 @@ import { ProductActions } from './components/ProductActions';
 import { ImageSlider } from './components/ImageSlider';
 import { Description } from './components/Description';
 import { BackButton } from '@/components/common/BackButton/BackButton';
+import { STATIC_IMAGES } from '@/constants/images';
 
 type ProductDetailsPageProps = {
   category: Categories;
@@ -27,17 +28,45 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
 }) => {
   const { slug } = useParams();
   const [product, setProduct] = useState<ProductDetails | null>(null);
+  const [loadedSlug, setLoadedSlug] = useState<string | undefined>();
 
   useEffect(() => {
     if (!slug) {
       return;
     }
 
-    getProductDetails(category, slug).then(setProduct);
-  }, [slug]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    getProductDetails(category, slug).then((data) => {
+      setProduct(data);
+      setLoadedSlug(slug);
+    });
+  }, [slug, category]);
+
+  if (loadedSlug !== slug) {
+    return null;
+  }
 
   if (!product) {
-    return null;
+    return (
+      <>
+        <Breadcrumbs />
+        <div>
+          <Typography
+            variant="h2"
+            color="primary"
+          >
+            Product not found
+          </Typography>
+          <Link to="/">
+            <img
+              src={STATIC_IMAGES.placeholders.noImage}
+              alt="Empty wishlist"
+              className={styles.emptyImage}
+            />
+          </Link>
+        </div>
+      </>
+    );
   }
 
   const {
@@ -109,15 +138,18 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           {name}
         </Typography>
 
-        <ImageSlider
-          images={images}
-          getImageUrl={getImageUrl}
-        />
+        <div className={styles.slider_container}>
+          <ImageSlider
+            images={images}
+            getImageUrl={getImageUrl}
+          />
+        </div>
 
         <ProductActions
           id={id}
           priceRegular={priceRegular}
           colorsAvailable={colors}
+          currentCapacity={capacity}
           capacityAvailable={capacityAvailable}
           priceDiscount={priceDiscount}
           mainSpecs={mainSpecs}

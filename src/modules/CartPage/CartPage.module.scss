@@ -32,8 +32,6 @@
 
   &__back_title {
     line-height: 16px;
-    // text-align: start;
-    // align-self:flex-start;
     vertical-align: sub;
     margin-top: 16px;
   }
@@ -47,6 +45,7 @@
 .cart__content {
   @include page-grid;
   row-gap: 32px;
+  margin-top: 32px;
 
   @include on-desktop {
     flex-direction: row;
@@ -70,5 +69,24 @@
 .cart__summary {
   @include on-desktop {
     width: 368px;
+  }
+}
+
+.emptyImage {
+  display: block;
+  margin-inline: auto;
+  height: 40vh;
+  object-fit: contain;
+
+  margin-top: 24px;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  @include on-tablet {
+    margin-top: 40px;
   }
 }

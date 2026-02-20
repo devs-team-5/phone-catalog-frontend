@@ -8,6 +8,8 @@ import { getProductById } from '@/api/products';
 import type { ProductWithCount } from '@/types/ProductWithCount';
 import type { Product } from '@/types/Product';
 import { BackButton } from '@/components/common/BackButton/BackButton';
+import { Link } from 'react-router-dom';
+import { STATIC_IMAGES } from '@/constants/images';
 
 export const CartPage = () => {
   const { cart } = useCart();
@@ -45,23 +47,41 @@ export const CartPage = () => {
     <div className={styles.cart}>
       <main className={styles.cart__container}>
         <BackButton />
-        <Typography
-          variant="h1"
-          className={styles.cart__title}
-        >
-          Cart
-        </Typography>
-        <div className={styles.cart__content}>
-          <div className={styles.cart__list}>
-            {cartProducts.map((product) => (
-              <CartItem
-                product={product}
-                key={product.itemId}
-              />
-            ))}
+        <Typography variant="h1">Cart</Typography>
+        {cartProducts.length > 0 ?
+          <div className={styles.cart__content}>
+            <div className={styles.cart__list}>
+              {cartProducts.map((product) => (
+                <CartItem
+                  product={product}
+                  key={product.itemId}
+                />
+              ))}
+            </div>
+            <CartSummary products={cartProducts} />
           </div>
-          <CartSummary products={cartProducts} />
-        </div>
+        : <>
+            <Typography
+              variant="h2"
+              color="primary"
+            >
+              Your cart is empty
+            </Typography>
+            <Typography
+              variant="body"
+              color="secondary"
+            >
+              Add your first product to the cart
+            </Typography>
+            <Link to="/">
+              <img
+                src={STATIC_IMAGES.placeholders.emptyCart}
+                alt="Empty cart"
+                className={styles.emptyImage}
+              />
+            </Link>
+          </>
+        }
       </main>
     </div>
   );

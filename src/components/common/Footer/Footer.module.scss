@@ -1,74 +1,71 @@
-$color-dark: #313237;
-$color-border: #e2e6e9;
-$color-button-border: #b4bdc3;
+@import '@/styles/variables';
+@import '@/styles/mixins';
 
 .footer {
-  padding: 32px 16px;
-  background-color: #fff;
-  border-top: 1px solid $color-border;
-  box-sizing: border-box;
-  height: $footer-height-mobile;
+  width: 100%;
+  background-color: $white-color;
 
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-
-  @include on-tablet {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  @include on-desktop {
-    max-width: 1136px;
-    margin: 0 auto;
-  }
-
-  @include on-tablet {
-    padding: 32px 24px;
-    height: $footer-height-tablet;
-  }
-
-  @include on-desktop {
-    padding: 32px 0px;
+  &__line {
+    height: 1px;
+    background-color: $elements-color;
+    margin-bottom: 32px;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   &__container {
-  }
-
-  &__logo_img {
-    height: 28px;
-    display: block;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 0 16px 32px;
+    margin: 0 auto;
 
     @include on-tablet {
-      height: 32px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 32px 32px;
+    }
+
+    @include on-desktop {
+      padding: 0 32px 32px;
+      max-width: 1200px;
     }
   }
 
   &__nav {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
 
     @include on-tablet {
       flex-direction: row;
-      gap: 32px;
-      flex: 1;
-      justify-content: center;
+      align-items: center;
+      gap: 14px;
     }
 
     @include on-desktop {
-      flex: 0 0 378.67px;
-      justify-content: space-between;
-      gap: 0;
+      gap: 106px;
     }
   }
 
   &__back_to_top {
     display: flex;
     align-items: center;
-    // justify-content: center;
+    justify-content: center;
     gap: 16px;
+    width: 100%;
+
+    @include on-tablet {
+      width: auto;
+    }
   }
 
   &__back_button {
@@ -77,12 +74,14 @@ $color-button-border: #b4bdc3;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $color-button-border;
+    background-color: $white-color;
+    border: 1px solid $icons-color;
+    color: $primary-color;
     cursor: pointer;
-    transition: border-color 0.3s ease;
+    transition: all 0.2s ease;
 
     &:hover {
-      border-color: $color-dark;
+      border-color: $primary-color;
     }
   }
 }
