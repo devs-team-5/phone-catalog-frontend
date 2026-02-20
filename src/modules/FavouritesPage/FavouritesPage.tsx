@@ -3,7 +3,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './FavouritesPage.module.scss';
 import { getProductById } from '@/api/products';
 import type { Product } from '@/types/Product';
-import { useFavourites } from '@/context/FavouritesContext';
+import { useFavourites } from '@/hooks/favourites';
 import { ProductsList } from '@/components/common/ProductsList/ProductsList';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { STATIC_IMAGES } from '@/constants/images';

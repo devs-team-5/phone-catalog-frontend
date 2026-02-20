@@ -2,12 +2,24 @@
   display: flex;
   flex-direction: column;
   height: 160px;
-  //   min-width: 300px;
 
   padding: 16px;
-  border: 1px solid $secondary-color;
+  border: 1px solid $elements-color;
   background: $white-color;
   gap: 16px;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+
+  &:hover {
+    border-color: $primary-color;
+    box-shadow: 0 3px 13px 0 $box-shadow-color;
+  }
+
+  &:has(.item__remove:hover) {
+    box-shadow: 0 3px 13px 0 $box-shadow-red-color;
+    border-color: $red-color;
+  }
 
   @include on-tablet {
     flex-direction: row;
@@ -36,7 +48,7 @@
   &__img {
     width: 80px;
     height: 80px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   &__name {
@@ -62,7 +74,6 @@
     flex-direction: row;
     width: 96px;
     justify-content: space-between;
-    gap: 14px;
   }
 
   &__count {
@@ -71,16 +82,18 @@
     align-items: center;
     flex-shrink: 0;
     text-align: center;
+    width: 32px;
   }
 
   &__btn {
     cursor: pointer;
     display: flex;
     flex-shrink: 0;
+    border-color: $icons-color;
 
     &:disabled {
-      opacity: 0.3;
       cursor: default;
+      border-color: $elements-color;
     }
   }
 
@@ -90,10 +103,11 @@
     justify-content: end;
     overflow: hidden;
   }
+
   &__remove {
-    cursor: pointer;
+    border: none;
     &:hover {
-      color: $primary-color;
+      color: $red-color;
     }
   }
 }

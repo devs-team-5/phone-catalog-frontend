@@ -4,7 +4,4 @@
     "source.fixAll.eslint": "explicit"
   },
   "liveServer.settings.port": 5501,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
 }
