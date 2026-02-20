@@ -1,0 +1,51 @@
+.about {
+  margin-bottom: 16px;
+  grid-column: 1 / -1;
+
+  @include on-desktop {
+    grid-column: 1 / 13;
+  }
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  grid-column: 1 / -1;
+  gap: 8px;
+  margin-bottom: 56px;
+
+  @include on-tablet {
+    margin-bottom: 64;
+  }
+
+  @include on-desktop {
+    grid-column: 15 / -1;
+    margin-bottom: 0;
+  }
+}
+
+.tech {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article {
+  margin-bottom: 32px;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.title_tech {
+  margin-bottom: 8px;
+}
+
+.line {
+  margin-bottom: 30px;
+
+  @include on-tablet {
+    margin-bottom: 25px;
+  }
+}
