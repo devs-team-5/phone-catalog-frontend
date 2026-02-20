@@ -62,14 +62,29 @@
   margin-bottom: 24px;
 }
 
-.addToCart {
-  display: flex;
+.button {
+  width: 100%;
   height: 48px;
-  width: calc(100% - 48px);
-  background-color: $primary-color;
+
   color: $white-color;
-  align-items: center;
-  justify-content: center;
+  font-size: 14px;
+  font-weight: $fw-semibold;
+
+  background-color: $primary-color;
+  border: none;
+  transition: box-shadow 300ms;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 3px 13px 0 $box-shadow-color;
+  }
+}
+
+.active {
+  color: $green-color;
+
+  background-color: $white-color;
+  border: 1px solid $elements-color;
 }
 
 .specs {
