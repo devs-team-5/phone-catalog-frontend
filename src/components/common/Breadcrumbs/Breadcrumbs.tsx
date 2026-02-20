@@ -58,6 +58,7 @@ export const Breadcrumbs: React.FC = () => {
                       variant="small"
                       tag="span"
                       color="primary"
+                      className={styles.breadcrumbs__text}
                     >
                       {formatSegment(segment)}
                     </Typography>
