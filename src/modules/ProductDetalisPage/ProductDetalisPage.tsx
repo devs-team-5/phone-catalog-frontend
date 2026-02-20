@@ -34,7 +34,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       return;
     }
 
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     getProductDetails(category, slug).then((data) => {
       setProduct(data);
       setLoadedSlug(slug);
@@ -146,6 +146,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           id={id}
           priceRegular={priceRegular}
           colorsAvailable={colors}
+          currentCapacity={capacity}
           capacityAvailable={capacityAvailable}
           priceDiscount={priceDiscount}
           mainSpecs={mainSpecs}

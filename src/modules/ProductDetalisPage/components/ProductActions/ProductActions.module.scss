@@ -34,12 +34,17 @@
 }
 
 .value {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   padding-inline: 8px;
   height: 32px;
   background-color: $white-color;
   border: 1px solid $primary-color;
+}
+
+.activeCapacity {
+  background-color: $primary-color;
 }
 
 .price {
