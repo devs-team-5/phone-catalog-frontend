@@ -24,3 +24,21 @@
     margin-bottom: 40px;
   }
 }
+
+.emptyImage {
+  display: block;
+  margin-inline: auto;
+  height: 40vh;
+
+  margin-top: 24px;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  @include on-tablet {
+    margin-top: 40px;
+  }
+}
