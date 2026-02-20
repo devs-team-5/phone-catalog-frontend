@@ -137,3 +137,19 @@ export const getProductsWithParams = async ({
     totalCount: count || 0,
   };
 };
+
+export const getProductsCountByCategory = async (
+  category: Categories,
+): Promise<number> => {
+  const { error, count } = await supabase
+    .from('products')
+    .select('*', { count: 'exact', head: true })
+    .eq('category', category);
+
+  if (error) {
+    console.error(`Error fetching count for category ${category}:`, error);
+    throw new Error(error.message);
+  }
+
+  return count || 0;
+};
