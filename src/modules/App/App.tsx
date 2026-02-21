@@ -4,7 +4,6 @@ import { PageNotFound } from '../Core/NotFoundPage';
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
 import { AuthProvider } from '@/context/AuthContext';
-import { ProtectedRoute } from '@/components/common/ProtectedRoute';
 
 import styles from './App.module.scss';
 import { Test } from '../Test';
@@ -101,7 +100,7 @@ function App() {
             element={<LoginPage />}
           />
 
-          <Route element={<ProtectedRoute />}>
+          <Route>
             <Route
               path="/favourites"
               element={<FavouritesPage />}
