@@ -10,6 +10,7 @@ import { useCart } from '@/hooks/cart';
 import cn from 'classnames';
 
 type Props = {
+  currentColor: string;
   colorsAvailable: string[];
   currentCapacity: string;
   capacityAvailable: string[];
@@ -24,6 +25,7 @@ type Props = {
 export const ProductActions: React.FC<Props> = ({
   id,
   priceRegular,
+  currentColor,
   colorsAvailable,
   currentCapacity,
   capacityAvailable,
@@ -70,6 +72,7 @@ export const ProductActions: React.FC<Props> = ({
           >
             <Button
               shape="circle"
+              variant={color === currentColor ? 'selected' : ''}
               baseColor={normalizedColor(color) as ButtonColor}
             />
           </Link>
