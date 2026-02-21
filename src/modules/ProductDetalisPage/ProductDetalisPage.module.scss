@@ -49,7 +49,7 @@
 
   margin-top: 24px;
 
-  transition: transform $delay ease;
+  transition: transform $duration ease;
 
   @include hover(transform, translateY(-10px));
 
