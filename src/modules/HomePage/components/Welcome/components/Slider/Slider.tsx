@@ -14,6 +14,7 @@ import 'swiper/css/navigation';
 import styles from './Slider.module.scss';
 import bgImage from '@/assets/images/bg/bg.jpg';
 import { STATIC_IMAGES } from '@/constants/images';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 export const Slider = () => {
   return (
@@ -22,7 +23,7 @@ export const Slider = () => {
         <button
           className={`${styles['home-slider__nav-btn']} home-slider__nav-btn--prev`}
         >
-          ‹
+          <ICON_MAP.CHEVRON_LEFT className={styles.buttons} />
         </button>
 
         <div className={styles['home-slider__container']}>
@@ -67,7 +68,7 @@ export const Slider = () => {
         <button
           className={`${styles['home-slider__nav-btn']} home-slider__nav-btn--next`}
         >
-          ›
+          <ICON_MAP.CHEVRON_RIGHT className={styles.buttons} />
         </button>
       </div>
 

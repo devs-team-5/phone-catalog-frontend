@@ -6,25 +6,25 @@
   justify-content: space-between;
   padding: 0 12px;
 
-  background-color: $white-color;
-  border: 1px solid $elements-color;
+  background-color: var(--white-color);
+  border: 1px solid var(--elements-color);
   border-radius: 0;
 
-  color: $primary-color;
+  color: var(--primary-color);
 
   cursor: pointer;
   transition: all $duration ease;
 
   &[data-placeholder] {
-    color: $secondary-color;
+    color: var(--secondary-color);
   }
 
-  @include hover(border-color, $secondary-color);
+  @include hover(border-color, var(--secondary-color));
 
   &:focus,
   &[data-state='open'] {
     outline: none;
-    border: 1px solid $primary-color;
+    border: 1px solid var(--primary-color);
   }
 
   &:disabled {
@@ -36,7 +36,7 @@
 .icon {
   width: 16px;
   height: 16px;
-  color: $secondary-color;
+  color: var(--secondary-color);
   opacity: 0.5;
   transition: transform $duration;
 
@@ -52,8 +52,8 @@
   box-sizing: border-box;
   overflow: hidden;
 
-  background-color: $white-color;
-  border: 1px solid $elements-color;
+  background-color: var(--white-color);
+  border: 1px solid var(--elements-color);
   border-radius: 0;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 
@@ -78,17 +78,17 @@
   align-items: center;
   padding: 6px 12px;
 
-  color: $secondary-color;
+  color: var(--secondary-color);
   outline: none;
 
   &:focus,
   &[data-highlighted] {
-    background-color: $bg-hover-color;
-    color: $primary-color;
+    background-color: var(--bg-hover-color);
+    color: var(--primary-color);
   }
 
   &[data-state='checked'] {
-    color: $primary-color;
+    color: var(--primary-color);
   }
 
   &[data-disabled] {
@@ -101,7 +101,7 @@
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 600;
-  color: $secondary-color;
+  color: var(--secondary-color);
 }
 
 @keyframes fadeIn {

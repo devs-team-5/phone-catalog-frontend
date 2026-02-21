@@ -79,9 +79,9 @@
   &__nav-btn {
     display: none;
     width: 32px;
-    background: #fafbfc;
-    border: 1px solid #e2e6e9;
-    color: #313237;
+    background: transparent;
+    border: 1px solid var(--elements-color);
+    color: var(--primary-color);
     cursor: pointer;
     font-size: 20px;
     transition: all $duration ease;
@@ -89,19 +89,14 @@
     flex-shrink: 0;
 
     &:hover {
-      background: #bb5507;
-      color: #000;
+      border-color: var(--primary-color);
+      box-shadow: 0 3px 13px 0 var(--box-shadow-color);
     }
 
     @include on-tablet {
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    &:hover {
-      background: #f1f2f4;
-      color: #000;
     }
 
     &:global(.swiper-button-disabled) {
@@ -126,7 +121,7 @@
     :global(.swiper-pagination-bullet) {
       width: 12px;
       height: 4px;
-      background: #e2e6e9;
+      background: var(--elements-color);
       opacity: 1;
       border-radius: 0;
       cursor: pointer;
@@ -134,9 +129,13 @@
       margin: 0 !important;
 
       &:global(.swiper-pagination-bullet-active) {
-        background: #313237;
+        background: var(--primary-color);
         width: 24px;
       }
     }
   }
+}
+
+.buttons {
+  color: var(--primary-color);
 }

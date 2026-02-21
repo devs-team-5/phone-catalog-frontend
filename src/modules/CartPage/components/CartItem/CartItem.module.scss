@@ -4,21 +4,21 @@
   height: 160px;
 
   padding: 16px;
-  border: 1px solid $elements-color;
-  background: $white-color;
+  border: 1px solid var(--elements-color);
+  background: var(--white-color);
   gap: 16px;
   transition:
     border-color 0.3s,
     box-shadow 0.3s;
 
   &:hover {
-    border-color: $primary-color;
-    box-shadow: 0 3px 13px 0 $box-shadow-color;
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
   }
 
   &:has(.item__remove:hover) {
-    box-shadow: 0 3px 13px 0 $box-shadow-red-color;
-    border-color: $red-color;
+    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
+    border-color: var(--red-color);
   }
 
   @include on-tablet {
@@ -89,11 +89,11 @@
     cursor: pointer;
     display: flex;
     flex-shrink: 0;
-    border-color: $icons-color;
+    border-color: var(--icons-color);
 
     &:disabled {
       cursor: default;
-      border-color: $elements-color;
+      border-color: var(--elements-color);
     }
   }
 
@@ -107,6 +107,6 @@
   &__remove {
     border: none;
 
-    @include hover(color, $red-color);
+    @include hover(color, var(--red-color));
   }
 }

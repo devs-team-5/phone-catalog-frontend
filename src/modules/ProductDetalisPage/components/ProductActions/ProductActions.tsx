@@ -42,7 +42,6 @@ export const ProductActions: React.FC<Props> = ({
 
   const normalizedColor = (color: string) => {
     const correctColorName = color.replaceAll('-', '').toUpperCase();
-    console.log(correctColorName.replaceAll(' ', ''));
 
     return correctColorName.replaceAll(' ', '');
   };

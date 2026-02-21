@@ -6,27 +6,27 @@
 }
 
 .primary {
-  color: $primary-color;
+  color: var(--primary-color);
 }
 
 .secondary {
-  color: $secondary-color;
+  color: var(--secondary-color);
 }
 
 .red {
-  color: $red-color;
+  color: var(--red-color);
 }
 
 .green {
-  color: $green-color;
+  color: var(--green-color);
 }
 
 .white {
-  color: $white-color;
+  color: var(--white-color);
 }
 
 .icons {
-  color: $icons-color;
+  color: var(--icons-color);
 }
 
 .inherit {
@@ -133,7 +133,8 @@ $line-thickness: 2px;
     left: 0;
     right: 0;
     height: $line-thickness;
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
+    transform: translateY(-50%);
     z-index: 1;
   }
 }
@@ -150,12 +151,12 @@ $line-thickness: 2px;
 
   background: linear-gradient(
     to bottom,
-    $secondary-color 0%,
-    $secondary-color calc(50% - (#{$line-thickness} / 2) + 0.1px),
-    $white-color calc(50% - (#{$line-thickness} / 2) + 0.1px),
-    $white-color calc(50% + (#{$line-thickness} / 2) - 0.1px),
-    $secondary-color calc(50% + (#{$line-thickness} / 2) - 0.1px),
-    $secondary-color 100%
+    var(--secondary-color) 0%,
+    var(--secondary-color) calc(50% - (#{$line-thickness} / 2) + 0.1px),
+    var(--white-color) ccalc(50% - (#{$line-thickness} / 2) + 0.1px),
+    var(--white-color) calc(50% + (#{$line-thickness} / 2) - 0.1px),
+    var(--secondary-color) calc(50% + (#{$line-thickness} / 2) - 0.1px),
+    var(--secondary-color) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
