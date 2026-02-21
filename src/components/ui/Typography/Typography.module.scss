@@ -118,7 +118,7 @@
   letter-spacing: 0;
 }
 
-$line-thickness: 1px;
+$line-thickness: 2px;
 
 .lineThroughWrapper {
   position: relative;
@@ -129,7 +129,7 @@ $line-thickness: 1px;
   &::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: calc(50% - (#{$line-thickness} / 2));
     left: 0;
     right: 0;
     height: $line-thickness;
@@ -145,17 +145,17 @@ $line-thickness: 1px;
   z-index: 2;
   font-weight: 500;
   line-height: 1;
-  padding: 0 4px;
+  padding: 0 2px;
   font-size: 22px;
-  line-height: 31px;
+  line-height: 32px;
 
   background: linear-gradient(
     to bottom,
     var(--secondary-color) 0%,
-    var(--secondary-color) calc(50% - 1px),
-    var(--white-color) calc(50% - 1px),
-    var(--white-color) calc(50% + 1px),
-    var(--secondary-color) calc(50% + 1px),
+    var(--secondary-color) calc(50% - (#{$line-thickness} / 2) + 0.1px),
+    var(--white-color) ccalc(50% - (#{$line-thickness} / 2) + 0.1px),
+    var(--white-color) calc(50% + (#{$line-thickness} / 2) - 0.1px),
+    var(--secondary-color) calc(50% + (#{$line-thickness} / 2) - 0.1px),
     var(--secondary-color) 100%
   );
   background-clip: text;
