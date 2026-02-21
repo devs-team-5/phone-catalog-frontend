@@ -25,6 +25,8 @@ export const BUTTON_COLORS = {
   GREEN: '27AE60',
   RED: 'EB5757',
   // Кольори для вибору товару
+  COSMICORANGE: 'f78747',
+  DEEPBLUE: '414659',
   LAVENDER: 'eadeee',
   MISTBLUE: 'bacae0',
   SAGE: 'c8d1ac',
