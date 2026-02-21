@@ -17,7 +17,7 @@
   &__link {
     display: flex;
     align-items: center;
-    color: $primary-color;
+    color: var(--primary-color);
     text-decoration: none;
     transition: color $duration ease;
     white-space: nowrap;
@@ -35,7 +35,7 @@
   &__separator {
     display: flex;
     align-items: center;
-    color: $secondary-color;
+    color: var(--secondary-color);
     flex-shrink: 0;
   }
 }

@@ -1,6 +1,7 @@
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
+import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -9,11 +10,14 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { useThemeStore } from '@/hooks/ThemeStore';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
   const { getCartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useThemeStore();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -30,7 +34,7 @@ export const Header = () => {
           <div className={styles.logo}>
             <Link to="/">
               <img
-                src={logo}
+                src={isDark ? darkLogo : logo}
                 alt="Nice Gadgets"
               />
             </Link>
@@ -118,6 +122,23 @@ export const Header = () => {
           </nav>
 
           <div className={styles.actions}>
+            <div className={styles.switcher_container}>
+              <ICON_MAP.DARKTHEME />
+              <button
+                onClick={toggleTheme}
+                className={styles.switchTheme}
+              >
+                <div
+                  className={styles.switcher}
+                  style={{
+                    transition: 'transform 0.3s',
+                    transform: isDark ? 'translateX(0)' : 'translateX(90%)',
+                  }}
+                ></div>
+              </button>
+              <ICON_MAP.LIGHTTHEME />
+            </div>
+
             <Link to="/favourites">
               <Button size="64">
                 <BadgeIcon
@@ -126,6 +147,7 @@ export const Header = () => {
                 />
               </Button>
             </Link>
+
             <Link to="/cart">
               <Button size="64">
                 <BadgeIcon

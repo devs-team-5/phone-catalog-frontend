@@ -7,13 +7,13 @@
   border: none;
   cursor: pointer;
 
-  color: $secondary-color;
+  color: var(--secondary-color);
   transition: color $duration ease;
 
   &:hover {
-    color: $primary-color;
+    color: var(--primary-color);
     .text {
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }

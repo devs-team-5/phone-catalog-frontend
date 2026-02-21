@@ -41,12 +41,18 @@ export const ProductSlider: React.FC<Props> = ({
 
         <div className={styles.buttonsContainer}>
           <button ref={setPrevEl}>
-            <Button size="32">
+            <Button
+              size="32"
+              className={styles.button}
+            >
               <ICON_MAP.CHEVRON_LEFT />
             </Button>
           </button>
           <button ref={setNextEl}>
-            <Button size="32">
+            <Button
+              size="32"
+              className={styles.button}
+            >
               <ICON_MAP.CHEVRON_RIGHT />
             </Button>
           </button>
