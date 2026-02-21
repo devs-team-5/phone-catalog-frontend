@@ -149,6 +149,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
         <ProductActions
           id={id}
           priceRegular={priceRegular}
+          currentColor={color}
           colorsAvailable={colors}
           currentCapacity={capacity}
           capacityAvailable={capacityAvailable}
