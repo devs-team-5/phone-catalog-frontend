@@ -114,8 +114,9 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
 
   const getColorUrl = (newColor: string) => {
     const normilizedCapacity = capacity.toLowerCase();
+    const colorForLink = newColor.replaceAll(' ', '');
 
-    return `/${category}/${namespaceId}-${normilizedCapacity}-${newColor}`;
+    return `/${category}/${namespaceId}-${normilizedCapacity}-${colorForLink}`;
   };
 
   const getCapacityUrl = (newCapacity: string) => {

@@ -36,6 +36,7 @@ export const ProductActions: React.FC<Props> = ({
   const { isInCart, toggleCart } = useCart();
   const isFav = isFavourite(id);
   const isCart = isInCart(id);
+  const discount = priceRegular - priceDiscount;
 
   const normalizedColor = (color: string) => {
     const correctColorName = color.replaceAll('-', '').toUpperCase();
@@ -62,20 +63,17 @@ export const ProductActions: React.FC<Props> = ({
       </article>
 
       <article className={styles.colors}>
-        {colorsAvailable.map((color) => {
-          const colorLink = color.replaceAll(' ', '-');
-          return (
-            <Link
-              to={getColorUrl(colorLink)}
-              key={color}
-            >
-              <Button
-                shape="circle"
-                baseColor={normalizedColor(color) as ButtonColor}
-              />
-            </Link>
-          );
-        })}
+        {colorsAvailable.map((color) => (
+          <Link
+            to={getColorUrl(color)}
+            key={color}
+          >
+            <Button
+              shape="circle"
+              baseColor={normalizedColor(color) as ButtonColor}
+            />
+          </Link>
+        ))}
       </article>
       <hr className={styles.line} />
 
@@ -112,13 +110,15 @@ export const ProductActions: React.FC<Props> = ({
         >
           {`$${priceDiscount}`}
         </Typography>
-        <Typography
-          variant="h2"
-          color="secondary"
-          className="text-decoration: line-through"
-        >
-          {`$${priceRegular}`}
-        </Typography>
+        {discount !== 0 && (
+          <Typography
+            variant="h2"
+            color="secondary"
+            className="text-decoration: line-through"
+          >
+            {`$${priceRegular}`}
+          </Typography>
+        )}
       </section>
 
       <section className={styles.buttons}>
