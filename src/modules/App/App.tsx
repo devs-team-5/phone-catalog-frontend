@@ -10,8 +10,17 @@ import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
 import { ProductDetailsPage } from '../ProductDetalisPage';
+import { useEffect } from 'react';
+import { useThemeStore } from '../ThemeStore/ThemeStore';
 
 function App() {
+  const setDark = useThemeStore((state) => state.setDark);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') setDark(true);
+  }, [setDark]);
+
   return (
     <>
       <Header />

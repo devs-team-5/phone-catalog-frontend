@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
@@ -11,14 +9,14 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
-import { ThemeContext } from '@/modules/ThemeContext/ThemeContext';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { useThemeStore } from '@/modules/ThemeStore/ThemeStore';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
   const { getCartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const theme = useContext(ThemeContext);
+  const { isDark, toggleTheme } = useThemeStore();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -27,8 +25,6 @@ export const Header = () => {
       document.body.style.overflow = '';
     }
   }, [isMenuOpen]);
-
-  if (!theme) return null;
 
   return (
     <>
@@ -126,8 +122,8 @@ export const Header = () => {
 
           <div className={styles.actions}>
             <Button size="64">
-              <button onClick={theme.toggleTheme}>
-                {theme.isDark ?
+              <button onClick={toggleTheme}>
+                {isDark ?
                   <ICON_MAP.DARKTHEME />
                 : <ICON_MAP.LIGHTTHEME />}
               </button>

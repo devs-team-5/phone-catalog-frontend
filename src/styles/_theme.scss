@@ -24,3 +24,9 @@
   --box-shadow-color: #fafbfc;
   --elements-color: #6b7280;
 }
+
+body {
+  font-family: 'Mont', sans-serif;
+  background-color: var(--bg-color);
+  transition: background-color $duration;
+}
