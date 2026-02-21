@@ -38,7 +38,10 @@ export const ProductActions: React.FC<Props> = ({
   const isCart = isInCart(id);
 
   const normalizedColor = (color: string) => {
-    return color.replaceAll(' ', '').toUpperCase();
+    const correctColorName = color.replaceAll('-', '').toUpperCase();
+    console.log(correctColorName.replaceAll(' ', ''));
+
+    return correctColorName.replaceAll(' ', '');
   };
 
   return (
