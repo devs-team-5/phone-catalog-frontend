@@ -1,6 +1,7 @@
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
+import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -33,7 +34,7 @@ export const Header = () => {
           <div className={styles.logo}>
             <Link to="/">
               <img
-                src={logo}
+                src={isDark ? darkLogo : logo}
                 alt="Nice Gadgets"
               />
             </Link>
