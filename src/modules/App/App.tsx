@@ -3,6 +3,9 @@ import { PageNotFound } from '../Core/NotFoundPage';
 
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
+import { AuthProvider } from '@/context/AuthContext';
+import { ProtectedRoute } from '@/components/common/ProtectedRoute';
+
 import styles from './App.module.scss';
 import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
@@ -10,10 +13,11 @@ import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
 import { ProductDetailsPage } from '../ProductDetalisPage';
+import { LoginPage } from '../Auth/LoginPage';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Header />
 
       <main className={styles.main}>
@@ -31,6 +35,7 @@ function App() {
               />
             }
           />
+
           <Route path="/phones">
             <Route
               index
@@ -84,13 +89,21 @@ function App() {
             element={<Test />}
           />
           <Route
-            path="/favourites"
-            element={<FavouritesPage />}
+            path="/login"
+            element={<LoginPage />}
           />
-          <Route
-            path="/cart"
-            element={<CartPage />}
-          />
+
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/favourites"
+              element={<FavouritesPage />}
+            />
+            <Route
+              path="/cart"
+              element={<CartPage />}
+            />
+          </Route>
+
           <Route
             path="*"
             element={<PageNotFound />}
@@ -98,10 +111,8 @@ function App() {
         </Routes>
       </main>
 
-      <footer>
-        <Footer />
-      </footer>
-    </>
+      <Footer />
+    </AuthProvider>
   );
 }
 

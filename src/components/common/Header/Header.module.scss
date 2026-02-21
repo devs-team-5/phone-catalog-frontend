@@ -1,10 +1,12 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
   background: $white-color;
-
   border-bottom: 1px solid $elements-color;
   height: $header-height-mobile;
 
@@ -44,6 +46,51 @@
   display: none;
 }
 
+.userSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-left: 1px solid $elements-color;
+}
+
+.accountInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 100%;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.loginLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  color: $secondary-color;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
 .burger {
   margin-left: auto;
   display: flex;
@@ -51,13 +98,8 @@
   justify-content: center;
   height: 100%;
   aspect-ratio: 1 / 1;
-
   border-left: 1px solid $elements-color;
   cursor: pointer;
-
-  @include on-tablet {
-    // height: 100%; // Inherited
-  }
 }
 
 .burger button {
@@ -79,9 +121,12 @@
   .actions {
     display: flex;
     margin-left: auto;
+    height: 100%;
 
-    a + a {
-      margin-left: -1px;
+    & > a,
+    & > div {
+      border-left: 1px solid $elements-color;
+      height: 100%;
     }
 
     a:hover {
@@ -110,23 +155,25 @@
   align-items: center;
   color: $secondary-color;
   padding-block: 26px;
+  transition: color 0.3s ease;
 
-  @include hover(color, $primary-color);
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .isActive {
   color: $primary-color;
   position: relative;
   margin: 0;
-}
 
-.isActive::after {
-  position: absolute;
-  color: $primary-color;
-  content: '';
-  width: 100%;
-  height: 3px;
-  left: 0;
-  bottom: -1px;
-  background-color: $primary-color;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 3px;
+    left: 0;
+    bottom: -1px;
+    background-color: $primary-color;
+  }
 }
