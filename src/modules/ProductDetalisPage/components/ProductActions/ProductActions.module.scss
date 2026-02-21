@@ -40,11 +40,14 @@
   padding-inline: 8px;
   height: 32px;
   background-color: $white-color;
-  border: 1px solid $primary-color;
+  border: 1px solid $elements-color;
+
+  @include hover(border, 1px solid $primary-color);
 }
 
 .activeCapacity {
   background-color: $primary-color;
+  border: 1px solid $primary-color;
 }
 
 .price {
@@ -77,12 +80,9 @@
 
   background-color: $primary-color;
   border: none;
-  transition: box-shadow 300ms;
   cursor: pointer;
 
-  &:hover {
-    box-shadow: 0 3px 13px 0 $box-shadow-color;
-  }
+  @include hover(box-shadow, 0 3px 13px 0 $box-shadow-color);
 }
 
 .active {

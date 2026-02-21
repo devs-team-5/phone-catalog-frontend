@@ -8,7 +8,7 @@
   cursor: pointer;
 
   color: $secondary-color;
-  transition: color 0.3s ease;
+  transition: color $duration ease;
 
   &:hover {
     color: $primary-color;
@@ -19,5 +19,5 @@
 }
 
 .text {
-  transition: color 0.3s ease;
+  transition: color $duration ease;
 }

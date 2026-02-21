@@ -22,9 +22,7 @@
   height: 32px;
   border: 1px solid $secondary-color;
 
-  &:hover {
-    border-color: $primary-color;
-  }
+  @include hover(border-color, $primary-color);
 }
 
 .swiper {

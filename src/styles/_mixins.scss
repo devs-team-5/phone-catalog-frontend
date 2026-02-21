@@ -26,3 +26,11 @@
     grid-template-columns: repeat(24, 1fr);
   }
 }
+
+@mixin hover($property, $toValue) {
+  transition: #{$property} $duration;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}

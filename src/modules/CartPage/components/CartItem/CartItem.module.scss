@@ -106,8 +106,7 @@
 
   &__remove {
     border: none;
-    &:hover {
-      color: $red-color;
-    }
+
+    @include hover(color, $red-color);
   }
 }

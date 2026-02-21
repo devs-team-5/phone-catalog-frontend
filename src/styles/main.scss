@@ -27,7 +27,7 @@
 body {
   font-family: 'Mont', sans-serif;
   background-color: var(--bg-color);
-  transition: background-color 0.3s;
+  transition: background-color $duration;
 }
 
 ul {

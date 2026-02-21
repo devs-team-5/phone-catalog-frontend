@@ -19,7 +19,7 @@
     align-items: center;
     color: $primary-color;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color $transition-delay ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -84,7 +84,7 @@
     color: #313237;
     cursor: pointer;
     font-size: 20px;
-    transition: all 0.3s ease;
+    transition: all $duration ease;
     align-self: stretch;
     flex-shrink: 0;
 
@@ -130,7 +130,7 @@
       opacity: 1;
       border-radius: 0;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all $duration ease;
       margin: 0 !important;
 
       &:global(.swiper-pagination-bullet-active) {
