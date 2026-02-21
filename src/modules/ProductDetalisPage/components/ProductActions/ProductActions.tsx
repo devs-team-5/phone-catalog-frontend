@@ -42,7 +42,6 @@ export const ProductActions: React.FC<Props> = ({
 
   const normalizedColor = (color: string) => {
     const correctColorName = color.replaceAll('-', '').toUpperCase();
-    console.log(correctColorName.replaceAll(' ', ''));
 
     return correctColorName.replaceAll(' ', '');
   };
@@ -114,13 +113,14 @@ export const ProductActions: React.FC<Props> = ({
           {`$${priceDiscount}`}
         </Typography>
         {discount !== 0 && (
-          <Typography
-            variant="h2"
-            color="secondary"
-            className="text-decoration: line-through"
-          >
-            {`$${priceRegular}`}
-          </Typography>
+          <div>
+            <Typography
+              variant="line-through"
+              color="secondary"
+            >
+              {`$${priceRegular}`}
+            </Typography>
+          </div>
         )}
       </section>
 

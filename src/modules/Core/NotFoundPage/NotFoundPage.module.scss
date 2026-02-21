@@ -11,9 +11,9 @@
 .button {
   padding-inline: 24px;
   padding-block: 12px;
-  border: 1px solid $elements-color;
+  border: 1px solid var(--elements-color);
   box-sizing: border-box;
-  color: $icons-color;
+  color: var(--icons-color);
 
-  @include hover(border, 1px solid $primary-color);
+  @include hover(border, 1px solid var(--primary-color));
 }
