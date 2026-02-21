@@ -8,7 +8,7 @@
   align-items: center;
   transition:
     border-color $duration,
-    box-shadow $delay;
+    box-shadow $duration;
 
   &:hover {
     border-color: $primary-color;
