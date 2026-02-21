@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
-import { useThemeStore } from '@/modules/ThemeStore/ThemeStore';
+import { useThemeStore } from '@/hooks/ThemeStore';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
@@ -121,13 +121,22 @@ export const Header = () => {
           </nav>
 
           <div className={styles.actions}>
-            <Button size="64">
-              <button onClick={toggleTheme}>
-                {isDark ?
-                  <ICON_MAP.DARKTHEME />
-                : <ICON_MAP.LIGHTTHEME />}
+            <div className={styles.switcher_container}>
+              <ICON_MAP.DARKTHEME />
+              <button
+                onClick={toggleTheme}
+                className={styles.switchTheme}
+              >
+                <div
+                  className={styles.switcher}
+                  style={{
+                    transition: 'transform 0.3s',
+                    transform: isDark ? 'translateX(0)' : 'translateX(90%)',
+                  }}
+                ></div>
               </button>
-            </Button>
+              <ICON_MAP.LIGHTTHEME />
+            </div>
 
             <Link to="/favourites">
               <Button size="64">
