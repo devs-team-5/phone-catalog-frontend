@@ -20,12 +20,12 @@
   height: 14px;
 
   border-radius: 50%;
-  background-color: $red-color;
-  color: $white-color;
+  background-color: var(--red-color);
+  color: var(--white-color);
 
   font-size: 9px;
   font-weight: 700;
 
-  border: 1px solid $white-color;
+  border: 1px solid var(--white-color);
   box-sizing: border-box;
 }

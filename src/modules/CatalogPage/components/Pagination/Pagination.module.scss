@@ -13,15 +13,15 @@
     min-width: 32px;
     height: 32px;
     padding: 0;
-    border: 1px solid $elements-color;
+    border: 1px solid var(--elements-color);
     background-color: transparent;
-    color: $primary-color;
+    color: var(--primary-color);
     font-size: 14px;
     cursor: pointer;
     transition: all $duration ease;
 
     &:hover:not(&--disabled) {
-      border-color: $primary-color;
+      border-color: var(--primary-color);
     }
 
     svg {
@@ -30,13 +30,13 @@
     }
 
     &--disabled {
-      color: $elements-color;
-      border-color: $elements-color;
+      color: var(--elements-color);
+      border-color: var(--elements-color);
       cursor: default;
       pointer-events: none;
 
       svg {
-        color: $elements-color;
+        color: var(--elements-color);
       }
     }
   }
@@ -44,14 +44,14 @@
   &__item {
     &--selected {
       .pagination__link {
-        background-color: $primary-color;
-        color: $white-color;
-        border-color: $primary-color;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border-color: var(--primary-color);
 
         &:hover {
-          background-color: $primary-color;
-          border-color: $primary-color;
-          color: $white-color;
+          background-color: var(--primary-color);
+          border-color: var(--primary-color);
+          color: var(--white-color);
         }
       }
     }

@@ -25,6 +25,13 @@ export const BUTTON_COLORS = {
   GREEN: '27AE60',
   RED: 'EB5757',
   // Кольори для вибору товару
+  COSMICORANGE: 'f78747',
+  DEEPBLUE: '414659',
+  LAVENDER: 'eadeee',
+  MISTBLUE: 'bacae0',
+  SAGE: 'c8d1ac',
+  CLOUDWHITE: 'f8f9f9',
+  LIGHTGOLD: 'ede8e0',
   NATURALTITANIUM: 'a9a49e',
   BLACKTITANIUM: '3d3d3d',
   BLUETITANIUM: '494e53',
@@ -45,7 +52,7 @@ export const BUTTON_COLORS = {
   ROSEGOLD: 'B76E79',
   CORAL: 'FF6F61',
   STARLIGHT: 'F4EAD5',
-  SKYBLUE: '#A7C7E7',
+  SKYBLUE: 'A7C7E7',
 } as const;
 
 export type ButtonSize = keyof typeof BUTTON_SIZES;

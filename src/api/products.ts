@@ -3,6 +3,8 @@ import type { Product } from '@/types/Product';
 import type { Categories } from '@/types/Categories';
 import type { ProductDetails } from '@/types/ProductDetails';
 
+const currentYear = 2025;
+
 export const getProducts = () => {
   return supabase
     .from('products')
@@ -60,7 +62,7 @@ export const getImageUrl = (imagePath: string): string => {
 export const getHotProducts = () => {
   return getProducts().then((products) => {
     return products
-      .filter((product) => product.year < 2022)
+      .filter((product) => product.fullPrice > product.price)
       .sort((a, b) => {
         const discountA = a.fullPrice - a.price;
         const discountB = b.fullPrice - b.price;
@@ -71,7 +73,7 @@ export const getHotProducts = () => {
 
 export const getNewProducts = () => {
   return getProducts().then((products) => {
-    return products.filter((product) => product.year === 2022);
+    return products.filter((product) => product.year === currentYear);
   });
 };
 

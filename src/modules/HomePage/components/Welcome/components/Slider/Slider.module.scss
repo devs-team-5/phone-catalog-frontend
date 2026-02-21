@@ -94,9 +94,9 @@
   &__nav-btn {
     display: none;
     width: 32px;
-    background: $bg-hover-color;
-    border: 1px solid $elements-color;
-    color: #313237;
+    background: transparent;
+    border: 1px solid var(--elements-color);
+    color: var(--primary-color);
     cursor: pointer;
     font-size: 20px;
     transition: all $duration ease;
@@ -104,8 +104,8 @@
     flex-shrink: 0;
 
     &:hover {
-      background: $elements-color;
-      color: #000;
+      border-color: var(--primary-color);
+      box-shadow: 0 3px 13px 0 var(--box-shadow-color);
     }
 
     &:active {
@@ -133,16 +133,20 @@
     :global(.swiper-pagination-bullet) {
       width: 12px;
       height: 4px;
-      background: $elements-color;
+      background: var(--elements-color);
       opacity: 1;
       border-radius: 0;
       cursor: pointer;
       transition: all $duration ease;
 
       &:global(.swiper-pagination-bullet-active) {
-        background: $primary-color;
+        background: var(--primary-color);
         width: 24px;
       }
     }
   }
+}
+
+.buttons {
+  color: var(--primary-color);
 }
