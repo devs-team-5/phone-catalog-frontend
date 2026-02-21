@@ -25,7 +25,7 @@
 .panel {
   position: absolute;
   inset: 0;
-  background: white;
+  background: var(--bg-color);
 
   transform: translateX(100%);
   transition: transform $duration ease;

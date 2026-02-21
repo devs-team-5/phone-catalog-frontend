@@ -2,11 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import logo from '@/assets/nice_gadgets_logo.svg';
+import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Typography } from '@/components/ui/Typography/Typography';
 
 import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
+import { useThemeStore } from '@/hooks/ThemeStore';
 
 type Props = {
   isOpen: boolean;
@@ -21,6 +23,8 @@ export const MobileMenu: React.FC<Props> = ({
   cartCount,
   favouritesCount,
 }) => {
+  const { isDark } = useThemeStore();
+
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(styles.link, {
       [styles.active]: isActive,
@@ -46,7 +50,7 @@ export const MobileMenu: React.FC<Props> = ({
             className={styles.logo}
           >
             <img
-              src={logo}
+              src={isDark ? darkLogo : logo}
               alt="Nice Gadgets"
             />
           </NavLink>
