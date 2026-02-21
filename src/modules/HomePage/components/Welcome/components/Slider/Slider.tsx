@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import styles from './Slider.module.scss';
 import bgImage from '@/assets/images/bg/bg.jpg';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 const SLIDES = [
   {
@@ -54,8 +55,6 @@ const SLIDES = [
     text: 'Simply perfection.',
   },
 ];
-import { STATIC_IMAGES } from '@/constants/images';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 export const Slider = () => {
   return (
