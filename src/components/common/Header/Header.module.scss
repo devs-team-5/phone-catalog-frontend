@@ -3,9 +3,9 @@
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
-  background: $white-color;
+  background: var(--white-color);
 
-  border-bottom: 1px solid $elements-color;
+  border-bottom: 1px solid var(--elements-color);
   height: $header-height-mobile;
 
   @include on-tablet {
@@ -52,7 +52,7 @@
   height: 100%;
   aspect-ratio: 1 / 1;
 
-  border-left: 1px solid $elements-color;
+  border-left: 1px solid var(--elements-color);
   cursor: pointer;
 
   @include on-tablet {
@@ -108,25 +108,25 @@
 .link {
   display: flex;
   align-items: center;
-  color: $secondary-color;
+  color: var(--secondary-color);
   padding-block: 26px;
 
-  @include hover(color, $primary-color);
+  @include hover(color, var(--primary-color));
 }
 
 .isActive {
-  color: $primary-color;
+  color: var(--primary-color);
   position: relative;
   margin: 0;
 }
 
 .isActive::after {
   position: absolute;
-  color: $primary-color;
+  color: var(--primary-color);
   content: '';
   width: 100%;
   height: 3px;
   left: 0;
   bottom: -1px;
-  background-color: $primary-color;
+  background-color: var(--primary-color);
 }
