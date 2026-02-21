@@ -10,8 +10,16 @@ import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
 import { ProductDetailsPage } from '../ProductDetalisPage';
+import { useEffect } from 'react';
+import { useThemeStore } from '../../hooks/ThemeStore';
 
 function App() {
+  const isDark = useThemeStore((state) => state.isDark);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+  }, [isDark]);
+
   return (
     <>
       <Header />

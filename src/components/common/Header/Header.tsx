@@ -9,11 +9,14 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { useThemeStore } from '@/hooks/ThemeStore';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
   const { getCartCount } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useThemeStore();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -118,6 +121,23 @@ export const Header = () => {
           </nav>
 
           <div className={styles.actions}>
+            <div className={styles.switcher_container}>
+              <ICON_MAP.DARKTHEME />
+              <button
+                onClick={toggleTheme}
+                className={styles.switchTheme}
+              >
+                <div
+                  className={styles.switcher}
+                  style={{
+                    transition: 'transform 0.3s',
+                    transform: isDark ? 'translateX(0)' : 'translateX(90%)',
+                  }}
+                ></div>
+              </button>
+              <ICON_MAP.LIGHTTHEME />
+            </div>
+
             <Link to="/favourites">
               <Button size="64">
                 <BadgeIcon
@@ -126,6 +146,7 @@ export const Header = () => {
                 />
               </Button>
             </Link>
+
             <Link to="/cart">
               <Button size="64">
                 <BadgeIcon
