@@ -25,6 +25,10 @@ export const BUTTON_COLORS = {
   GREEN: '27AE60',
   RED: 'EB5757',
   // Кольори для вибору товару
+  NATURALTITANIUM: 'a9a49e',
+  BLACKTITANIUM: '3d3d3d',
+  BLUETITANIUM: '494e53',
+  WHITETITANIUM: 'f1e8eb',
   PURPLE: '5E5CE6',
   SPACEBLACK: '1C1C1E',
   BLACK: '000000',
