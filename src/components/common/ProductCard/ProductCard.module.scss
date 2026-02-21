@@ -62,15 +62,19 @@
   &__container {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
 }
 
-.info {
+.label {
   font-weight: $fw-regular-plus;
 }
 
 .value {
   font-weight: $fw-regular-plus;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttons {
