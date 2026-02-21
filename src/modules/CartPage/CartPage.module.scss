@@ -80,11 +80,7 @@
 
   margin-top: 24px;
 
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-10px);
-  }
+  @include hover(transform, translateY(-10px));
 
   @include on-tablet {
     margin-top: 40px;

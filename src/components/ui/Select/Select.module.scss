@@ -13,15 +13,13 @@
   color: $primary-color;
 
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all $duration ease;
 
   &[data-placeholder] {
     color: $secondary-color;
   }
 
-  &:hover {
-    border-color: $secondary-color;
-  }
+  @include hover(border-color, $secondary-color);
 
   &:focus,
   &[data-state='open'] {
@@ -40,7 +38,7 @@
   height: 16px;
   color: $secondary-color;
   opacity: 0.5;
-  transition: transform 0.2s;
+  transition: transform $duration;
 
   .trigger[data-state='open'] & {
     transform: rotate(180deg);

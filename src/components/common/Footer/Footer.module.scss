@@ -78,10 +78,7 @@
     border: 1px solid $icons-color;
     color: $primary-color;
     cursor: pointer;
-    transition: all 0.2s ease;
 
-    &:hover {
-      border-color: $primary-color;
-    }
+    @include hover(border-color, $primary-color);
   }
 }

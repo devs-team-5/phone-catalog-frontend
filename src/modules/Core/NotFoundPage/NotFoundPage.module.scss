@@ -15,7 +15,5 @@
   box-sizing: border-box;
   color: $icons-color;
 
-  &:hover {
-    border: 1px solid $primary-color;
-  }
+  @include hover(border, 1px solid $primary-color);
 }

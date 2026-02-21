@@ -53,10 +53,7 @@
   aspect-ratio: 1 / 1;
 
   border-left: 1px solid $elements-color;
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 
   @include on-tablet {
     // height: 100%; // Inherited
@@ -114,9 +111,7 @@
   color: $secondary-color;
   padding-block: 26px;
 
-  &:hover {
-    color: $primary-color;
-  }
+  @include hover(color, $primary-color);
 }
 
 .isActive {

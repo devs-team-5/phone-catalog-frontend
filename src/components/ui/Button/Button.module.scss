@@ -4,7 +4,7 @@
   justify-content: center;
   vertical-align: middle;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all $duration ease-in-out;
   border: 1px solid $elements-color;
   background-color: $white-color;
   padding: 0;
@@ -41,9 +41,7 @@
 
   // Варіанти
   &--default {
-    &:hover {
-      border-color: $primary-color;
-    }
+    @include hover(border-color, $primary-color);
   }
 
   &--selected {

@@ -7,13 +7,14 @@
   width: 100%;
   border: 1px solid $elements-color;
   transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
+    border-color $duration,
+    box-shadow $duration;
 
   &:hover {
     border-color: $primary-color;
     box-shadow: 0 3px 13px 0 $box-shadow-color;
     .image {
+      transition: transform $duration;
       transform: scale(1.1);
     }
   }
@@ -26,7 +27,7 @@
   object-fit: contain;
   cursor: pointer;
 
-  transition: transform 150ms;
+  transition: transform $duration;
 
   @include on-tablet {
     height: 196px;
