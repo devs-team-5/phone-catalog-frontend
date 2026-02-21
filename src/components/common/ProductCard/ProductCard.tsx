@@ -77,7 +77,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             variant="uppercase"
             className={styles.value}
           >
-            {screen}
+            {screen.replace(/\s*\(.*?\)/g, '')}
           </Typography>
         </div>
 

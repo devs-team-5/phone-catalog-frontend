@@ -72,7 +72,7 @@ export const ProductActions: React.FC<Props> = ({
           >
             <Button
               shape="circle"
-              variant={color === currentColor ? 'selected' : ''}
+              variant={color === currentColor ? 'selected' : undefined}
               baseColor={normalizedColor(color) as ButtonColor}
             />
           </Link>
