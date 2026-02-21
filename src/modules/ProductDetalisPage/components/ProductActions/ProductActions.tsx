@@ -36,6 +36,7 @@ export const ProductActions: React.FC<Props> = ({
   const { isInCart, toggleCart } = useCart();
   const isFav = isFavourite(id);
   const isCart = isInCart(id);
+  const discount = priceRegular - priceDiscount;
 
   const normalizedColor = (color: string) => {
     const correctColorName = color.replaceAll('-', '').toUpperCase();
@@ -112,13 +113,15 @@ export const ProductActions: React.FC<Props> = ({
         >
           {`$${priceDiscount}`}
         </Typography>
-        <Typography
-          variant="h2"
-          color="secondary"
-          className="text-decoration: line-through"
-        >
-          {`$${priceRegular}`}
-        </Typography>
+        {discount !== 0 && (
+          <Typography
+            variant="h2"
+            color="secondary"
+            className="text-decoration: line-through"
+          >
+            {`$${priceRegular}`}
+          </Typography>
+        )}
       </section>
 
       <section className={styles.buttons}>

@@ -23,11 +23,10 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     ram,
     capacity,
     screen,
-    year,
   } = product;
 
   const imageUrl = getImageUrl(image);
-  const isProductOld = year < 2022;
+  const isProductOld = fullPrice > price;
   const { isFavourite, toggleFavourite } = useFavourites();
   const { toggleCart, isInCart } = useCart();
 
