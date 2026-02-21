@@ -3,20 +3,23 @@ import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { useAuth } from '@/context/AuthContext';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
   const { getCartCount } = useCart();
+  const { isLoggedIn, logout, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const { isDark, toggleTheme } = useThemeStore();
 
   useEffect(() => {
@@ -26,6 +29,11 @@ export const Header = () => {
       document.body.style.overflow = '';
     }
   }, [isMenuOpen]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <>
@@ -103,21 +111,6 @@ export const Header = () => {
                   </Typography>
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/test"
-                >
-                  <Typography
-                    variant="uppercase"
-                    color="red"
-                  >
-                    Test
-                  </Typography>
-                </NavLink>
-              </li>
             </ul>
           </nav>
 
@@ -156,6 +149,37 @@ export const Header = () => {
                 />
               </Button>
             </Link>
+
+            <div className={styles.userSection}>
+              {isLoggedIn ?
+                <div className={styles.accountInfo}>
+                  <Typography
+                    variant="small"
+                    color="secondary"
+                  >
+                    {user?.username || user?.email}
+                  </Typography>
+                  <button
+                    onClick={handleLogout}
+                    className={styles.logoutBtn}
+                    title="Logout"
+                  >
+                    <Icon
+                      name="CLOSE"
+                      size={20}
+                    />
+                  </button>
+                </div>
+              : <Link
+                  to="/login"
+                  className={styles.loginLink}
+                >
+                  <Button size="64">
+                    <ICON_MAP.HOME />
+                  </Button>
+                </Link>
+              }
+            </div>
           </div>
 
           <div className={styles.burger}>
