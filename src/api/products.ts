@@ -62,7 +62,7 @@ export const getImageUrl = (imagePath: string): string => {
 export const getHotProducts = () => {
   return getProducts().then((products) => {
     return products
-      .filter((product) => product.year < currentYear)
+      .filter((product) => product.fullPrice > product.price)
       .sort((a, b) => {
         const discountA = a.fullPrice - a.price;
         const discountB = b.fullPrice - b.price;

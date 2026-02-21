@@ -63,20 +63,17 @@ export const ProductActions: React.FC<Props> = ({
       </article>
 
       <article className={styles.colors}>
-        {colorsAvailable.map((color) => {
-          const colorLink = color.replaceAll(' ', '-');
-          return (
-            <Link
-              to={getColorUrl(colorLink)}
-              key={color}
-            >
-              <Button
-                shape="circle"
-                baseColor={normalizedColor(color) as ButtonColor}
-              />
-            </Link>
-          );
-        })}
+        {colorsAvailable.map((color) => (
+          <Link
+            to={getColorUrl(color)}
+            key={color}
+          >
+            <Button
+              shape="circle"
+              baseColor={normalizedColor(color) as ButtonColor}
+            />
+          </Link>
+        ))}
       </article>
       <hr className={styles.line} />
 
