@@ -1,3 +1,6 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
 .header {
   position: sticky;
   top: 0;
@@ -73,6 +76,51 @@
   display: none;
 }
 
+.userSection {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-left: 1px solid $elements-color;
+}
+
+.accountInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 100%;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.loginLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  color: $secondary-color;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
 .burger {
   margin-left: auto;
   display: flex;
@@ -83,10 +131,6 @@
 
   border-left: 1px solid var(--elements-color);
   cursor: pointer;
-
-  @include on-tablet {
-    // height: 100%; // Inherited
-  }
 }
 
 .burger button {
@@ -108,10 +152,13 @@
   .actions {
     display: flex;
     margin-left: auto;
+    height: 100%;
     align-items: center;
 
-    a + a {
-      margin-left: -1px;
+    & > a,
+    & > div {
+      border-left: 1px solid $elements-color;
+      height: 100%;
     }
 
     a:hover {
@@ -140,6 +187,7 @@
   align-items: center;
   color: var(--secondary-color);
   padding-block: 26px;
+  transition: color 0.3s ease;
 
   @include hover(color, var(--primary-color));
 }
