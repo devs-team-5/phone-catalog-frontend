@@ -54,7 +54,7 @@ export const Footer = () => {
             </Typography>
           </Link>
           <Link
-            to="/"
+            to="https://www.privacypolicies.com/live/571bd566-e11d-47e3-92e3-0673748014ad"
             className={styles.footer__link}
           >
             <Typography
