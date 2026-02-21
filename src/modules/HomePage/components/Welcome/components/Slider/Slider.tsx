@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
 import {
   Parallax,
   Pagination,
@@ -13,8 +14,47 @@ import 'swiper/css/navigation';
 
 import styles from './Slider.module.scss';
 import bgImage from '@/assets/images/bg/bg.jpg';
-import { STATIC_IMAGES } from '@/constants/images';
+import { Typography } from '@/components/ui/Typography/Typography';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+
+const SLIDES = [
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/phones/apple-iphone-17-pro-max/cosmicorange/00.webp',
+    link: '/phones/apple-iphone-17-pro-max-1tb-cosmicorange',
+    text: 'Your next Apple. Here.',
+  },
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/phones/apple-iphone-13-pro-max/sierrablue/00.webp',
+    link: '/phones/apple-iphone-13-pro-max-256gb-sierrablue',
+    text: 'Pure Apple. Simply delivered.',
+  },
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/phones/apple-iphone-air/spaceblack/00.webp',
+    link: '/phones/apple-iphone-air-256gb-spaceblack',
+    text: 'The store you love.',
+  },
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/accessories/apple-watch-series-6/blue/00.webp',
+    link: '/accessories/apple-watch-series-6-44mm-blue',
+    text: 'Designed for you.',
+  },
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/phones/apple-iphone-17/white/00.webp',
+    link: '/phones/apple-iphone-17-512gb-white',
+    text: 'Authentic. Simple. Yours.',
+  },
+  {
+    image:
+      'https://mbaorksskenilesfexla.supabase.co/storage/v1/object/public/catalog_images/phones/apple-iphone-14/purple/00.webp',
+    link: '/phones/apple-iphone-14-512gb-purple',
+    text: 'Simply perfection.',
+  },
+];
 
 export const Slider = () => {
   return (
@@ -41,10 +81,17 @@ export const Slider = () => {
               nextEl: '.home-slider__nav-btn--next',
               prevEl: '.home-slider__nav-btn--prev',
             }}
+            slidesPerView={1}
+            spaceBetween={16}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+            }}
             mousewheel={{ forceToAxis: true }}
             className={styles['home-slider__swiper']}
           >
-            {STATIC_IMAGES.banners.homeSlider.map((slide, index) => (
+            {SLIDES.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div
                   slot="container-start"
@@ -52,14 +99,23 @@ export const Slider = () => {
                   style={{ backgroundImage: `url(${bgImage})` }}
                   data-swiper-parallax="-20%"
                 ></div>
-
-                <div className={styles['home-slider__slide-content']}>
+                <Link
+                  to={slide.link}
+                  className={styles['home-slider__slide-content']}
+                >
+                  <Typography
+                    variant="h2"
+                    color="primary"
+                    className={styles['home-slider__text']}
+                  >
+                    {slide.text}
+                  </Typography>
                   <img
-                    src={slide}
+                    src={slide.image}
                     alt={`Banner ${index + 1}`}
                     className={styles['home-slider__img']}
                   />
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
