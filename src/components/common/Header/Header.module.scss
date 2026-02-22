@@ -19,13 +19,14 @@
 .flex {
   display: flex;
   align-items: center;
-  padding-left: 16px;
+  justify-content: space-between;
   height: 100%;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  padding-left: 16px;
 }
 
 .logo img {
@@ -36,35 +37,6 @@
 
 .nav {
   display: none;
-}
-
-.switcher_container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-right: 5px;
-  justify-content: space-between;
-}
-
-.switchTheme {
-  width: 40px;
-  height: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--primary-color);
-  display: flex;
-  align-items: center;
-}
-
-.switcher {
-  background-color: var(--primary-color);
-  border-radius: 10px;
-  height: 20px;
-  width: 20px;
-  overflow: hidden;
-  transform: translateX(90%);
-  &:target {
-    transform: translateX(0);
-  }
 }
 
 .menu {
@@ -79,8 +51,6 @@
 .userSection {
   display: flex;
   align-items: center;
-  height: 100%;
-  border-left: 1px solid $elements-color;
 }
 
 .accountInfo {
@@ -99,11 +69,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $secondary-color;
+  color: var(--secondary-color);
   transition: color 0.3s ease;
 
   &:hover {
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 
@@ -113,24 +83,27 @@
   justify-content: center;
   height: 100%;
   aspect-ratio: 1 / 1;
-  color: $secondary-color;
+  color: var(--secondary-color);
   transition: color 0.3s ease;
 
   &:hover {
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 
 .burger {
-  margin-left: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100%;
   aspect-ratio: 1 / 1;
 
   border-left: 1px solid var(--elements-color);
   cursor: pointer;
+
+  @media (min-width: 740px) {
+    display: none;
+  }
 }
 
 .burger button {
@@ -139,36 +112,34 @@
   border: none;
 }
 
-@include on-tablet {
-  .flex {
-    padding-left: 16px;
+.actions {
+  display: flex;
+  margin-left: auto;
+  height: 100%;
+  align-items: center;
+
+  @media (max-width: 739px) {
+    display: none;
   }
 
+  & > a,
+  & > div {
+    height: 100%;
+  }
+
+  a:hover {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+@include on-tablet {
   .nav {
     display: flex;
-    margin-left: 32px;
-  }
 
-  .actions {
-    display: flex;
-    margin-left: auto;
-    height: 100%;
-    align-items: center;
-
-    & > a,
-    & > div {
-      border-left: 1px solid $elements-color;
-      height: 100%;
+    @media (min-width: 739px) {
+      margin-left: 32px;
     }
-
-    a:hover {
-      position: relative;
-      z-index: 10;
-    }
-  }
-
-  .burger {
-    display: none;
   }
 }
 
