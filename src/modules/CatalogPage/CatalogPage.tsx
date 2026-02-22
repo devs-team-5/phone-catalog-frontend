@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/Select/Select';
 import type { Product } from '@/types/Product';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
+import { Skeleton } from '@/components/ui/Skeleton/Skeleton';
 
 type Props = {
   category: Categories;
@@ -85,13 +86,16 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
       >
         {title}
       </Typography>
-      <Typography
-        variant="body"
-        color="secondary"
-        className={styles.count}
-      >
-        {totalCount} models
-      </Typography>
+      {isLoading ?
+        <Skeleton className={`${styles['count--skeleton']} ${styles.count}`} />
+      : <Typography
+          variant="body"
+          color="secondary"
+          className={styles.count}
+        >
+          {totalCount} models
+        </Typography>
+      }
 
       <div className={styles.filters}>
         <div className={styles.filters__item}>
@@ -162,11 +166,14 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
         </Typography>
       )}
 
-      {!isLoading && !isError && products.length > 0 && (
+      {(isLoading || products.length > 0) && !isError && (
         <>
-          <ProductsList products={products} />
+          <ProductsList
+            products={products}
+            isLoading={isLoading}
+          />
 
-          {perPage !== 'all' && totalCount > Number(perPage) && (
+          {!isLoading && perPage !== 'all' && totalCount > Number(perPage) && (
             <div className={styles.pagination}>
               <Pagination
                 total={totalCount}

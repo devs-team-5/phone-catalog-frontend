@@ -10,9 +10,20 @@ import { ProductSlider } from '@/components/common/ProductSlider';
 
 export const HotPrices = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getHotProducts().then(setProducts);
+    const fetchHotProducts = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getHotProducts();
+        setProducts(data);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHotProducts();
   }, []);
 
   return (
@@ -20,6 +31,7 @@ export const HotPrices = () => {
       <ProductSlider
         products={products}
         title={'Hot Prices'}
+        isLoading={isLoading}
       />
     </div>
   );
