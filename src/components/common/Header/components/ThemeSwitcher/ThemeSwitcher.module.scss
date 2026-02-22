@@ -1,0 +1,33 @@
+.switcher_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  cursor: pointer;
+
+  @include on-tablet {
+    margin-right: 5px;
+  }
+}
+
+.switchTheme {
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.switcher {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  transform: translateX(90%);
+
+  &:target {
+    transform: translateX(0);
+  }
+}

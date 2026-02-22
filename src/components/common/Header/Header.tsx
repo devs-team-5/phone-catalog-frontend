@@ -5,7 +5,7 @@ import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { MobileMenu } from './MobileMenu/MobileMenu';
+import { MobileMenu } from './components/MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
@@ -13,6 +13,7 @@ import { useCart } from '@/hooks/cart';
 import { useAuth } from '@/context/AuthContext';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
+import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
@@ -20,7 +21,7 @@ export const Header = () => {
   const { isLoggedIn, logout, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { isDark, toggleTheme } = useThemeStore();
+  const { isDark } = useThemeStore();
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -115,22 +116,7 @@ export const Header = () => {
           </nav>
 
           <div className={styles.actions}>
-            <div className={styles.switcher_container}>
-              <ICON_MAP.DARKTHEME />
-              <button
-                onClick={toggleTheme}
-                className={styles.switchTheme}
-              >
-                <div
-                  className={styles.switcher}
-                  style={{
-                    transition: 'transform 0.3s',
-                    transform: isDark ? 'translateX(0)' : 'translateX(90%)',
-                  }}
-                ></div>
-              </button>
-              <ICON_MAP.LIGHTTHEME />
-            </div>
+            <ThemeSwitcher />
 
             <Link to="/favourites">
               <Button size="64">
