@@ -17,6 +17,7 @@ import { ProductActions } from './components/ProductActions';
 import { ImageSlider } from './components/ImageSlider';
 import { Description } from './components/Description';
 import { BackButton } from '@/components/common/BackButton/BackButton';
+import { ProductDetailsSkeleton } from './components/ProductDetailsSkeleton/ProductDetailsSkeleton';
 import { STATIC_IMAGES } from '@/constants/images';
 
 type ProductDetailsPageProps = {
@@ -43,7 +44,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
   }, [slug, category]);
 
   if (loadedSlug !== slug) {
-    return null;
+    return <ProductDetailsSkeleton />;
   }
 
   if (!product) {

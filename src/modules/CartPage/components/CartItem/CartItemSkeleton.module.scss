@@ -1,0 +1,40 @@
+.skeleton {
+  &__remove {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  &__name {
+    width: 150px;
+    height: 24px;
+    border-radius: 4px;
+
+    @include on-desktop {
+      width: 200px;
+    }
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__count {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  &__price {
+    width: 60px;
+    height: 28px;
+    border-radius: 4px;
+  }
+}

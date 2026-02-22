@@ -9,15 +9,27 @@ import { ProductSlider } from '@/components/common/ProductSlider';
 
 export const RecommendedProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getSuggestedProducts().then(setProducts);
+    const fetchNewProducts = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getSuggestedProducts();
+        setProducts(data);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNewProducts();
   }, []);
 
   return (
     <ProductSlider
       products={products}
       title={'You may also like'}
+      isLoading={isLoading}
     />
   );
 };

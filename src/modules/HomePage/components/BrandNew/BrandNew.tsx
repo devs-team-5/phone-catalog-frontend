@@ -9,15 +9,27 @@ import { ProductSlider } from '@/components/common/ProductSlider';
 
 export const BrandNew = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getNewProducts().then(setProducts);
+    const fetchNewProducts = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getNewProducts();
+        setProducts(data);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNewProducts();
   }, []);
 
   return (
     <ProductSlider
       products={products}
       title={'Brand new models'}
+      isLoading={isLoading}
     />
   );
 };
