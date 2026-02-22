@@ -1,5 +1,5 @@
 .skeleton {
-  background-color: $elements-color;
+  background-color: var(--elements-color);
   position: relative;
   overflow: hidden;
   border-radius: 4px;
@@ -21,6 +21,16 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite linear;
     z-index: 1;
+
+    :global(.dark) & {
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0)
+      );
+    }
   }
 }
 
