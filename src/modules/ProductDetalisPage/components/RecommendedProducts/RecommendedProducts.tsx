@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 import type { Product } from '@/types/Product';
-import { getNewProducts } from '@/api/products';
+import { getSuggestedProducts } from '@/api/products';
 import { ProductSlider } from '@/components/common/ProductSlider';
 
 export const RecommendedProducts = () => {
@@ -15,7 +15,7 @@ export const RecommendedProducts = () => {
     const fetchNewProducts = async () => {
       setIsLoading(true);
       try {
-        const data = await getNewProducts();
+        const data = await getSuggestedProducts();
         setProducts(data);
       } finally {
         setIsLoading(false);

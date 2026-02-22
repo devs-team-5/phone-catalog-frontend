@@ -9,6 +9,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { useThemeStore } from '@/hooks/ThemeStore';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 
 type Props = {
   isOpen: boolean;
@@ -55,16 +56,20 @@ export const MobileMenu: React.FC<Props> = ({
             />
           </NavLink>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className={styles.closeButton}
-          >
-            <Icon
-              name="CLOSE"
-              size={24}
-            />
-          </button>
+          <div className={styles.buttons_container}>
+            <ThemeSwitcher />
+
+            <button
+              type="button"
+              onClick={onClose}
+              className={styles.closeButton}
+            >
+              <Icon
+                name="CLOSE"
+                size={24}
+              />
+            </button>
+          </div>
         </div>
 
         <nav className={styles.nav}>
