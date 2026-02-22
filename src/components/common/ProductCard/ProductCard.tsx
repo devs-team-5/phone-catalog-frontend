@@ -52,6 +52,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <Link
         to={`/${category}/${itemId}`}
         className={styles.title}
+        title={name}
       >
         <Typography
           variant="body"
@@ -75,6 +76,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <div
             className={styles.details__container}
             key={label}
+            title={value}
           >
             <Typography
               variant="small"
