@@ -67,14 +67,23 @@ export const getHotProducts = () => {
         const discountA = a.fullPrice - a.price;
         const discountB = b.fullPrice - b.price;
         return discountB - discountA;
-      });
+      })
+      .slice(0, 25);
   });
 };
 
 export const getNewProducts = () => {
   return getProducts().then((products) => {
-    return products.filter((product) => product.year === currentYear);
+    return products
+      .filter((product) => product.year === currentYear)
+      .slice(0, 25);
   });
+};
+
+export const getSuggestedProducts = () => {
+  return getProducts().then((products) =>
+    [...products].sort(() => 0.5 - Math.random()).slice(0, 25),
+  );
 };
 
 interface GetProductsParams {
