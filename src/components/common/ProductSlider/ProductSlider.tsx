@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { FreeMode, Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -60,15 +60,16 @@ export const ProductSlider: React.FC<Props> = ({
       </div>
 
       <Swiper
-        modules={[Navigation]}
+        modules={[FreeMode, Navigation]}
         slidesPerView={'auto'}
+        freeMode={true}
         spaceBetween={16}
         navigation={{
           prevEl,
           nextEl,
         }}
         breakpoints={{
-          1200: { slidesPerView: 4 },
+          1200: { slidesPerView: 4, freeMode: false },
         }}
       >
         {isLoading ?
