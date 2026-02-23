@@ -114,6 +114,7 @@ export const Slider = () => {
                     src={slide.image}
                     alt={`Banner ${index + 1}`}
                     className={styles['home-slider__img']}
+                    loading="lazy"
                   />
                 </Link>
               </SwiperSlide>

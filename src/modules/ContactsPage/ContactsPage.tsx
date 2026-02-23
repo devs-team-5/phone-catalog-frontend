@@ -90,6 +90,7 @@ export const ContactsPage = () => {
                 src={member.photo}
                 alt={member.name}
                 className={styles.photo}
+                loading="lazy"
               />
             </div>
 

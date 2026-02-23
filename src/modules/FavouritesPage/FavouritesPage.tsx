@@ -94,6 +94,7 @@ export const FavouritesPage = () => {
               src={STATIC_IMAGES.placeholders.emptyCart}
               alt="Empty wishlist"
               className={styles.emptyImage}
+              loading="lazy"
             />
           </Link>
         </>

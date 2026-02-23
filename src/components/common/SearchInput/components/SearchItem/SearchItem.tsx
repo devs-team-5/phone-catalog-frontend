@@ -21,6 +21,8 @@ export const SearchItem: React.FC<Props> = ({ product }) => {
           <img
             src={getImageUrl(image)}
             className={styles.item__img}
+            loading="lazy"
+            alt={name}
           />
         </Link>
 
