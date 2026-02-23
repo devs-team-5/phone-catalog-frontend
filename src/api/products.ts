@@ -59,6 +59,25 @@ export const getImageUrl = (imagePath: string): string => {
   return data.publicUrl;
 };
 
+export const getProductsByQuery = async (query: string): Promise<Product[]> => {
+  const pattern = `%${query}%`;
+
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .or(
+      `name.ilike.${pattern},color.ilike.${pattern},capacity.ilike.${pattern}`,
+    )
+    .limit(5);
+
+  if (error) {
+    console.error('Search error:', error);
+    throw new Error(error.message);
+  }
+
+  return data ?? [];
+};
+
 export const getHotProducts = () => {
   return getProducts().then((products) => {
     return products
