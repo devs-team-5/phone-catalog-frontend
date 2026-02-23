@@ -87,6 +87,7 @@ export const CartPage = () => {
                 src={STATIC_IMAGES.placeholders.emptyCart}
                 alt="Empty cart"
                 className={styles.emptyImage}
+                loading="lazy"
               />
             </Link>
           </>

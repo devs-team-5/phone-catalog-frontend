@@ -46,6 +46,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           src={imageUrl}
           className={styles.image}
           alt={name}
+          loading="lazy"
         />
       </Link>
 

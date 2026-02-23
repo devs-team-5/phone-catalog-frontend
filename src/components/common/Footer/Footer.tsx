@@ -43,8 +43,8 @@ export const Footer = () => {
             </Typography>
           </a>
           <Link
-            to="/"
-            className={styles.footer__link}
+            to="/contacts"
+            className={styles.footerLink}
           >
             <Typography
               variant="uppercase"

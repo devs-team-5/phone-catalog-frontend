@@ -49,6 +49,7 @@ export const CategoryCard: React.FC<Props> = ({
             src={image}
             className={styles.image}
             alt={title}
+            loading="lazy"
           />
 
           <video
