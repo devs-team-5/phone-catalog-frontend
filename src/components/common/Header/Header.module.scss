@@ -16,36 +16,62 @@
   }
 }
 
-.flex {
+.container {
   display: flex;
   align-items: center;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
   justify-content: space-between;
+}
+
+.actions_container {
+  display: flex;
   height: 100%;
 }
 
-.logo {
+.navBar {
   display: flex;
   align-items: center;
-  padding-left: 16px;
+  gap: 16px;
+
+  @include on-tablet {
+    gap: 32px;
+  }
+
+  @include on-desktop {
+    gap: 48px;
+  }
 }
 
-.logo img {
+.logo {
+  padding-inline: 16px;
+  flex-shrink: 0;
+
+  @include on-desktop {
+    padding-inline: 24px;
+  }
+}
+
+img {
+  flex-shrink: 0;
+
+  display: block;
   height: 28px;
   width: auto;
-  display: block;
 }
 
 .nav {
   display: none;
+
+  @include on-tablet {
+    display: flex;
+  }
 }
 
 .menu {
   display: flex;
   gap: 32px;
-}
-
-.actions {
-  display: none;
 }
 
 .userSection {
@@ -98,7 +124,7 @@
   border-left: 1px solid var(--elements-color);
   cursor: pointer;
 
-  @media (min-width: 740px) {
+  @media (min-width: 870px) {
     display: none;
   }
 }
@@ -111,11 +137,10 @@
 
 .actions {
   display: flex;
-  margin-left: auto;
   height: 100%;
   align-items: center;
 
-  @media (max-width: 739px) {
+  @media (max-width: 869px) {
     display: none;
   }
 
@@ -127,26 +152,6 @@
   a:hover {
     position: relative;
     z-index: 10;
-  }
-}
-
-@include on-tablet {
-  .nav {
-    display: flex;
-
-    @media (min-width: 739px) {
-      margin-left: 32px;
-    }
-  }
-}
-
-@include on-desktop {
-  .flex {
-    padding-left: 24px;
-  }
-
-  .nav {
-    margin-left: 48px;
   }
 }
 
