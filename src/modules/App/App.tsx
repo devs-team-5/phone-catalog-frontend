@@ -15,6 +15,7 @@ import { ProductDetailsPage } from '../ProductDetalisPage';
 import { LoginPage } from '../Auth/LoginPage';
 import { useEffect } from 'react';
 import { useThemeStore } from '../../hooks/ThemeStore';
+import { ContactsPage } from '../ContactsPage/ContactsPage';
 
 function App() {
   const isDark = useThemeStore((state) => state.isDark);
@@ -114,6 +115,11 @@ function App() {
           <Route
             path="*"
             element={<PageNotFound />}
+          />
+
+          <Route
+            path="/contacts"
+            element={<ContactsPage />}
           />
         </Routes>
       </main>
