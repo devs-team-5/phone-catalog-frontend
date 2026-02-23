@@ -13,10 +13,16 @@ import {
   LuMenu,
   LuMoon,
   LuSun,
+  LuLinkedin,
+  LuPhone,
+  LuMail,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
   DARKTHEME: LuMoon,
+  MAIL: LuMail,
+  PHONE: LuPhone,
+  LINKEDIN: LuLinkedin,
   LIGHTTHEME: LuSun,
   HOME: LuHouse,
   SEARCH: LuSearch,
