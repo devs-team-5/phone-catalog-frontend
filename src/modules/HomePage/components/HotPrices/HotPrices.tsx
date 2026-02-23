@@ -19,7 +19,7 @@ export const HotPrices = () => {
     <div className={styles.container}>
       <ProductSlider
         products={products}
-        title={'Hot Prices'}
+        title={'products.hotPrices'}
       />
     </div>
   );

@@ -98,10 +98,10 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
   });
 
   const mainSpecs = [
-    { label: 'Screen', value: screen },
-    { label: 'Resolution', value: resolution },
-    { label: 'Processor', value: processor },
-    { label: 'RAM', value: ram },
+    { label: 'specs.screen', value: screen },
+    { label: 'specs.resolution', value: resolution },
+    { label: 'specs.processor', value: processor },
+    { label: 'specs.ram', value: ram },
   ];
 
   const fullSpecs = [

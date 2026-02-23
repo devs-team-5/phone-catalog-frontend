@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "home": "Головна",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+
+  "welcome": {
+    "title": "Ласкаво просимо до магазину Nice Gadgets!",
+    "mobilePhone": "Смартфони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари",
+    "recomends": "Вам сподобається"
+  },
+
+  "products": {
+    "hotPrices": "Гарячі пропозиції",
+    "brandNew": "Нові моделі",
+    "youMayAlsoLike": "Вам також може сподобатися",
+    "category": "Покупки за категоріями"
+  },
+
+  "filters": {
+    "sortBy": "Сортувати за",
+    "newest": "Найновіші",
+    "alphabetically": "За алфавітом",
+    "priceLowToHigh": "Від дешевих до дорогих",
+    "priceHighToLow": "Від дорогих до дешевих",
+    "perPage": "Товарів на сторінці",
+    "all": "Усі",
+    "models": "моделей"
+  },
+
+  "product": {
+    "availableColors": "Доступні кольори",
+    "selectCapacity": "Оберіть памʼять",
+    "about": "Про товар",
+    "techSpecs": "Характеристики",
+    "addToCart": "Купити",
+    "added": "Додано"
+  },
+
+  "cart": {
+    "title": "Кошик",
+    "checkout": "Оформити замовлення",
+    "total": "Всього",
+    "empty": "Ваш кошик порожній",
+    "addFirstProduct": "Додайте свій перший товар до кошика",
+    "item_one": "товар",
+    "item_few": "товари",
+    "item_many": "елемент",
+    "item_other": "елемент"
+  },
+
+  "specs": {
+    "screen": "Екран",
+    "capacity": "Памʼять",
+    "ram": "Оперативна памʼять",
+    "resolution": "Роздільна здатність",
+    "processor": "Процесор"
+  },
+
+  "favourites": {
+    "title": "Обране",
+    "empty": "Список обраного порожній",
+    "addFirst": "Додайте свій перший товар до списку обраного"
+  },
+
+  "pagination": {
+    "previous": "Назад",
+    "next": "Вперед"
+  },
+
+  "buttons": {
+    "back": "Назад",
+    "shopNow": "Перейти до покупок"
+  },
+
+  "footer": {
+    "github": "GitHub",
+    "contacts": "Контакти",
+    "rights": "Права",
+    "backToTop": "Повернутися вгору"
+  }
+}

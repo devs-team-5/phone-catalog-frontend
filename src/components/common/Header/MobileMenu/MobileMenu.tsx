@@ -7,6 +7,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 
 import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
+import { LanguageSwitcher } from '../Languages/LanguageSwitcher';
 
 type Props = {
   isOpen: boolean;
@@ -51,16 +52,22 @@ export const MobileMenu: React.FC<Props> = ({
             />
           </NavLink>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className={styles.closeButton}
-          >
-            <Icon
-              name="CLOSE"
-              size={24}
-            />
-          </button>
+          <div className={styles.actions}>
+            <div className={styles.lang}>
+              <LanguageSwitcher size="48" />
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className={styles.closeButton}
+            >
+              <Icon
+                name="CLOSE"
+                size={24}
+              />
+            </button>
+          </div>
         </div>
 
         <nav className={styles.nav}>
@@ -74,7 +81,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Home
+              nav.home
             </Typography>
           </NavLink>
 
@@ -88,7 +95,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Phones
+              nav.phones
             </Typography>
           </NavLink>
 
@@ -102,7 +109,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Tablets
+              nav.tablets
             </Typography>
           </NavLink>
 
@@ -116,7 +123,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Accessories
+              nav.accessories
             </Typography>
           </NavLink>
         </nav>

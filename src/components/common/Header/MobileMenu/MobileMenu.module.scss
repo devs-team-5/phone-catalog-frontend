@@ -134,3 +134,25 @@
   font-size: 16px;
   line-height: 18px;
 }
+
+.actions {
+  display: flex;
+  height: 48px;
+  align-items: stretch;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 48px;
+  // aspect-ratio: 1 / 1;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  border-left: 1px solid $elements-color;
+  background: transparent;
+  cursor: pointer;
+}

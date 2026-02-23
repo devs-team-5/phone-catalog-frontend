@@ -9,6 +9,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { LanguageSwitcher } from './Languages/LanguageSwitcher';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
@@ -50,7 +51,7 @@ export const Header = () => {
                     variant="uppercase"
                     color="inherit"
                   >
-                    Home
+                    nav.home
                   </Typography>
                 </NavLink>
               </li>
@@ -65,7 +66,7 @@ export const Header = () => {
                     variant="uppercase"
                     color="inherit"
                   >
-                    Phones
+                    nav.phones
                   </Typography>
                 </NavLink>
               </li>
@@ -80,7 +81,7 @@ export const Header = () => {
                     variant="uppercase"
                     color="inherit"
                   >
-                    Tablets
+                    nav.tablets
                   </Typography>
                 </NavLink>
               </li>
@@ -95,7 +96,7 @@ export const Header = () => {
                     variant="uppercase"
                     color="inherit"
                   >
-                    Accessories
+                    nav.accessories
                   </Typography>
                 </NavLink>
               </li>
@@ -118,6 +119,10 @@ export const Header = () => {
           </nav>
 
           <div className={styles.actions}>
+            <div>
+              <LanguageSwitcher size="64" />
+            </div>
+
             <Link to="/favourites">
               <Button size="64">
                 <BadgeIcon

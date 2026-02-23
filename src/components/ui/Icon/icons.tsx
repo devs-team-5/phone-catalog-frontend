@@ -11,6 +11,7 @@ import {
   LuChevronDown,
   LuChevronUp,
   LuMenu,
+  LuLanguages,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
@@ -25,6 +26,7 @@ export const ICON_MAP = {
   PLUS: LuPlus,
   CLOSE: LuX,
   MENU: LuMenu,
+  LANGUAGE: LuLanguages,
   WISHLIST_RED: () => (
     <LuHeart
       color="#EB5757"

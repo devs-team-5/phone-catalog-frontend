@@ -32,7 +32,7 @@ export const FavouritesPage = () => {
         variant="h1"
         className={styles.title}
       >
-        Favourites
+        favourites.title
       </Typography>
       {favourites.length > 0 ?
         <>
@@ -50,13 +50,13 @@ export const FavouritesPage = () => {
             variant="h2"
             color="primary"
           >
-            Your wishlist is empty
+            favourites.empty
           </Typography>
           <Typography
             variant="body"
             color="secondary"
           >
-            Add your first product to the wishlist
+            favourites.addFirst
           </Typography>
           <Link to="/">
             <img

@@ -17,7 +17,7 @@ export const RecommendedProducts = () => {
   return (
     <ProductSlider
       products={products}
-      title={'You may also like'}
+      title={'welcome.recomends'}
     />
   );
 };

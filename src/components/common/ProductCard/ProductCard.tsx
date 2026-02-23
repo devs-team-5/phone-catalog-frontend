@@ -9,6 +9,7 @@ import { useFavourites } from '@/hooks/favourites';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { useCart } from '@/hooks/cart';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 type Props = {
   product: Product;
 };
@@ -24,6 +25,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     capacity,
     screen,
   } = product;
+
+  const { t } = useTranslation<'translation'>();
 
   const imageUrl = getImageUrl(image);
   const isProductOld = fullPrice > price;
@@ -71,7 +74,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             color="secondary"
             className={styles.info}
           >
-            Screen
+            specs.screen
           </Typography>
           <Typography
             variant="uppercase"
@@ -87,7 +90,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             color="secondary"
             className={styles.info}
           >
-            Capacity
+            specs.capacity
           </Typography>
           <Typography
             variant="uppercase"
@@ -103,7 +106,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             color="secondary"
             className={styles.info}
           >
-            RAM
+            specs.ram
           </Typography>
           <Typography
             variant="uppercase"
@@ -121,7 +124,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           })}
           onClick={() => toggleCart(itemId)}
         >
-          {isCart ? 'Added' : 'Add to cart'}
+          {isCart ? t('product.added') : t('product.addToCart')}
         </button>
 
         <Button

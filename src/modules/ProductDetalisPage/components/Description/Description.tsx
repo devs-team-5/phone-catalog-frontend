@@ -17,7 +17,7 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
           variant="h3"
           className={styles.title}
         >
-          About
+          product.about
         </Typography>
         <hr className={styles.line} />
         {about.map((desc) => {
@@ -50,7 +50,7 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
           variant="h3"
           className={styles.title_tech}
         >
-          Tech specs
+          product.techSpecs
         </Typography>
         <hr className={styles.line} />
 
