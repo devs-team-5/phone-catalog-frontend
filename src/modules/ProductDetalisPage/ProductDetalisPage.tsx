@@ -63,6 +63,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
               src={STATIC_IMAGES.placeholders.noImage}
               alt="Empty wishlist"
               className={styles.emptyImage}
+              loading="lazy"
             />
           </Link>
         </div>
