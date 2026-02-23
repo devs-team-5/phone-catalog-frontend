@@ -33,6 +33,7 @@ export function SearchInput() {
     <Combobox
       value={selectedProduct}
       onChange={(product: Product | null) => {
+        if (!product) return;
         setSelectedProduct(product);
         navigate(`/${product?.category}/${product?.itemId}`);
       }}
