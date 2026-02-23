@@ -12,9 +12,13 @@ import {
   LuChevronUp,
   LuMenu,
   LuLanguages,
+  LuMoon,
+  LuSun,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
+  DARKTHEME: LuMoon,
+  LIGHTTHEME: LuSun,
   HOME: LuHouse,
   SEARCH: LuSearch,
   CART: LuShoppingBag,

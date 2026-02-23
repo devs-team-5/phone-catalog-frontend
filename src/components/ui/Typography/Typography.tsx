@@ -15,7 +15,7 @@ type Variant =
   | 'small'
   | 'line-through';
 
-type Color =
+export type Color =
   | 'primary'
   | 'secondary'
   | 'red'

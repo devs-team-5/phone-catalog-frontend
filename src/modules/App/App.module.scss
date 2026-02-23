@@ -17,7 +17,6 @@
   }
 
   @include on-desktop {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0;
   }
 }

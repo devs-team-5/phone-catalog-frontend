@@ -13,6 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@supabase/supabase-js": "^2.95.3",
     "@tailwindcss/vite": "^4.1.18",
     "class-variance-authority": "^0.7.1",
@@ -33,6 +34,7 @@
     "swiper": "^12.1.1",
     "tailwind-merge": "^3.4.1",
     "tailwindcss": "^4.1.18",
+    "use-debounce": "^10.1.0",
     "zustand": "^5.0.11"
   },
   "devDependencies": {

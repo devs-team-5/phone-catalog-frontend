@@ -1,0 +1,33 @@
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  outline: none;
+  width: 100%;
+  margin-right: 5px;
+  border-left: 1px solid var(--elements-color);
+  padding: 10px;
+
+  @include on-tablet {
+    width: 100px;
+  }
+
+  @include on-desktop {
+    border-inline: 1px solid var(--elements-color);
+    width: 400px;
+  }
+}
+
+.item_container {
+  z-index: 2;
+  padding: 0 10px 10px 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 5px;
+  background-color: var(--white-color);
+
+  @include on-tablet {
+    width: 600px;
+  }
+}

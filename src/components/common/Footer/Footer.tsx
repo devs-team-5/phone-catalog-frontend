@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import logo from '@/assets/nice_gadgets_logo.svg';
+import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './Footer.module.scss';
+import { useThemeStore } from '@/hooks/ThemeStore';
 
 export const Footer = () => {
+  const { isDark } = useThemeStore();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -17,7 +21,7 @@ export const Footer = () => {
         <div className={styles.footer__logo}>
           <Link to="/">
             <img
-              src={logo}
+              src={isDark ? darkLogo : logo}
               alt="NICE GADGETS"
               className={styles.footer__logo_img}
             />
@@ -39,8 +43,8 @@ export const Footer = () => {
             </Typography>
           </a>
           <Link
-            to="/"
-            className={styles.footer__link}
+            to="/contacts"
+            className={styles.footerLink}
           >
             <Typography
               variant="uppercase"
@@ -50,7 +54,7 @@ export const Footer = () => {
             </Typography>
           </Link>
           <Link
-            to="/"
+            to="https://www.privacypolicies.com/live/571bd566-e11d-47e3-92e3-0673748014ad"
             className={styles.footer__link}
           >
             <Typography

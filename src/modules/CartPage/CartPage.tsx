@@ -1,7 +1,9 @@
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './CartPage.module.scss';
 import { CartItem } from './components/CartItem/CartItem';
+import { CartItemSkeleton } from './components/CartItem/CartItemSkeleton';
 import { CartSummary } from './components/CartSummary/CartSummary';
+import { CartSummarySkeleton } from './components/CartSummary/CartSummarySkeleton';
 import { useCart } from '@/hooks/cart';
 import { useEffect, useState } from 'react';
 import { getProductById } from '@/api/products';
@@ -48,17 +50,24 @@ export const CartPage = () => {
       <main className={styles.cart__container}>
         <BackButton />
         <Typography variant="h1">cart.title</Typography>
-        {cartProducts.length > 0 ?
+        {cart.length > 0 ?
           <div className={styles.cart__content}>
             <div className={styles.cart__list}>
-              {cartProducts.map((product) => (
-                <CartItem
-                  product={product}
-                  key={product.itemId}
-                />
-              ))}
+              {cart.map((item) => {
+                const product = cartProducts.find(
+                  (p) => p.itemId === item.itemId,
+                );
+                return product ?
+                    <CartItem
+                      product={product}
+                      key={product.itemId}
+                    />
+                  : <CartItemSkeleton key={item.itemId} />;
+              })}
             </div>
-            <CartSummary products={cartProducts} />
+            {cart.length === cartProducts.length ?
+              <CartSummary products={cartProducts} />
+            : <CartSummarySkeleton />}
           </div>
         : <>
             <Typography

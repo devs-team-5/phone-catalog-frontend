@@ -3,6 +3,8 @@ import { PageNotFound } from '../Core/NotFoundPage';
 
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
+import { AuthProvider } from '@/context/AuthContext';
+
 import styles from './App.module.scss';
 import { Test } from '../Test';
 import { HomePage } from '../HomePage/HomePage';
@@ -10,10 +12,20 @@ import { CatalogPage } from '../CatalogPage';
 import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
 import { ProductDetailsPage } from '../ProductDetalisPage';
+import { LoginPage } from '../Auth/LoginPage';
+import { useEffect } from 'react';
+import { useThemeStore } from '../../hooks/ThemeStore';
+import { ContactsPage } from '../ContactsPage/ContactsPage';
 
 function App() {
+  const isDark = useThemeStore((state) => state.isDark);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+  }, [isDark]);
+
   return (
-    <>
+    <AuthProvider>
       <Header />
 
       <main className={styles.main}>
@@ -31,6 +43,7 @@ function App() {
               />
             }
           />
+
           <Route path="/phones">
             <Route
               index
@@ -84,24 +97,35 @@ function App() {
             element={<Test />}
           />
           <Route
-            path="/favourites"
-            element={<FavouritesPage />}
+            path="/login"
+            element={<LoginPage />}
           />
-          <Route
-            path="/cart"
-            element={<CartPage />}
-          />
+
+          <Route>
+            <Route
+              path="/favourites"
+              element={<FavouritesPage />}
+            />
+            <Route
+              path="/cart"
+              element={<CartPage />}
+            />
+          </Route>
+
           <Route
             path="*"
             element={<PageNotFound />}
           />
+
+          <Route
+            path="/contacts"
+            element={<ContactsPage />}
+          />
         </Routes>
       </main>
 
-      <footer>
-        <Footer />
-      </footer>
-    </>
+      <Footer />
+    </AuthProvider>
   );
 }
 

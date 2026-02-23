@@ -27,6 +27,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   } = product;
 
   const { t } = useTranslation<'translation'>();
+  const spesc = [
+    { label: 'specs.screen', value: screen },
+    { label: 'specs.capacity', value: capacity },
+    { label: 'specs.ram', value: ram },
+  ];
 
   const imageUrl = getImageUrl(image);
   const isProductOld = fullPrice > price;
@@ -49,6 +54,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <Link
         to={`/${category}/${itemId}`}
         className={styles.title}
+        title={name}
       >
         <Typography
           variant="body"
@@ -68,53 +74,27 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       <hr className={styles.separateLine} />
 
       <div className={styles.details}>
-        <div className={styles.details__container}>
-          <Typography
-            variant="small"
-            color="secondary"
-            className={styles.info}
+        {spesc.map(({ label, value }) => (
+          <div
+            className={styles.details__container}
+            key={label}
+            title={value}
           >
-            specs.screen
-          </Typography>
-          <Typography
-            variant="uppercase"
-            className={styles.value}
-          >
-            {screen.replace(/\s*\(.*?\)/g, '')}
-          </Typography>
-        </div>
-
-        <div className={styles.details__container}>
-          <Typography
-            variant="small"
-            color="secondary"
-            className={styles.info}
-          >
-            specs.capacity
-          </Typography>
-          <Typography
-            variant="uppercase"
-            className={styles.value}
-          >
-            {capacity}
-          </Typography>
-        </div>
-
-        <div className={styles.details__container}>
-          <Typography
-            variant="small"
-            color="secondary"
-            className={styles.info}
-          >
-            specs.ram
-          </Typography>
-          <Typography
-            variant="uppercase"
-            className={styles.value}
-          >
-            {ram}
-          </Typography>
-        </div>
+            <Typography
+              variant="small"
+              color="secondary"
+              className={styles.label}
+            >
+              {label}
+            </Typography>
+            <Typography
+              variant="uppercase"
+              className={styles.value}
+            >
+              {value}
+            </Typography>
+          </div>
+        ))}
       </div>
 
       <div className={styles.buttons}>

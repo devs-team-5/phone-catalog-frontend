@@ -5,7 +5,10 @@ import type React from 'react';
 import styles from './CatalogPage.module.scss';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { getProductsWithParams } from '@/api/products';
+import {
+  getProductsWithParams,
+  getFilterOptionsByCategory,
+} from '@/api/products';
 import { ProductsList } from '@/components/common/ProductsList/ProductsList';
 import { Pagination } from './components/Pagination/Pagination';
 import {
@@ -17,7 +20,15 @@ import {
 } from '@/components/ui/Select/Select';
 import type { Product } from '@/types/Product';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
+import { Skeleton } from '@/components/ui/Skeleton/Skeleton';
+import {
+  MultiSelect,
+  MultiSelectContent,
+  MultiSelectItem,
+  MultiSelectTrigger,
+  MultiSelectValue,
+} from '@/components/ui/MultiSelect/MultiSelect';
 
 type Props = {
   category: Categories;
@@ -26,6 +37,9 @@ type Props = {
 
 export const CatalogPage: React.FC<Props> = ({ category, title }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [availableCapacities, setAvailableCapacities] = useState<string[]>([]);
+  const [availableYears, setAvailableYears] = useState<string[]>([]);
+  const [availableModels, setAvailableModels] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
@@ -35,8 +49,31 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
   const sort = searchParams.get('sort') || 'age';
   const page = Number(searchParams.get('page')) || 1;
   const perPage = searchParams.get('perPage') || '16';
+  const capacitiesParam = searchParams.get('capacities');
+  const selectedCapacities = capacitiesParam ? capacitiesParam.split(',') : [];
 
-  const { t } = useTranslation<'translation'>();
+  const yearsParam = searchParams.get('years');
+  const selectedYears = yearsParam ? yearsParam.split(',') : [];
+
+  const modelsParam = searchParams.get('models');
+  const selectedModels = modelsParam ? modelsParam.split(',') : [];
+
+  useEffect(() => {
+    const fetchFilters = async () => {
+      const { capacities, years, models } =
+        await getFilterOptionsByCategory(category);
+      setAvailableCapacities(capacities);
+      setAvailableYears(years);
+      setAvailableModels(models);
+    };
+    fetchFilters();
+  }, [category]);
+
+  useEffect(() => {
+    loadData();
+  }, [category, sort, page, perPage, capacitiesParam, yearsParam, modelsParam]);
+
+  // const { t } = useTranslation<'translation'>();
 
   const loadData = async () => {
     setIsLoading(true);
@@ -48,6 +85,9 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
         sort: sort,
         page: page,
         perPage: perPage,
+        capacities: selectedCapacities,
+        years: selectedYears,
+        models: selectedModels,
       });
 
       setProducts(products);
@@ -60,17 +100,19 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
     }
   };
 
-  useEffect(() => {
-    loadData();
-  }, [category, sort, page, perPage]);
-
-  const updateSearchParams = (key: string, value: string) => {
+  const updateSearchParams = (key: string, value: string | string[]) => {
     const newParams = new URLSearchParams(searchParams);
 
-    if (value === null || (key === 'page' && value === '1')) {
+    if (
+      value === null ||
+      (key === 'page' && value === '1') ||
+      (Array.isArray(value) && value.length === 0)
+    ) {
       newParams.delete(key);
+    } else if (Array.isArray(value)) {
+      newParams.set(key, value.join(','));
     } else {
-      newParams.set(key, value);
+      newParams.set(key, value as string);
     }
 
     if (key !== 'page') {
@@ -88,59 +130,173 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
       >
         {title}
       </Typography>
-      <Typography
-        variant="body"
-        color="secondary"
-        className={styles.count}
-      >
-        {totalCount} {t('filters.models')}
-      </Typography>
+      {isLoading ?
+        <Skeleton className={`${styles['count--skeleton']} ${styles.count}`} />
+      : <Typography
+          variant="body"
+          color="secondary"
+          className={styles.count}
+        >
+          {totalCount} models
+        </Typography>
+      }
 
       <div className={styles.filters}>
-        <div className={styles.filters__item}>
-          <Typography
-            variant="small"
-            color="secondary"
-          >
-            filters.sortBy
-          </Typography>
-          <Select
-            value={sort}
-            onValueChange={(value) => updateSearchParams('sort', value)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select order" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="age">filters.newest</SelectItem>
-              <SelectItem value="title">filters.alphabetically</SelectItem>
-              <SelectItem value="cheapest">filters.priceLowToHigh</SelectItem>
-              <SelectItem value="expensive">filters.priceHighToLow</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <div className={styles.filters__group}>
+          <div className={styles['filters__item--huge']}>
+            <Typography
+              variant="small"
+              color="secondary"
+            >
+              Model
+            </Typography>
+            <MultiSelect
+              value={selectedModels}
+              onValueChange={(val) => updateSearchParams('models', val)}
+            >
+              <MultiSelectTrigger>
+                <MultiSelectValue
+                  placeholder="Select model"
+                  maxDisplay={1}
+                  displayValues={availableModels.reduce(
+                    (acc, curr) => {
+                      acc[curr] = curr
+                        .split('-')
+                        .map(
+                          (word) =>
+                            word.charAt(0).toUpperCase() + word.slice(1),
+                        )
+                        .join(' ');
+                      return acc;
+                    },
+                    {} as Record<string, string>,
+                  )}
+                />
+              </MultiSelectTrigger>
+              <MultiSelectContent>
+                {availableModels.map((model) => (
+                  <MultiSelectItem
+                    key={model}
+                    value={model}
+                  >
+                    {model
+                      .split('-')
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
+                      .join(' ')}
+                  </MultiSelectItem>
+                ))}
+              </MultiSelectContent>
+            </MultiSelect>
+          </div>
+          <div className={styles['filters__item--large']}>
+            <Typography
+              variant="small"
+              color="secondary"
+            >
+              Capacity
+            </Typography>
+            <MultiSelect
+              value={selectedCapacities}
+              onValueChange={(val) => updateSearchParams('capacities', val)}
+            >
+              <MultiSelectTrigger>
+                <MultiSelectValue
+                  placeholder="Select capacity"
+                  maxDisplay={1}
+                />
+              </MultiSelectTrigger>
+              <MultiSelectContent>
+                {availableCapacities.map((cap) => (
+                  <MultiSelectItem
+                    key={cap}
+                    value={cap}
+                  >
+                    {cap}
+                  </MultiSelectItem>
+                ))}
+              </MultiSelectContent>
+            </MultiSelect>
+          </div>
 
-        <div className={styles.filters__item}>
-          <Typography
-            variant="small"
-            color="secondary"
-          >
-            filters.perPage
-          </Typography>
-          <Select
-            value={perPage}
-            onValueChange={(value) => updateSearchParams('perPage', value)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select count" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="4">4</SelectItem>
-              <SelectItem value="8">8</SelectItem>
-              <SelectItem value="16">16</SelectItem>
-              <SelectItem value="all">filters.all</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className={styles['filters__item--medium']}>
+            <Typography
+              variant="small"
+              color="secondary"
+            >
+              Year
+            </Typography>
+            <MultiSelect
+              value={selectedYears}
+              onValueChange={(val) => updateSearchParams('years', val)}
+            >
+              <MultiSelectTrigger>
+                <MultiSelectValue
+                  placeholder="Select year"
+                  maxDisplay={1}
+                />
+              </MultiSelectTrigger>
+              <MultiSelectContent>
+                {availableYears.map((year) => (
+                  <MultiSelectItem
+                    key={year}
+                    value={year}
+                  >
+                    {year}
+                  </MultiSelectItem>
+                ))}
+              </MultiSelectContent>
+            </MultiSelect>
+          </div>
+        </div>
+        <div className={styles['filters__item--empty']} />
+        <div className={styles.filters__group}>
+          <div className={styles['filters__item--large']}>
+            <Typography
+              variant="small"
+              color="secondary"
+            >
+              Sort by
+            </Typography>
+            <Select
+              value={sort}
+              onValueChange={(value) => updateSearchParams('sort', value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select order" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="age">Newest</SelectItem>
+                <SelectItem value="title">Alphabetically</SelectItem>
+                <SelectItem value="cheapest">Price: Low to High</SelectItem>
+                <SelectItem value="expensive">Price: High to Low</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className={styles['filters__item--medium']}>
+            <Typography
+              variant="small"
+              color="secondary"
+            >
+              Items on page
+            </Typography>
+            <Select
+              value={perPage}
+              onValueChange={(value) => updateSearchParams('perPage', value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select count" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="8">8</SelectItem>
+                <SelectItem value="16">16</SelectItem>
+                <SelectItem value="all">All</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
@@ -165,11 +321,14 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
         </Typography>
       )}
 
-      {!isLoading && !isError && products.length > 0 && (
+      {(isLoading || products.length > 0) && !isError && (
         <>
-          <ProductsList products={products} />
+          <ProductsList
+            products={products}
+            isLoading={isLoading}
+          />
 
-          {perPage !== 'all' && totalCount > Number(perPage) && (
+          {!isLoading && perPage !== 'all' && totalCount > Number(perPage) && (
             <div className={styles.pagination}>
               <Pagination
                 total={totalCount}
