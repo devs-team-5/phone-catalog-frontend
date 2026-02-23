@@ -1,0 +1,61 @@
+.success {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-1);
+  padding: 4rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 600px;
+  width: 100%;
+  animation: fade-in 0.5s ease-out;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: var(--success);
+    color: var(--surface-1);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__text {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  &__button {
+    background-color: var(--accent);
+    color: var(--text-primary);
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--accent-hover);
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
