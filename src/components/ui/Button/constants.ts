@@ -25,6 +25,11 @@ export const BUTTON_COLORS = {
   GREEN: '27AE60',
   RED: 'EB5757',
   // Кольори для вибору товару
+  TEAL: 'a1c9c8',
+  ULTRAMARINE: '8396df',
+  BLACK: '3e3e40',
+  BLUE: 'b3def3',
+
   COSMICORANGE: 'f78747',
   DEEPBLUE: '414659',
   LAVENDER: 'eadeee',
@@ -38,7 +43,6 @@ export const BUTTON_COLORS = {
   WHITETITANIUM: 'f1e8eb',
   PURPLE: '5E5CE6',
   SPACEBLACK: '1C1C1E',
-  BLACK: '000000',
   SILVER: 'F5F5F7',
   SPACEGRAY: '8E8E93',
   MIDNIGHTGREEN: '4E5851',
@@ -47,7 +51,6 @@ export const BUTTON_COLORS = {
   SIERRABLUE: 'A7C7E7',
   YELLOW: 'FFD60A',
   MIDNIGHT: '191970',
-  BLUE: '007AFF',
   PINK: 'FF9EB5',
   ROSEGOLD: 'B76E79',
   CORAL: 'FF6F61',

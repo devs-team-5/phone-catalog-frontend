@@ -1,4 +1,4 @@
-import { FreeMode, Thumbs } from 'swiper/modules';
+import { Autoplay, FreeMode, Thumbs } from 'swiper/modules';
 import styles from './ImageSlider.module.scss';
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
 import React, { useState } from 'react';
@@ -55,7 +55,9 @@ export const ImageSlider: React.FC<Props> = ({ images, getImageUrl }) => {
             swiper:
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
-          modules={[FreeMode, Thumbs]}
+          modules={[FreeMode, Thumbs, Autoplay]}
+          speed={1200}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           className={styles.myMainSlider}
         >
           {images.map((img) => (
