@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
 import { useAuth } from '@/context/AuthContext';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
 
@@ -139,10 +138,7 @@ export const Header = () => {
             <div className={styles.userSection}>
               {isLoggedIn ?
                 <div className={styles.accountInfo}>
-                  <Typography
-                    variant="small"
-                    color="secondary"
-                  >
+                  <Typography variant="small">
                     {user?.username || user?.email}
                   </Typography>
                   <button
@@ -160,8 +156,14 @@ export const Header = () => {
                   to="/login"
                   className={styles.loginLink}
                 >
-                  <Button size="64">
-                    <ICON_MAP.HOME />
+                  <Button
+                    size="64"
+                    className={styles.burger}
+                  >
+                    <Icon
+                      name="USER"
+                      size={20}
+                    />
                   </Button>
                 </Link>
               }

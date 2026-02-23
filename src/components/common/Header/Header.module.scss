@@ -69,7 +69,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary-color);
   transition: color 0.3s ease;
 
   &:hover {
@@ -83,8 +82,6 @@
   justify-content: center;
   height: 100%;
   aspect-ratio: 1 / 1;
-  color: var(--secondary-color);
-
   @include hover(color, var(--primary-color));
 }
 
