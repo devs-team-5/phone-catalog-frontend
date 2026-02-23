@@ -1,8 +1,8 @@
 import { Typography } from '@/components/ui/Typography/Typography';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '@/components/common/BackButton/BackButton';
-import { Icon } from '@/components/ui/Icon/Icon';
 import styles from './ContactsPage.module.scss';
+import { ICON_MAP } from '@/components/ui/Icon/icons';
 
 const TEAM_MEMBERS = [
   {
@@ -115,21 +115,15 @@ export const ContactsPage = () => {
                   href={`mailto:${member.email}`}
                   className={styles.link}
                 >
-                  <Icon
-                    name="MAIL"
-                    size={20}
-                  />
-                  <span>{member.email}</span>
+                  <ICON_MAP.MAIL size={20} />
+                  <Typography variant="body">{member.email}</Typography>
                 </a>
                 <a
                   href={`tel:${member.phone}`}
                   className={styles.link}
                 >
-                  <Icon
-                    name="PHONE"
-                    size={20}
-                  />
-                  <span>{member.phone}</span>
+                  <ICON_MAP.PHONE size={20} />
+                  <Typography variant="body">{member.phone}</Typography>
                 </a>
                 <a
                   href={member.linkedin}
@@ -137,11 +131,8 @@ export const ContactsPage = () => {
                   rel="noreferrer"
                   className={styles.link}
                 >
-                  <Icon
-                    name="LINKEDIN"
-                    size={20}
-                  />
-                  <span>LinkedIn Profile</span>
+                  <ICON_MAP.LINKEDIN size={20} />
+                  <Typography variant="body">LinkedIn</Typography>
                 </a>
               </div>
             </div>
