@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
 import { useTranslation } from 'react-i18next';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { Typography } from '@/components/ui/Typography/Typography';
 
 export function SearchInput() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -48,6 +49,11 @@ export function SearchInput() {
     }
   };
 
+  const closeSearch = () => {
+    setIsExpanded(false);
+    setQuery('');
+  };
+
   return (
     <div className={styles.wrapper}>
       {!isExpanded && (
@@ -62,6 +68,7 @@ export function SearchInput() {
       <Combobox
         value={selectedProduct}
         onChange={handleSelectProduct}
+        onClose={closeSearch}
       >
         <div
           className={`${styles.search_overlay} ${isExpanded ? styles.active : ''}`}
@@ -87,7 +94,8 @@ export function SearchInput() {
           >
             {isLoading ?
               <SearchItemSkeleton />
-            : products.map((product) => (
+            : products.length ?
+              products.map((product) => (
                 <ComboboxOption
                   key={product.id}
                   value={product}
@@ -95,6 +103,9 @@ export function SearchInput() {
                   <SearchItem product={product} />
                 </ComboboxOption>
               ))
+            : <div className={styles.error}>
+                <Typography variant="h4">Nothig Found</Typography>
+              </div>
             }
           </ComboboxOptions>
         </div>

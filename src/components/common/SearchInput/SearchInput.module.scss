@@ -61,9 +61,18 @@
   width: 100vw;
   left: 0;
   padding: 10px;
+  height: 500px;
 
   @include on-tablet {
-    width: 400px;
+    width: 600px;
     left: auto;
   }
+}
+
+.error {
+  border: 1px solid var(--elements-color);
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  height: 40px;
 }
