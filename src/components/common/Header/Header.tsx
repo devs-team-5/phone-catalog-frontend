@@ -166,7 +166,10 @@ export const Header = () => {
                     className={styles.loginLink}
                   >
                     <Button size="64">
-                      <ICON_MAP.HOME />
+                      <Icon
+                        name="USER"
+                        size={20}
+                      />
                     </Button>
                   </Link>
                 }
