@@ -25,6 +25,7 @@ export const CartItem = ({ product }: { product: ProductWithCount }) => {
               src={getImageUrl(product.image)}
               alt={product.name}
               className={styles.item__img}
+              loading="lazy"
             />
           </Link>
         </div>

@@ -37,6 +37,7 @@ export const ImageSlider: React.FC<Props> = ({ images, getImageUrl }) => {
                 <img
                   src={getImageUrl(img)}
                   alt={`Thumb`}
+                  loading="lazy"
                 />
               </div>
             </SwiperSlide>
@@ -65,6 +66,7 @@ export const ImageSlider: React.FC<Props> = ({ images, getImageUrl }) => {
               <img
                 src={getImageUrl(img)}
                 alt="Product view"
+                loading="lazy"
               />
             </SwiperSlide>
           ))}

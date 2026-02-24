@@ -14,6 +14,7 @@ import {
   LuLanguages,
   LuMoon,
   LuSun,
+  LuUser,
   LuLinkedin,
   LuPhone,
   LuMail,
@@ -29,8 +30,9 @@ export const ICON_MAP = {
   SEARCH: LuSearch,
   CART: LuShoppingBag,
   WISHLIST: LuHeart,
-  MINUS_GRAY: () => <LuMinus color="#B4BDC3" />,
-  PLUS_GRAY: () => <LuPlus color="#B4BDC3" />,
+  USER: LuUser,
+  MINUS_GRAY: () => <LuMinus color="$icons-color" />,
+  PLUS_GRAY: () => <LuPlus color="$icons-color" />,
   CLOSE_GRAY: () => <LuX color="#B4BDC3" />,
   MINUS: LuMinus,
   PLUS: LuPlus,
@@ -39,8 +41,8 @@ export const ICON_MAP = {
   LANGUAGE: LuLanguages,
   WISHLIST_RED: () => (
     <LuHeart
-      color="#EB5757"
-      fill="#EB5757"
+      color="var(--red-color)"
+      fill="var(--red-color)"
     />
   ),
   CHEVRON_LEFT_GRAY: () => <LuChevronLeft color="#B4BDC3" />,
