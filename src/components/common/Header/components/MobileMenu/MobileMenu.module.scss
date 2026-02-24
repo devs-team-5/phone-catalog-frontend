@@ -139,3 +139,26 @@
   font-size: 16px;
   line-height: 18px;
 }
+
+.actions {
+  display: flex;
+  height: 48px;
+  align-items: stretch;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-inline: 10px;
+
+  height: 48px;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  border-left: 1px solid var(--elements-color);
+  background: transparent;
+  cursor: pointer;
+}

@@ -26,7 +26,7 @@ export const BackButton: React.FC = () => {
         variant="small"
         color="secondary"
       >
-        Back
+        buttons.back
       </Typography>
     </button>
   );

@@ -1,0 +1,11 @@
+.switcher_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.text {
+  color: var(--switcher-text-color);
+}

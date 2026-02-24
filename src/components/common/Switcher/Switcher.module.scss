@@ -1,0 +1,21 @@
+.switchTheme {
+  width: 30px;
+  height: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.switcher {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  height: 14px;
+  width: 15px;
+  transform: translateX(90%);
+
+  &:target {
+    transform: translateX(0);
+  }
+}

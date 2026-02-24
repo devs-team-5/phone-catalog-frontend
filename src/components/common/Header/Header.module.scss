@@ -175,3 +175,12 @@ img {
   bottom: -1px;
   background-color: var(--primary-color);
 }
+
+.switchers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border-left: 1px solid var(--elements-color);
+  padding-inline: 10px;
+}

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Description.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
 import type { About } from '@/types/About';
 import type { MainSpecs } from '@/types/MainSpecs';
+import { useTranslation } from 'react-i18next';
 
 type DescriptionProps = {
   about: About[];
@@ -10,6 +11,13 @@ type DescriptionProps = {
 };
 
 export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
+  const { t, i18n } = useTranslation();
+  const [showOriginal, setShowOriginal] = useState(false);
+
+  const isUkrainian = i18n.language.startsWith('ua');
+  const shouldShowDescription = !isUkrainian || showOriginal;
+  console.log('LANG:', i18n.language);
+
   return (
     <>
       <section className={styles.about}>
@@ -17,13 +25,22 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
           variant="h3"
           className={styles.title}
         >
-          About
+          {t('product.about')}
         </Typography>
-        <hr className={styles.line} />
-        {about.map((desc) => {
-          const { text, title } = desc;
 
-          return (
+        <hr className={styles.line} />
+
+        {isUkrainian && !showOriginal && (
+          <button
+            className={styles.readBtn}
+            onClick={() => setShowOriginal(true)}
+          >
+            {t('product.readOriginal')}
+          </button>
+        )}
+
+        {shouldShowDescription &&
+          about.map(({ text, title }) => (
             <article
               className={styles.article}
               key={title}
@@ -34,6 +51,7 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
               >
                 {title}
               </Typography>
+
               <Typography
                 variant="body"
                 color="secondary"
@@ -41,8 +59,16 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
                 {text}
               </Typography>
             </article>
-          );
-        })}
+          ))}
+
+        {isUkrainian && showOriginal && (
+          <button
+            className={styles.readBtn}
+            onClick={() => setShowOriginal(false)}
+          >
+            {t('product.hideOriginal')}
+          </button>
+        )}
       </section>
 
       <section className={styles.specs}>
@@ -50,8 +76,9 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
           variant="h3"
           className={styles.title_tech}
         >
-          Tech specs
+          {t('product.techSpecs')}
         </Typography>
+
         <hr className={styles.line} />
 
         {specs.map(({ label, value }) =>
@@ -66,6 +93,7 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
               >
                 {label}
               </Typography>
+
               <Typography variant="body">{value}</Typography>
             </article>
           : null,

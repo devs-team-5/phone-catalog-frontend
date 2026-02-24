@@ -9,7 +9,7 @@ export const Welcome = () => {
         variant="h1"
         className={styles.title}
       >
-        Welcome to Nice Gadgets store!
+        welcome.title
       </Typography>
 
       <Slider />
