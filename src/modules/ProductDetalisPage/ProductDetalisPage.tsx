@@ -63,6 +63,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
               src={STATIC_IMAGES.placeholders.noImage}
               alt="Empty wishlist"
               className={styles.emptyImage}
+              loading="lazy"
             />
           </Link>
         </div>
@@ -99,18 +100,18 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
   });
 
   const mainSpecs = [
-    { label: 'Screen', value: screen },
-    { label: 'Resolution', value: resolution },
-    { label: 'Processor', value: processor },
-    { label: 'RAM', value: ram },
+    { label: 'specs.screen', value: screen },
+    { label: 'specs.resolution', value: resolution },
+    { label: 'specs.processor', value: processor },
+    { label: 'specs.ram', value: ram },
   ];
 
   const fullSpecs = [
     ...mainSpecs,
-    { label: 'Built in memory', value: capacity },
-    { label: 'Camera', value: camera },
-    { label: 'Zoom', value: zoom },
-    { label: 'Cell', value: cell.join(', ') },
+    { label: 'product.builtInMemory', value: capacity },
+    { label: 'product.camera', value: camera },
+    { label: 'product.zoom', value: zoom },
+    { label: 'product.cell', value: cell.join(', ') },
   ];
 
   const getColorUrl = (newColor: string) => {

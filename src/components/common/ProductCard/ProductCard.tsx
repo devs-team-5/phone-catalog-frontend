@@ -9,6 +9,7 @@ import { useFavourites } from '@/hooks/favourites';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { useCart } from '@/hooks/cart';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 type Props = {
   product: Product;
 };
@@ -25,10 +26,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     screen,
   } = product;
 
+  const { t } = useTranslation<'translation'>();
   const spesc = [
-    { label: 'Screen', value: screen },
-    { label: 'Capacity', value: capacity },
-    { label: 'RAM', value: ram },
+    { label: 'specs.screen', value: screen },
+    { label: 'specs.capacity', value: capacity },
+    { label: 'specs.ram', value: ram },
   ];
 
   const imageUrl = getImageUrl(image);
@@ -46,6 +48,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           src={imageUrl}
           className={styles.image}
           alt={name}
+          loading="lazy"
         />
       </Link>
 
@@ -102,7 +105,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           })}
           onClick={() => toggleCart(itemId)}
         >
-          {isCart ? 'Added' : 'Add to cart'}
+          {isCart ? t('product.added') : t('product.addToCart')}
         </button>
 
         <Button

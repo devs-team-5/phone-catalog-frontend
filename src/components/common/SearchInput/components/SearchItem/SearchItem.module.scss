@@ -1,0 +1,116 @@
+.item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+
+  padding: 16px;
+  border: 1px solid var(--elements-color);
+  background: var(--white-color);
+  transition:
+    border-color $duration,
+    box-shadow $duration;
+
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
+  }
+
+  &:has(.item__remove:hover) {
+    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
+    border-color: var(--red-color);
+  }
+
+  @include on-tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  &__img_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-shrink: 0;
+    flex-direction: column;
+
+    @include on-tablet {
+      flex-direction: row;
+    }
+  }
+
+  &__img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+  }
+
+  &__name {
+    display: flex;
+    overflow: hidden;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    @include on-tablet {
+      gap: 32px;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    flex-direction: row;
+    width: 96px;
+    justify-content: space-between;
+  }
+
+  &__count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    text-align: center;
+    width: 32px;
+  }
+
+  &__btn {
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    border-color: var(--icons-color);
+
+    &:disabled {
+      cursor: default;
+      border-color: var(--elements-color);
+    }
+  }
+
+  &__price {
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+  }
+
+  &__remove {
+    border: none;
+
+    @include hover(color, var(--red-color));
+  }
+}

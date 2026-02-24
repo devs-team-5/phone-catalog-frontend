@@ -11,28 +11,38 @@ import {
   LuChevronDown,
   LuChevronUp,
   LuMenu,
+  LuLanguages,
   LuMoon,
   LuSun,
+  LuUser,
+  LuLinkedin,
+  LuPhone,
+  LuMail,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
   DARKTHEME: LuMoon,
+  MAIL: LuMail,
+  PHONE: LuPhone,
+  LINKEDIN: LuLinkedin,
   LIGHTTHEME: LuSun,
   HOME: LuHouse,
   SEARCH: LuSearch,
   CART: LuShoppingBag,
   WISHLIST: LuHeart,
-  MINUS_GRAY: () => <LuMinus color="#B4BDC3" />,
-  PLUS_GRAY: () => <LuPlus color="#B4BDC3" />,
+  USER: LuUser,
+  MINUS_GRAY: () => <LuMinus color="$icons-color" />,
+  PLUS_GRAY: () => <LuPlus color="$icons-color" />,
   CLOSE_GRAY: () => <LuX color="#B4BDC3" />,
   MINUS: LuMinus,
   PLUS: LuPlus,
   CLOSE: LuX,
   MENU: LuMenu,
+  LANGUAGE: LuLanguages,
   WISHLIST_RED: () => (
     <LuHeart
-      color="#EB5757"
-      fill="#EB5757"
+      color="var(--red-color)"
+      fill="var(--red-color)"
     />
   ),
   CHEVRON_LEFT_GRAY: () => <LuChevronLeft color="#B4BDC3" />,

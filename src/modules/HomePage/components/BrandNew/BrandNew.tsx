@@ -28,7 +28,7 @@ export const BrandNew = () => {
   return (
     <ProductSlider
       products={products}
-      title={'Brand new models'}
+      title={'products.brandNew'}
       isLoading={isLoading}
     />
   );

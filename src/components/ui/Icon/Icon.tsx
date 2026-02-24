@@ -7,7 +7,7 @@ interface IconProps {
   className?: string;
 }
 
-export const Icon = ({ name, size = 20, className }: IconProps) => {
+export const Icon = ({ name, size, className }: IconProps) => {
   const IconComponent = ICON_MAP[name];
 
   if (!IconComponent) return null;

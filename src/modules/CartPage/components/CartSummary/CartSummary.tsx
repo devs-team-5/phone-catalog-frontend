@@ -3,6 +3,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './CartSummary.module.scss';
 import type { ProductWithCount } from '@/types/ProductWithCount';
 import { CheckoutModal } from '@/components/CheckoutModal/CheckoutModal';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   products: ProductWithCount[];
@@ -16,6 +17,7 @@ export const CartSummary: React.FC<Props> = ({ products }) => {
     (acc, item) => acc + item.price * item.count,
     0,
   );
+  const { t } = useTranslation<'translation'>();
 
   return (
     <>
@@ -27,7 +29,8 @@ export const CartSummary: React.FC<Props> = ({ products }) => {
             color="secondary"
             className={styles.summary__text}
           >
-            Total for {totalCount} item{totalCount !== 1 ? 's' : ''}
+            {t('cart.total')} {totalCount}{' '}
+            {t('cart.item', { count: totalCount })}
           </Typography>
         </div>
 
@@ -37,7 +40,7 @@ export const CartSummary: React.FC<Props> = ({ products }) => {
           className={styles.summary__checkout}
           onClick={() => setIsCheckoutOpen(true)}
         >
-          Checkout
+          {t('cart.checkout')}
         </button>
       </div>
 

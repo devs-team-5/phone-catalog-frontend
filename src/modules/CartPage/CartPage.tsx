@@ -19,12 +19,10 @@ export const CartPage = () => {
   const { cart, clearCart } = useCart();
   const [searchParams] = useSearchParams();
 
-  // Stripe attaches params before the hash, so we need to check native window.location.search too
   const isPaymentSuccess =
     searchParams.get('payment') === 'success' ||
     new URLSearchParams(window.location.search).get('payment') === 'success';
 
-  // Clear cart on successful payment
   useEffect(() => {
     if (isPaymentSuccess && cart.length > 0 && clearCart) {
       clearCart();
@@ -34,7 +32,6 @@ export const CartPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Only fetch if we are actually showing cart items (not on success screen)
     if (!isPaymentSuccess) {
       const currentIds = cart.map((item) => item.itemId);
       const loadedIds = products.map((product) => product.itemId);
@@ -67,7 +64,7 @@ export const CartPage = () => {
     <div className={styles.cart}>
       <main className={styles.cart__container}>
         {!isPaymentSuccess && <BackButton />}
-        {!isPaymentSuccess && <Typography variant="h1">Cart</Typography>}
+        {!isPaymentSuccess && <Typography variant="h1">cart.title</Typography>}
 
         {isPaymentSuccess ?
           <div className={styles.cart__content}>
@@ -97,19 +94,20 @@ export const CartPage = () => {
               variant="h2"
               color="primary"
             >
-              Your cart is empty
+              cart.empty
             </Typography>
             <Typography
               variant="body"
               color="secondary"
             >
-              Add your first product to the cart
+              cart.addFirstProduct
             </Typography>
             <Link to="/">
               <img
                 src={STATIC_IMAGES.placeholders.emptyCart}
                 alt="Empty cart"
                 className={styles.emptyImage}
+                loading="lazy"
               />
             </Link>
           </>

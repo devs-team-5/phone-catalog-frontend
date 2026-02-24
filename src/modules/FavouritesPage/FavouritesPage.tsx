@@ -10,11 +10,14 @@ import { STATIC_IMAGES } from '@/constants/images';
 import { Link } from 'react-router-dom';
 import { BackButton } from '@/components/common/BackButton/BackButton';
 import { Skeleton } from '@/components/ui/Skeleton/Skeleton';
+import { useTranslation } from 'react-i18next';
 
 export const FavouritesPage = () => {
   const { favourites } = useFavourites();
   const [favouriteProducts, setFavouriteProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { t } = useTranslation<'translation'>();
 
   useEffect(() => {
     let ignore = false;
@@ -55,7 +58,7 @@ export const FavouritesPage = () => {
         variant="h1"
         className={styles.title}
       >
-        Favourites
+        favourites.title
       </Typography>
       {favourites.length > 0 ?
         <>
@@ -68,7 +71,7 @@ export const FavouritesPage = () => {
               color="secondary"
               className={styles.count}
             >
-              {favourites.length} items
+              {favourites.length} {t('cart.item', { count: favourites.length })}
             </Typography>
           }
           <ProductsList
@@ -81,19 +84,20 @@ export const FavouritesPage = () => {
             variant="h2"
             color="primary"
           >
-            Your wishlist is empty
+            favourites.empty
           </Typography>
           <Typography
             variant="body"
             color="secondary"
           >
-            Add your first product to the wishlist
+            favourites.addFirst
           </Typography>
           <Link to="/">
             <img
               src={STATIC_IMAGES.placeholders.emptyCart}
               alt="Empty wishlist"
               className={styles.emptyImage}
+              loading="lazy"
             />
           </Link>
         </>

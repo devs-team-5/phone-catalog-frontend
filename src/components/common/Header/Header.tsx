@@ -10,10 +10,11 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { LanguageSwitcher } from './Languages/LanguageSwitcher';
 import { useAuth } from '@/context/AuthContext';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
+import { SearchInput } from '../SearchInput';
 
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
@@ -39,142 +40,153 @@ export const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.flex}>
-          <div className={styles.logo}>
-            <Link to="/">
+        <div className={styles.container}>
+          <div className={styles.navBar}>
+            <Link
+              to="/"
+              className={styles.logo}
+            >
               <img
                 src={isDark ? darkLogo : logo}
                 alt="Nice Gadgets"
               />
             </Link>
+
+            <nav className={styles.nav}>
+              <ul className={styles.menu}>
+                <li>
+                  <NavLink
+                    to="/"
+                    end
+                    className={({ isActive }) =>
+                      `${styles.link} ${isActive ? styles.isActive : ''}`
+                    }
+                  >
+                    <Typography
+                      variant="uppercase"
+                      color="inherit"
+                    >
+                      nav.home
+                    </Typography>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      `${styles.link} ${isActive ? styles.isActive : ''}`
+                    }
+                    to={'/phones'}
+                  >
+                    <Typography
+                      variant="uppercase"
+                      color="inherit"
+                    >
+                      nav.phones
+                    </Typography>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      `${styles.link} ${isActive ? styles.isActive : ''}`
+                    }
+                    to="/tablets"
+                  >
+                    <Typography
+                      variant="uppercase"
+                      color="inherit"
+                    >
+                      nav.tablets
+                    </Typography>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      `${styles.link} ${isActive ? styles.isActive : ''}`
+                    }
+                    to="/accessories"
+                  >
+                    <Typography
+                      variant="uppercase"
+                      color="inherit"
+                    >
+                      nav.accessories
+                    </Typography>
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
           </div>
 
-          <nav className={styles.nav}>
-            <ul className={styles.menu}>
-              <li>
-                <NavLink
-                  to="/"
-                  end
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                >
-                  <Typography
-                    variant="uppercase"
-                    color="inherit"
-                  >
-                    Home
-                  </Typography>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to={'/phones'}
-                >
-                  <Typography
-                    variant="uppercase"
-                    color="inherit"
-                  >
-                    Phones
-                  </Typography>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/tablets"
-                >
-                  <Typography
-                    variant="uppercase"
-                    color="inherit"
-                  >
-                    Tablets
-                  </Typography>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.link} ${isActive ? styles.isActive : ''}`
-                  }
-                  to="/accessories"
-                >
-                  <Typography
-                    variant="uppercase"
-                    color="inherit"
-                  >
-                    Accessories
-                  </Typography>
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
+          <div className={styles.actions_container}>
+            <SearchInput />
+            <div className={styles.actions}>
+              <LanguageSwitcher size="64" />
 
-          <div className={styles.actions}>
-            <ThemeSwitcher />
+              <ThemeSwitcher />
 
-            <Link to="/favourites">
-              <Button size="64">
-                <BadgeIcon
-                  name="WISHLIST"
-                  count={getFavouritesCount()}
-                />
-              </Button>
-            </Link>
+              <Link to="/favourites">
+                <Button size="64">
+                  <BadgeIcon
+                    name="WISHLIST"
+                    count={getFavouritesCount()}
+                  />
+                </Button>
+              </Link>
 
-            <Link to="/cart">
-              <Button size="64">
-                <BadgeIcon
-                  name="CART"
-                  count={getCartCount()}
-                />
-              </Button>
-            </Link>
+              <Link to="/cart">
+                <Button size="64">
+                  <BadgeIcon
+                    name="CART"
+                    count={getCartCount()}
+                  />
+                </Button>
+              </Link>
 
-            <div className={styles.userSection}>
-              {isLoggedIn ?
-                <div className={styles.accountInfo}>
-                  <Typography
-                    variant="small"
-                    color="secondary"
+              <div className={styles.userSection}>
+                {isLoggedIn ?
+                  <div className={styles.accountInfo}>
+                    <Typography
+                      variant="small"
+                      color="secondary"
+                    >
+                      {user?.username || user?.email}
+                    </Typography>
+                    <button
+                      onClick={handleLogout}
+                      className={styles.logoutBtn}
+                      title="Logout"
+                    >
+                      <Icon
+                        name="CLOSE"
+                        size={20}
+                      />
+                    </button>
+                  </div>
+                : <Link
+                    to="/login"
+                    className={styles.loginLink}
                   >
-                    {user?.username || user?.email}
-                  </Typography>
-                  <button
-                    onClick={handleLogout}
-                    className={styles.logoutBtn}
-                    title="Logout"
-                  >
-                    <Icon
-                      name="CLOSE"
-                      size={20}
-                    />
-                  </button>
-                </div>
-              : <Link
-                  to="/login"
-                  className={styles.loginLink}
-                >
-                  <Button size="64">
-                    <ICON_MAP.HOME />
-                  </Button>
-                </Link>
-              }
+                    <Button size="64">
+                      <Icon
+                        name="USER"
+                        size={20}
+                      />
+                    </Button>
+                  </Link>
+                }
+              </div>
             </div>
-          </div>
 
-          <div className={styles.burger}>
-            <button onClick={() => setIsMenuOpen(true)}>
-              <Icon
-                name="MENU"
-                size={24}
-              />
-            </button>
+            <div className={styles.burger}>
+              <button onClick={() => setIsMenuOpen(true)}>
+                <Icon
+                  name="MENU"
+                  size={24}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </header>

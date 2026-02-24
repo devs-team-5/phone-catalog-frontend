@@ -15,6 +15,7 @@ import { ProductDetailsPage } from '../ProductDetalisPage';
 import { LoginPage } from '../Auth/LoginPage';
 import { useEffect } from 'react';
 import { useThemeStore } from '../../hooks/ThemeStore';
+import { ContactsPage } from '../ContactsPage/ContactsPage';
 
 function App() {
   const isDark = useThemeStore((state) => state.isDark);
@@ -49,7 +50,7 @@ function App() {
               element={
                 <CatalogPage
                   category="phones"
-                  title="Mobile phones"
+                  title="welcome.mobilePhone"
                 />
               }
             />
@@ -65,7 +66,7 @@ function App() {
               element={
                 <CatalogPage
                   category="tablets"
-                  title="Tablets"
+                  title="welcome.tablets"
                 />
               }
             />
@@ -81,7 +82,7 @@ function App() {
               element={
                 <CatalogPage
                   category="accessories"
-                  title="Accessories"
+                  title="welcome.accessories"
                 />
               }
             />
@@ -114,6 +115,11 @@ function App() {
           <Route
             path="*"
             element={<PageNotFound />}
+          />
+
+          <Route
+            path="/contacts"
+            element={<ContactsPage />}
           />
         </Routes>
       </main>
