@@ -17,8 +17,8 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: $secondary-color;
-  border: 1px solid $elements-color;
+  background: var(--secondary-color);
+  border: 1px solid var(--elements-color);
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   padding: 8px 0;
@@ -33,7 +33,7 @@
 .dropdown button {
   background: none;
   border: none;
-  color: white;
+  color: var(--white-color);
   text-align: left;
   padding: 6px 10px;
   border-radius: 6px;
@@ -56,10 +56,10 @@
 }
 
 .wrapper button {
-  transition: transform 0.2s ease;
+  transition: transform $duration ease;
 }
 
 .wrapper button:hover {
-  border-color: $elements-color;
+  border-color: var(--elements-color);
   text-decoration: underline;
 }

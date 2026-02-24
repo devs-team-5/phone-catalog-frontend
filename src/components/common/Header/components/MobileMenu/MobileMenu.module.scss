@@ -157,7 +157,7 @@
   flex-shrink: 0;
   box-sizing: border-box;
 
-  border-left: 1px solid $elements-color;
+  border-left: 1px solid var(--elements-color);
   background: transparent;
   cursor: pointer;
 }
