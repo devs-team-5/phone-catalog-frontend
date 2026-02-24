@@ -30,7 +30,13 @@
     "perPage": "Товарів на сторінці",
     "all": "Усі",
     "models": "моделей",
-    "search": "Пошук"
+    "search": "Пошук",
+    "model": "Модель",
+    "year": "Рік",
+    "itemsOnPage": "Товарів на сторінці",
+    "selectYear": "Вибрати рік",
+    "selectCapacity": "Вибрати пам'ять",
+    "selectModel": "Вибрати модель"
   },
 
   "product": {
