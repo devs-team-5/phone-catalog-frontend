@@ -61,10 +61,12 @@
   width: 100vw;
   left: 0;
   padding: 10px;
-  height: 500px;
+  height: auto;
+  max-height: 500px !important;
+  overflow-y: auto !important;
 
   @include on-tablet {
-    width: 600px;
+    width: 550px;
     left: auto;
   }
 }
