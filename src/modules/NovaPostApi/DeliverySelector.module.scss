@@ -1,0 +1,157 @@
+.container {
+  padding: 24px;
+  box-shadow: 0 2px 8px $box-shadow-color;
+  display: flex;
+  flex-direction: column;
+  gap: $grid-column-gap;
+  font-family: $font-family;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid $elements-color;
+  transition: border-color $duration ease;
+
+  &:focus {
+    outline: none;
+    border-color: $secondary-color;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+}
+
+.input {
+  margin: 0;
+  caret-color: transparent;
+}
+
+.hintOverlay {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  pointer-events: none;
+  color: $secondary-color;
+  font-size: 16px;
+  // font-family: $font-family;
+}
+
+.dropdown {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  right: 0;
+  background-color: $white-color;
+  border: 1px solid $elements-color;
+  box-shadow: 0 4px 12px $box-shadow-color;
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.dropdownItem {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid $primary-color;
+  transition: background-color $duration;
+
+  &:hover,
+  &[data-active='true'] {
+    background-color: $elements-color;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.selectTrigger {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: $primary-color;
+  font-size: 14px;
+}
+
+.warehouseList {
+  max-height: 300px;
+  overflow-y: scroll; /* Firefox */
+}
+
+.warehouseList::-webkit-scrollbar {
+  display: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px 10px;
+  border-bottom: 1px solid $elements-color;
+  outline: none;
+  font-size: 14px;
+}
+
+.dropdownInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.comboWrapper {
+  position: relative;
+}
+
+.comboInputWrapper {
+  position: relative;
+}
+
+.comboInput {
+  width: 100%;
+  padding: 10px 32px 10px 12px;
+  border: 1px solid $elements-color;
+}
+
+.chevron {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.comboDropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 250px;
+  overflow: auto;
+  background: $white-color;
+  border: 1px solid $elements-color;
+  z-index: 10;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.comboItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.comboItem:hover {
+  background: $elements-color;
+  z-index: 10;
+}
