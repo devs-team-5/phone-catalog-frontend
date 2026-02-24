@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
 import { useAuth } from '@/context/AuthContext';
-import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
 import { SearchInput } from '../SearchInput';
@@ -167,7 +166,10 @@ export const Header = () => {
                     className={styles.loginLink}
                   >
                     <Button size="64">
-                      <ICON_MAP.HOME />
+                      <Icon
+                        name="USER"
+                        size={20}
+                      />
                     </Button>
                   </Link>
                 }
