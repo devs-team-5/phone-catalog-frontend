@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Language } from '@/i18n/language';
 import styles from './LanguageSwitcher.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
-import { Switcher } from '../../Switcher';
+import { Switcher } from '../../../Switcher';
 
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();

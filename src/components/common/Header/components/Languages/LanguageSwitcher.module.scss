@@ -4,10 +4,6 @@
   gap: 5px;
   justify-content: space-between;
   cursor: pointer;
-
-  @include on-tablet {
-    margin-right: 5px;
-  }
 }
 
 .text {

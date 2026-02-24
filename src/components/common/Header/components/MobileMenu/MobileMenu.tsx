@@ -10,7 +10,7 @@ import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
-import { LanguageSwitcher } from '../../Languages/LanguageSwitcher';
+import { LanguageSwitcher } from '../Languages/LanguageSwitcher';
 
 type Props = {
   isOpen: boolean;
