@@ -10,6 +10,7 @@ import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import { LanguageSwitcher } from '../../Languages/LanguageSwitcher';
 
 type Props = {
   isOpen: boolean;
@@ -58,6 +59,9 @@ export const MobileMenu: React.FC<Props> = ({
 
           <div className={styles.buttons_container}>
             <ThemeSwitcher />
+            <div className={styles.lang}>
+              <LanguageSwitcher size="48" />
+            </div>
 
             <button
               type="button"
@@ -83,7 +87,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Home
+              nav.home
             </Typography>
           </NavLink>
 
@@ -97,7 +101,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Phones
+              nav.phones
             </Typography>
           </NavLink>
 
@@ -111,7 +115,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Tablets
+              nav.tablets
             </Typography>
           </NavLink>
 
@@ -125,7 +129,7 @@ export const MobileMenu: React.FC<Props> = ({
               color="inherit"
               className={styles.menuItem}
             >
-              Accessories
+              nav.accessories
             </Typography>
           </NavLink>
         </nav>

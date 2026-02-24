@@ -8,6 +8,7 @@ import type { ButtonColor } from '@/components/ui/Button/constants';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
 import cn from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   currentColor: string;
@@ -39,6 +40,7 @@ export const ProductActions: React.FC<Props> = ({
   const isFav = isFavourite(id);
   const isCart = isInCart(id);
   const discount = priceRegular - priceDiscount;
+  const { t } = useTranslation<'translation'>();
 
   const normalizedColor = (color: string) => {
     const correctColorName = color.replaceAll('-', '').toUpperCase();
@@ -53,7 +55,7 @@ export const ProductActions: React.FC<Props> = ({
           variant="body"
           color="secondary"
         >
-          Available colors
+          product.availableColors
         </Typography>
         <Typography
           variant="body"
@@ -84,7 +86,7 @@ export const ProductActions: React.FC<Props> = ({
           variant="body"
           color="secondary"
         >
-          Select capacity
+          product.selectCapacity
         </Typography>
         <div className={styles.capacity}>
           {capacityAvailable.map((capacity) => (
@@ -131,7 +133,7 @@ export const ProductActions: React.FC<Props> = ({
           })}
           onClick={() => toggleCart(id)}
         >
-          {isCart ? 'Added' : 'Add to cart'}
+          {isCart ? t('product.added') : t('product.addToCart')}
         </button>
         <Button
           size="48"

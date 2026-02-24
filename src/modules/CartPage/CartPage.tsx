@@ -49,7 +49,7 @@ export const CartPage = () => {
     <div className={styles.cart}>
       <main className={styles.cart__container}>
         <BackButton />
-        <Typography variant="h1">Cart</Typography>
+        <Typography variant="h1">cart.title</Typography>
         {cart.length > 0 ?
           <div className={styles.cart__content}>
             <div className={styles.cart__list}>
@@ -74,13 +74,13 @@ export const CartPage = () => {
               variant="h2"
               color="primary"
             >
-              Your cart is empty
+              cart.empty
             </Typography>
             <Typography
               variant="body"
               color="secondary"
             >
-              Add your first product to the cart
+              cart.addFirstProduct
             </Typography>
             <Link to="/">
               <img

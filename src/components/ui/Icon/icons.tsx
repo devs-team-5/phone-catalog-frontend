@@ -11,6 +11,7 @@ import {
   LuChevronDown,
   LuChevronUp,
   LuMenu,
+  LuLanguages,
   LuMoon,
   LuSun,
   LuUser,
@@ -37,6 +38,7 @@ export const ICON_MAP = {
   PLUS: LuPlus,
   CLOSE: LuX,
   MENU: LuMenu,
+  LANGUAGE: LuLanguages,
   WISHLIST_RED: () => (
     <LuHeart
       color="var(--red-color)"

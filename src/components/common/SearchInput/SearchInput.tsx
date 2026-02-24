@@ -12,6 +12,7 @@ import type { Product } from '@/types/Product';
 import { getProductsByQuery } from '@/api/products';
 import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
+import { useTranslation } from 'react-i18next';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Button } from '@/components/ui/Button';
 
@@ -24,7 +25,7 @@ export function SearchInput() {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const isLoading = query.length > 0 && query !== debouncedQuery;
-
+  const { t } = useTranslation<'translation'>();
   useEffect(() => {
     if (!debouncedQuery.trim()) {
       return;
@@ -73,7 +74,7 @@ export function SearchInput() {
             displayValue={(product: Product) => product?.name ?? query}
             className={styles.input_field}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search..."
+            placeholder={t('filters.search')}
           />
 
           <button

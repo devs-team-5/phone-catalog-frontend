@@ -10,6 +10,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
+import { LanguageSwitcher } from './Languages/LanguageSwitcher';
 import { useAuth } from '@/context/AuthContext';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
@@ -65,7 +66,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Home
+                      nav.home
                     </Typography>
                   </NavLink>
                 </li>
@@ -80,7 +81,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Phones
+                      nav.phones
                     </Typography>
                   </NavLink>
                 </li>
@@ -95,7 +96,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Tablets
+                      nav.tablets
                     </Typography>
                   </NavLink>
                 </li>
@@ -110,7 +111,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Accessories
+                      nav.accessories
                     </Typography>
                   </NavLink>
                 </li>
@@ -121,6 +122,8 @@ export const Header = () => {
           <div className={styles.actions_container}>
             <SearchInput />
             <div className={styles.actions}>
+              <LanguageSwitcher size="64" />
+
               <ThemeSwitcher />
 
               <Link to="/favourites">

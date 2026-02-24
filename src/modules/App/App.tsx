@@ -50,7 +50,7 @@ function App() {
               element={
                 <CatalogPage
                   category="phones"
-                  title="Mobile phones"
+                  title="welcome.mobilePhone"
                 />
               }
             />
@@ -66,7 +66,7 @@ function App() {
               element={
                 <CatalogPage
                   category="tablets"
-                  title="Tablets"
+                  title="welcome.tablets"
                 />
               }
             />
@@ -82,7 +82,7 @@ function App() {
               element={
                 <CatalogPage
                   category="accessories"
-                  title="Accessories"
+                  title="welcome.accessories"
                 />
               }
             />

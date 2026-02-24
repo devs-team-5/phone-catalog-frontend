@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/Select/Select';
 import type { Product } from '@/types/Product';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
+// import { useTranslation } from 'react-i18next';
 import { Skeleton } from '@/components/ui/Skeleton/Skeleton';
 import {
   MultiSelect,
@@ -71,6 +72,8 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
   useEffect(() => {
     loadData();
   }, [category, sort, page, perPage, capacitiesParam, yearsParam, modelsParam]);
+
+  // const { t } = useTranslation<'translation'>();
 
   const loadData = async () => {
     setIsLoading(true);

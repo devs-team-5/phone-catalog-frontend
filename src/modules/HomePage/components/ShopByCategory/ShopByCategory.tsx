@@ -38,28 +38,28 @@ export const ShopByCategory = () => {
 
   return (
     <section>
-      <Typography variant="h2">Shop by category</Typography>
+      <Typography variant="h2">products.category</Typography>
 
       <div className={styles.categories}>
         <CategoryCard
           to="/phones"
           video={STATIC_IMAGES.videos.phones}
           image={STATIC_IMAGES.categories.phones}
-          title="Mobile phones"
+          title="nav.phones"
           count={counts.phones}
         />
         <CategoryCard
           to="/tablets"
           video={STATIC_IMAGES.videos.tablets}
           image={STATIC_IMAGES.categories.tablets}
-          title="Tablets"
+          title="nav.tablets"
           count={counts.tablets}
         />
         <CategoryCard
           to="/accessories"
           video={STATIC_IMAGES.videos.accessories}
           image={STATIC_IMAGES.categories.accessories}
-          title="Accessories"
+          title="nav.accessories"
           count={counts.accessories}
         />
       </div>

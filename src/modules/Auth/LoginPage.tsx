@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './LoginPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +12,8 @@ export const LoginPage = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const { t } = useTranslation<'translation'>();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +37,7 @@ export const LoginPage = () => {
           variant="h1"
           className={styles.title}
         >
-          Sign In
+          auth.signIn
         </Typography>
 
         <form
@@ -42,7 +45,7 @@ export const LoginPage = () => {
           className={styles.form}
         >
           <div className={styles.field}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t('auth.email')}</label>
             <input
               id="email"
               type="email"
@@ -52,7 +55,7 @@ export const LoginPage = () => {
               required
             />
 
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t('auth.password')}</label>
             <input
               id="password"
               type="password"
@@ -69,7 +72,7 @@ export const LoginPage = () => {
             type="submit"
             className={styles.submitBtn}
           >
-            Log In
+            {t('auth.logIn')}
           </button>
         </form>
       </div>
