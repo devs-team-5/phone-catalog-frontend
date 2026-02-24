@@ -39,7 +39,7 @@ export const Footer = () => {
               variant="uppercase"
               color="secondary"
             >
-              Github
+              footer.github
             </Typography>
           </a>
           <Link
@@ -50,7 +50,7 @@ export const Footer = () => {
               variant="uppercase"
               color="secondary"
             >
-              Contacts
+              footer.contacts
             </Typography>
           </Link>
           <Link
@@ -61,7 +61,7 @@ export const Footer = () => {
               variant="uppercase"
               color="secondary"
             >
-              Rights
+              footer.rights
             </Typography>
           </Link>
         </nav>
@@ -72,7 +72,7 @@ export const Footer = () => {
             color="secondary"
             tag="span"
           >
-            Back to top
+            footer.backToTop
           </Typography>
 
           <button

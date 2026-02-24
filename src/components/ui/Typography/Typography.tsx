@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Typography.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type Variant =
   | 'h1'
@@ -40,13 +41,16 @@ export const Typography: React.FC<Props> = ({
   color = 'primary',
   children,
 }) => {
+  const { t, i18n } = useTranslation<'translation'>();
+  const hasTranslation = i18n.exists(children?.toString() as string);
+
   const Tag = tag || getDefaultTag(variant);
 
   if (variant === 'line-through') {
     return (
       <div className={classNames(styles.lineThroughWrapper, className)}>
         <Tag className={classNames(styles.text, styles.lineThroughText)}>
-          {children}
+          {hasTranslation ? t(children?.toString() as string) : children}
         </Tag>
       </div>
     );
@@ -61,7 +65,7 @@ export const Typography: React.FC<Props> = ({
         className,
       )}
     >
-      {children}
+      {hasTranslation ? t(children?.toString() as string) : children}
     </Tag>
   );
 };

@@ -12,6 +12,7 @@ import type { Product } from '@/types/Product';
 import { getProductsByQuery } from '@/api/products';
 import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
+import { useTranslation } from 'react-i18next';
 
 export function SearchInput() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -20,7 +21,7 @@ export function SearchInput() {
   const [debouncedQuery] = useDebounce(query, 500);
   const navigate = useNavigate();
   const isLoading = query.length > 0 && query !== debouncedQuery;
-
+  const { t } = useTranslation<'translation'>();
   useEffect(() => {
     if (!debouncedQuery.trim()) {
       return;
@@ -43,7 +44,7 @@ export function SearchInput() {
         displayValue={(product: Product) => product?.name ?? query}
         className={styles.container}
         onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search"
+        placeholder={t('filters.search')}
       />
       <ComboboxOptions
         anchor="bottom"

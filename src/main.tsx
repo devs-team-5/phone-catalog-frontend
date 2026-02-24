@@ -5,6 +5,7 @@ import '@/styles/main.scss';
 import './styles/_theme.scss';
 import './styles/tailwind.css';
 import App from './modules/App/App.tsx';
+import './i18n/i18n';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

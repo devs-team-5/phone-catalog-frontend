@@ -4,12 +4,22 @@ import { ICON_MAP } from '@/components/ui/Icon/icons';
 import styles from './Breadcrumbs.module.scss';
 import { Fragment } from 'react';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { useTranslation } from 'react-i18next';
 
 export const Breadcrumbs: React.FC = () => {
   const location = useLocation();
   const pathSegments = location.pathname
     .split('/')
     .filter((segment) => segment);
+  const { t } = useTranslation();
+
+  const segmentMap: Record<string, string> = {
+    phones: 'nav.phones',
+    tablets: 'nav.tablets',
+    accessories: 'nav.accessories',
+    favourites: 'favourites.title',
+    cart: 'cart.title',
+  };
 
   return (
     <nav aria-label="Breadcrumb">
@@ -31,7 +41,10 @@ export const Breadcrumbs: React.FC = () => {
           const formatSegment = (text: string) => {
             return text.charAt(0).toUpperCase() + text.slice(1);
           };
+          const translationKey = segmentMap[segment];
 
+          const content =
+            translationKey ? t(translationKey) : formatSegment(segment);
           return (
             <Fragment key={path}>
               <li
@@ -48,7 +61,7 @@ export const Breadcrumbs: React.FC = () => {
                     color="secondary"
                     className={styles.breadcrumbs__text}
                   >
-                    {formatSegment(segment)}
+                    {content}
                   </Typography>
                 : <Link
                     to={path}
@@ -60,7 +73,7 @@ export const Breadcrumbs: React.FC = () => {
                       color="primary"
                       className={styles.breadcrumbs__text}
                     >
-                      {formatSegment(segment)}
+                      {content}
                     </Typography>
                   </Link>
                 }

@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import styles from './CategoryCard.module.scss';
 import { Link } from 'react-router-dom';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   to: string;
@@ -20,6 +21,7 @@ export const CategoryCard: React.FC<Props> = ({
   count,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { t } = useTranslation<'translation'>();
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -75,7 +77,7 @@ export const CategoryCard: React.FC<Props> = ({
           color="secondary"
           className={styles.count}
         >
-          {count} models
+          {count} {t('filters.models')}
         </Typography>
       </Link>
     </div>
