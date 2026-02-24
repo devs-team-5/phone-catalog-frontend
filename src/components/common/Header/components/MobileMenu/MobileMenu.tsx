@@ -60,7 +60,7 @@ export const MobileMenu: React.FC<Props> = ({
           <div className={styles.buttons_container}>
             <div className={styles.lang}>
               <ThemeSwitcher />
-              <LanguageSwitcher size="48" />
+              <LanguageSwitcher />
             </div>
 
             <button

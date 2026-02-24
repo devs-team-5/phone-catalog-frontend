@@ -140,7 +140,7 @@ export const Header = () => {
                 </Button>
               </Link>
               <div className={styles.switchers}>
-                <LanguageSwitcher size="64" />
+                <LanguageSwitcher />
                 <ThemeSwitcher />
               </div>
 
