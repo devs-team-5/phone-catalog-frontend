@@ -23,7 +23,6 @@ export const PaymentForm: React.FC<Props> = ({ amount }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
       return;
     }
 
@@ -40,7 +39,6 @@ export const PaymentForm: React.FC<Props> = ({ amount }) => {
     if (error) {
       setErrorMessage(error.message ?? 'An unexpected error occurred.');
     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-      // Local redirect using HashRouter format without reloading the page
       window.location.hash = '/cart?payment=success';
     }
 

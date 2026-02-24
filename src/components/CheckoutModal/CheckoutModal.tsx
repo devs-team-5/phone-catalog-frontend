@@ -8,8 +8,6 @@ import { Typography } from '@/components/ui/Typography/Typography';
 
 import { useThemeStore } from '@/hooks/ThemeStore';
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
 const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
 );
@@ -38,8 +36,6 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              // Use anonymous key to invoke the function. Or create a custom auth policy.
-              // We'll pass it if the edge function checks for it, but for our simple implementation it might not be strictly required.
               'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
             },
             body: JSON.stringify({
@@ -72,10 +68,10 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
   const appearance = {
     theme: isDark ? ('night' as const) : ('stripe' as const),
     variables: {
-      colorPrimary: isDark ? '#f4ba47' : '#313237', // Accent color
-      colorBackground: isDark ? '#313237' : '#ffffff', // Background
-      colorText: isDark ? '#f1f2f38c' : '#313237', // Text (Primary)
-      colorDanger: '#eb5757', // Red color
+      colorPrimary: isDark ? '#f1f2f38c' : '#313237',
+      colorBackground: isDark ? '#313237' : '#ffffff',
+      colorText: isDark ? '#f1f2f38c' : '#313237',
+      colorDanger: '#eb5757',
     },
   };
 
