@@ -68,7 +68,7 @@ export const getProductsByQuery = async (query: string): Promise<Product[]> => {
     .or(
       `name.ilike.${pattern},color.ilike.${pattern},capacity.ilike.${pattern}`,
     )
-    .limit(5);
+    .limit(10);
 
   if (error) {
     console.error('Search error:', error);
