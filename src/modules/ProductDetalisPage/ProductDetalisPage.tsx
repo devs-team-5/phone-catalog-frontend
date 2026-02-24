@@ -108,10 +108,10 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
 
   const fullSpecs = [
     ...mainSpecs,
-    { label: 'Built in memory', value: capacity },
-    { label: 'Camera', value: camera },
-    { label: 'Zoom', value: zoom },
-    { label: 'Cell', value: cell.join(', ') },
+    { label: 'product.builtInMemory', value: capacity },
+    { label: 'product.camera', value: camera },
+    { label: 'product.zoom', value: zoom },
+    { label: 'product.cell', value: cell.join(', ') },
   ];
 
   const getColorUrl = (newColor: string) => {

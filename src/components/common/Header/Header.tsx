@@ -66,7 +66,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Home
+                      nav.home
                     </Typography>
                   </NavLink>
                 </li>
@@ -81,7 +81,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Phones
+                      nav.phones
                     </Typography>
                   </NavLink>
                 </li>
@@ -96,7 +96,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Tablets
+                      nav.tablets
                     </Typography>
                   </NavLink>
                 </li>
@@ -111,7 +111,7 @@ export const Header = () => {
                       variant="uppercase"
                       color="inherit"
                     >
-                      Accessories
+                      nav.accessories
                     </Typography>
                   </NavLink>
                 </li>

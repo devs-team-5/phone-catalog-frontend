@@ -29,7 +29,8 @@
     "priceHighToLow": "Від дорогих до дешевих",
     "perPage": "Товарів на сторінці",
     "all": "Усі",
-    "models": "моделей"
+    "models": "моделей",
+    "search": "Пошук"
   },
 
   "product": {
@@ -38,7 +39,13 @@
     "about": "Про товар",
     "techSpecs": "Характеристики",
     "addToCart": "Купити",
-    "added": "Додано"
+    "added": "Додано",
+    "builtInMemory": "Вбудована памʼять",
+    "camera": "Камера",
+    "zoom": "Зум",
+    "cell": "Мережа",
+    "readOriginal": "Читати опис оригінальною мовою",
+    "hideOriginal": "Сховати опис"
   },
 
   "cart": {
@@ -49,8 +56,8 @@
     "addFirstProduct": "Додайте свій перший товар до кошика",
     "item_one": "товар",
     "item_few": "товари",
-    "item_many": "елемент",
-    "item_other": "елемент"
+    "item_many": "товарів",
+    "item_other": "товару"
   },
 
   "specs": {
@@ -65,6 +72,14 @@
     "title": "Обране",
     "empty": "Список обраного порожній",
     "addFirst": "Додайте свій перший товар до списку обраного"
+  },
+
+  "auth": {
+    "signIn": "Увійти",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "logIn": "Увійти",
+    "emailPlaceholder": "example@mail.com"
   },
 
   "pagination": {

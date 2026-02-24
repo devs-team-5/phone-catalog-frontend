@@ -29,7 +29,10 @@
     "priceHighToLow": "Price: High to Low",
     "perPage": "Items on page",
     "all": "All",
-    "models": "models"
+    "models": "models",
+    "search": "Search",
+    "readOriginal": "Read original description",
+    "hideOriginal": "Hide description"
   },
 
   "product": {
@@ -38,7 +41,11 @@
     "about": "About",
     "techSpecs": "Tech specs",
     "addToCart": "Add to cart",
-    "added": "Added"
+    "added": "Added",
+    "builtInMemory": "Built in memory",
+    "camera": "Camera",
+    "zoom": "Zoom",
+    "cell": "Cell"
   },
 
   "cart": {
@@ -63,6 +70,14 @@
     "title": "Favourites",
     "empty": "Your favourites list is empty",
     "addFirst": " Add your first product to the wishlist"
+  },
+
+  "auth": {
+    "signIn": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "logIn": "Log In",
+    "emailPlaceholder": "example@mail.com"
   },
 
   "pagination": {
