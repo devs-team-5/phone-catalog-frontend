@@ -32,7 +32,13 @@
     "models": "models",
     "search": "Search",
     "readOriginal": "Read original description",
-    "hideOriginal": "Hide description"
+    "hideOriginal": "Hide description",
+    "model": "Model",
+    "year": "Year",
+    "itemsOnPage": "Items on page",
+    "selectYear": "Select year",
+    "selectCapacity": "Select capacity",
+    "selectModel": "selectModel"
   },
 
   "product": {

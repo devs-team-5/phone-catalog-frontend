@@ -29,6 +29,7 @@ import {
   MultiSelectTrigger,
   MultiSelectValue,
 } from '@/components/ui/MultiSelect/MultiSelect';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   category: Categories;
@@ -57,6 +58,8 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
 
   const modelsParam = searchParams.get('models');
   const selectedModels = modelsParam ? modelsParam.split(',') : [];
+
+  const { t } = useTranslation<'translation'>();
 
   useEffect(() => {
     const fetchFilters = async () => {
@@ -137,7 +140,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
           color="secondary"
           className={styles.count}
         >
-          {totalCount} models
+          {totalCount} {t('filters.models')}
         </Typography>
       }
 
@@ -148,7 +151,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
               variant="small"
               color="secondary"
             >
-              Model
+              filters.model
             </Typography>
             <MultiSelect
               value={selectedModels}
@@ -156,7 +159,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
             >
               <MultiSelectTrigger>
                 <MultiSelectValue
-                  placeholder="Select model"
+                  placeholder="filters.selectModel"
                   maxDisplay={1}
                   displayValues={availableModels.reduce(
                     (acc, curr) => {
@@ -195,7 +198,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
               variant="small"
               color="secondary"
             >
-              Capacity
+              specs.capacity
             </Typography>
             <MultiSelect
               value={selectedCapacities}
@@ -203,7 +206,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
             >
               <MultiSelectTrigger>
                 <MultiSelectValue
-                  placeholder="Select capacity"
+                  placeholder="filters.selectCapacity"
                   maxDisplay={1}
                 />
               </MultiSelectTrigger>
@@ -225,7 +228,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
               variant="small"
               color="secondary"
             >
-              Year
+              filters.year
             </Typography>
             <MultiSelect
               value={selectedYears}
@@ -233,7 +236,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
             >
               <MultiSelectTrigger>
                 <MultiSelectValue
-                  placeholder="Select year"
+                  placeholder="filters.selectYear"
                   maxDisplay={1}
                 />
               </MultiSelectTrigger>
@@ -257,7 +260,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
               variant="small"
               color="secondary"
             >
-              Sort by
+              filters.sortBy
             </Typography>
             <Select
               value={sort}
@@ -267,10 +270,12 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
                 <SelectValue placeholder="Select order" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="age">Newest</SelectItem>
-                <SelectItem value="title">Alphabetically</SelectItem>
-                <SelectItem value="cheapest">Price: Low to High</SelectItem>
-                <SelectItem value="expensive">Price: High to Low</SelectItem>
+                <SelectItem value="age">filters.newest</SelectItem>
+                <SelectItem value="title">filters.alphabetically</SelectItem>
+                <SelectItem value="cheapest">filters.priceLowToHigh</SelectItem>
+                <SelectItem value="expensive">
+                  filters.priceHighToLow
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -280,7 +285,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
               variant="small"
               color="secondary"
             >
-              Items on page
+              filters.itemsOnPage
             </Typography>
             <Select
               value={perPage}
@@ -293,7 +298,7 @@ export const CatalogPage: React.FC<Props> = ({ category, title }) => {
                 <SelectItem value="4">4</SelectItem>
                 <SelectItem value="8">8</SelectItem>
                 <SelectItem value="16">16</SelectItem>
-                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="all">filters.all</SelectItem>
               </SelectContent>
             </Select>
           </div>
