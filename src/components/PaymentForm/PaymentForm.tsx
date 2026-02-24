@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   PaymentElement,
+  ExpressCheckoutElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
@@ -52,6 +53,10 @@ export const PaymentForm: React.FC<Props> = ({ amount }) => {
       onSubmit={handleSubmit}
     >
       <Typography variant="h3">Complete your payment</Typography>
+
+      <div className={styles.form__express}>
+        <ExpressCheckoutElement onConfirm={() => {}} />
+      </div>
 
       <PaymentElement />
 
