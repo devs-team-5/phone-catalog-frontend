@@ -1,9 +1,11 @@
+import { useSearchParams } from 'react-router-dom';
 import { Typography } from '@/components/ui/Typography/Typography';
 import styles from './CartPage.module.scss';
 import { CartItem } from './components/CartItem/CartItem';
 import { CartItemSkeleton } from './components/CartItem/CartItemSkeleton';
 import { CartSummary } from './components/CartSummary/CartSummary';
 import { CartSummarySkeleton } from './components/CartSummary/CartSummarySkeleton';
+import { SuccessView } from './components/SuccessView/SuccessView';
 import { useCart } from '@/hooks/cart';
 import { useEffect, useState } from 'react';
 import { getProductById } from '@/api/products';
@@ -14,25 +16,38 @@ import { Link } from 'react-router-dom';
 import { STATIC_IMAGES } from '@/constants/images';
 
 export const CartPage = () => {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
+  const [searchParams] = useSearchParams();
+
+  const isPaymentSuccess =
+    searchParams.get('payment') === 'success' ||
+    new URLSearchParams(window.location.search).get('payment') === 'success';
+
+  useEffect(() => {
+    if (isPaymentSuccess && cart.length > 0 && clearCart) {
+      clearCart();
+    }
+  }, [isPaymentSuccess, cart.length, clearCart]);
 
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const currentIds = cart.map((item) => item.itemId);
-    const loadedIds = products.map((product) => product.itemId);
-    const missingIds = currentIds.filter((id) => !loadedIds.includes(id));
+    if (!isPaymentSuccess) {
+      const currentIds = cart.map((item) => item.itemId);
+      const loadedIds = products.map((product) => product.itemId);
+      const missingIds = currentIds.filter((id) => !loadedIds.includes(id));
 
-    if (missingIds.length > 0) {
-      Promise.all(missingIds.map((id) => getProductById(id)))
-        .then((newProducts) => {
-          setProducts((prev) => [...prev, ...newProducts]);
-        })
-        .catch((error) => {
-          console.error('Failed to fetch cart products', error);
-        });
+      if (missingIds.length > 0) {
+        Promise.all(missingIds.map((id) => getProductById(id)))
+          .then((newProducts) => {
+            setProducts((prev) => [...prev, ...newProducts]);
+          })
+          .catch((error) => {
+            console.error('Failed to fetch cart products', error);
+          });
+      }
     }
-  }, [cart, products]);
+  }, [cart, products, isPaymentSuccess]);
 
   const cartProducts: ProductWithCount[] = cart
     .map((item) => {
@@ -48,9 +63,14 @@ export const CartPage = () => {
   return (
     <div className={styles.cart}>
       <main className={styles.cart__container}>
-        <BackButton />
-        <Typography variant="h1">cart.title</Typography>
-        {cart.length > 0 ?
+        {!isPaymentSuccess && <BackButton />}
+        {!isPaymentSuccess && <Typography variant="h1">cart.title</Typography>}
+
+        {isPaymentSuccess ?
+          <div className={styles.cart__content}>
+            <SuccessView />
+          </div>
+        : cart.length > 0 ?
           <div className={styles.cart__content}>
             <div className={styles.cart__list}>
               {cart.map((item) => {
