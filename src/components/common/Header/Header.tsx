@@ -122,10 +122,6 @@ export const Header = () => {
           <div className={styles.actions_container}>
             <SearchInput />
             <div className={styles.actions}>
-              <LanguageSwitcher size="64" />
-
-              <ThemeSwitcher />
-
               <Link to="/favourites">
                 <Button size="64">
                   <BadgeIcon
@@ -143,6 +139,10 @@ export const Header = () => {
                   />
                 </Button>
               </Link>
+              <div className={styles.switchers}>
+                <LanguageSwitcher size="64" />
+                <ThemeSwitcher />
+              </div>
 
               <div className={styles.userSection}>
                 {isLoggedIn ?

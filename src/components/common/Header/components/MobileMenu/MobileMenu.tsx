@@ -58,8 +58,8 @@ export const MobileMenu: React.FC<Props> = ({
           </NavLink>
 
           <div className={styles.buttons_container}>
-            <ThemeSwitcher />
             <div className={styles.lang}>
+              <ThemeSwitcher />
               <LanguageSwitcher size="48" />
             </div>
 

@@ -149,10 +149,11 @@
 .lang {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-inline: 10px;
 
   height: 48px;
-  // aspect-ratio: 1 / 1;
 
   flex-shrink: 0;
   box-sizing: border-box;

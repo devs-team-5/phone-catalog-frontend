@@ -1,3 +1,4 @@
+import { Switcher } from '@/components/common/Switcher';
 import styles from './ThemeSwitcher.module.scss';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { useThemeStore } from '@/hooks/ThemeStore';
@@ -11,15 +12,7 @@ export const ThemeSwitcher = () => {
       onClick={toggleTheme}
     >
       <ICON_MAP.DARKTHEME />
-      <button className={styles.switchTheme}>
-        <div
-          className={styles.switcher}
-          style={{
-            transition: 'transform 0.3s',
-            transform: isDark ? 'translateX(0)' : 'translateX(90%)',
-          }}
-        ></div>
-      </button>
+      <Switcher condition={isDark} />
       <ICON_MAP.LIGHTTHEME />
     </div>
   );
