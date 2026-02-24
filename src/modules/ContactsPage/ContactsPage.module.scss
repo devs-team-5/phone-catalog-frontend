@@ -29,7 +29,7 @@
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px $box-shadow-color;
+    box-shadow: 0 4px 12px var(--box-shadow-color);
   }
 }
 
