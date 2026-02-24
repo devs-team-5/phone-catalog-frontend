@@ -10,7 +10,7 @@ import styles from './MobileMenu.module.scss';
 import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
-import { LanguageSwitcher } from '../../Languages/LanguageSwitcher';
+import { LanguageSwitcher } from '../Languages/LanguageSwitcher';
 
 type Props = {
   isOpen: boolean;
@@ -58,9 +58,9 @@ export const MobileMenu: React.FC<Props> = ({
           </NavLink>
 
           <div className={styles.buttons_container}>
-            <ThemeSwitcher />
             <div className={styles.lang}>
-              <LanguageSwitcher size="48" />
+              <ThemeSwitcher />
+              <LanguageSwitcher />
             </div>
 
             <button

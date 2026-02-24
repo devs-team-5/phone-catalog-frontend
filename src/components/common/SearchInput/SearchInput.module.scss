@@ -9,8 +9,11 @@
   background: none;
   border: none;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search_overlay {
@@ -51,6 +54,9 @@
 .item_container {
   z-index: 20;
   background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   width: 100vw;
   left: 0;

@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
 import { useTranslation } from 'react-i18next';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
-import { Button } from '@/components/ui/Button';
 
 export function SearchInput() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -52,14 +51,12 @@ export function SearchInput() {
   return (
     <div className={styles.wrapper}>
       {!isExpanded && (
-        <Button size="64">
-          <div
-            onClick={toggleSearch}
-            className={styles.search_trigger}
-          >
-            <ICON_MAP.SEARCH size={20} />
-          </div>
-        </Button>
+        <button
+          onClick={toggleSearch}
+          className={styles.search_trigger}
+        >
+          <ICON_MAP.SEARCH size={20} />
+        </button>
       )}
 
       <Combobox
