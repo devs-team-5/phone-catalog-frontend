@@ -93,7 +93,11 @@ export function SearchInput() {
             className={styles.item_container}
           >
             {isLoading ?
-              <SearchItemSkeleton />
+              <>
+                <SearchItemSkeleton />
+                <SearchItemSkeleton />
+                <SearchItemSkeleton />
+              </>
             : products.length ?
               products.map((product) => (
                 <ComboboxOption

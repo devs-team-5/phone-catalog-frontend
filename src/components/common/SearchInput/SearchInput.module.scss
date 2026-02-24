@@ -61,7 +61,8 @@
   width: 100vw;
   left: 0;
   padding: 10px;
-  max-height: 500px;
+  min-height: 40px;
+  max-height: 600px;
 
   @include on-tablet {
     width: 600px;
