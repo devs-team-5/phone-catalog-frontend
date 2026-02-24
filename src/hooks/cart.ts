@@ -15,6 +15,7 @@ type CartState = {
   getCartCount: () => number;
   increaseCount: (id: string) => void;
   decreaseCount: (id: string) => void;
+  clearCart: () => void;
 };
 
 export const useCart = create<CartState>()(
@@ -58,6 +59,9 @@ export const useCart = create<CartState>()(
             : item,
           ),
         }));
+      },
+      clearCart: () => {
+        set({ cart: [] });
       },
     }),
     {
