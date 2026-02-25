@@ -13,6 +13,12 @@
   --switcher-text-color: #000;
   --bg-color: #fff;
   --bage-icons-text-color: #fff;
+
+  --toast-bg: rgba(255, 255, 255, 0.85);
+  --toast-border: rgba(0, 0, 0, 0.08);
+  --toast-title: #111;
+  --toast-text: rgba(0, 0, 0, 0.7);
+  --toast-close: rgba(0, 0, 0, 0.5);
 }
 
 .dark {
@@ -21,11 +27,16 @@
   --primary-color: #f1f2f38c;
   --secondary-color: #a0aab3;
   --bg-hover-color: #1e1e1e;
-  --elements-color: #2c2c2c;
   --icons-color: #6b7280;
   --white-color: #313131;
   --box-shadow-color: #fafbfc;
   --elements-color: #6b7280;
+
+  --toast-bg: rgba(28, 28, 30, 0.65);
+  --toast-border: rgba(255, 255, 255, 0.08);
+  --toast-title: #fff;
+  --toast-text: rgba(255, 255, 255, 0.8);
+  --toast-close: rgba(255, 255, 255, 0.6);
 }
 
 body {

@@ -5,6 +5,7 @@ import type { Product } from '@/types/Product';
 import { getProductsByQuery, getProducts } from '@/api/products';
 import { getImageUrl } from '@/api/products';
 import { useToastStore } from '@/store/toast';
+import { parseUserMessage } from '@/utils/chatParser';
 
 type Message =
   | {
@@ -25,6 +26,16 @@ export const SupportChat = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const toasts = useToastStore((state) => state.toasts);
+
+  const [chatStep, setChatStep] = useState<
+    'idle' | 'askBudget' | 'askMemory' | 'askColor'
+  >('idle');
+
+  const [selection, setSelection] = useState<{
+    budget?: number;
+    capacity?: string;
+    color?: string;
+  }>({});
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -60,7 +71,7 @@ export const SupportChat = () => {
         clearInterval(interval);
         setIsTyping(false);
       }
-    }, 20);
+    }, 15);
   };
 
   const handleOpenChat = () => {
@@ -79,7 +90,7 @@ export const SupportChat = () => {
     if (!inputValue.trim()) return;
 
     const userMessage = inputValue.trim();
-    const normalizedMessage = userMessage.toLowerCase();
+    const lower = userMessage.toLowerCase();
 
     setMessages((prev) => [
       ...prev,
@@ -87,81 +98,176 @@ export const SupportChat = () => {
     ]);
 
     setInputValue('');
-    setIsTyping(true);
 
-    try {
-      const foundProducts = await getProductsByQuery(userMessage);
+    if (chatStep === 'idle') {
+      try {
+        const foundProducts = await getProductsByQuery(userMessage);
 
-      if (foundProducts.length > 0) {
-        setIsTyping(false);
+        if (foundProducts.length > 0) {
+          setMessages((prev) => [
+            ...prev,
+            {
+              type: 'text',
+              sender: 'bot',
+              text: `Ось що я знайшов (${foundProducts.length}) 👇`,
+            },
+            ...foundProducts.slice(0, 6).map((product) => ({
+              type: 'product' as const,
+              product,
+            })),
+          ]);
 
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    if (
+      chatStep === 'idle' &&
+      (lower.includes('порад') ||
+        lower.includes('recommend') ||
+        lower.includes('мені треба') ||
+        lower.includes('need phone'))
+    ) {
+      setChatStep('askBudget');
+
+      typeMessage('Зараз підберемо найкращий варіант 🔥 Який у вас бюджет?');
+
+      return;
+    }
+
+    if (chatStep === 'askBudget') {
+      const price = parseInt(lower.replace(/\D/g, ''));
+
+      if (!price) {
+        typeMessage('Будь ласка, напишіть бюджет числом 🙂');
+        return;
+      }
+
+      setSelection((prev) => ({ ...prev, budget: price }));
+      setChatStep('askMemory');
+
+      typeMessage('Скільки потрібно памʼяті? (64GB, 128GB, 256GB...)');
+
+      return;
+    }
+
+    if (chatStep === 'askMemory') {
+      const capacityMatch = lower.match(/\d+/);
+
+      if (!capacityMatch) {
+        typeMessage('Напишіть обʼєм памʼяті, наприклад 128 🙂');
+        return;
+      }
+
+      setSelection((prev) => ({
+        ...prev,
+        capacity: capacityMatch[0],
+      }));
+
+      setChatStep('askColor');
+
+      typeMessage('Який колір вас цікавить?');
+
+      return;
+    }
+
+    if (chatStep === 'askColor') {
+      const colorMap: Record<string, string> = {
+        black: 'black',
+        white: 'white',
+        blue: 'blue',
+        red: 'red',
+        green: 'green',
+        gold: 'gold',
+        silver: 'silver',
+        purple: 'purple',
+        pink: 'pink',
+        yellow: 'yellow',
+      };
+
+      const detectedColor =
+        Object.keys(colorMap).find((c) => lower.includes(c)) || lower;
+
+      setSelection((prev) => ({
+        ...prev,
+        color: detectedColor,
+      }));
+
+      const allProducts = await getProducts();
+
+      let filtered = allProducts;
+
+      if (selection.budget) {
+        filtered = filtered.filter((p) => p.price <= selection.budget!);
+      }
+
+      if (selection.capacity) {
+        filtered = filtered.filter((p) =>
+          p.capacity?.includes(selection.capacity!),
+        );
+      }
+
+      if (detectedColor) {
+        filtered = filtered.filter((p) =>
+          p.color?.toLowerCase().includes(detectedColor),
+        );
+      }
+
+      setChatStep('idle');
+      setSelection({});
+
+      if (filtered.length > 0) {
         setMessages((prev) => [
           ...prev,
           {
             type: 'text',
             sender: 'bot',
-            text: `Ось що я знайшов (${foundProducts.length}) 👇`,
+            text: `Ось найкращі варіанти для вас (${filtered.length}) 👇`,
           },
-          ...foundProducts.map((product) => ({
+          ...filtered.slice(0, 6).map((product) => ({
             type: 'product' as const,
             product,
           })),
         ]);
-
-        return;
+      } else {
+        typeMessage(
+          'На жаль, нічого не знайшов 😔 Спробуйте трохи збільшити бюджет.',
+        );
       }
 
+      return;
+    }
+
+    try {
       const allProducts = await getProducts();
+      const parsed = parseUserMessage(userMessage);
+
       let filtered = [...allProducts];
 
-      const modelMatch = normalizedMessage.match(/iphone\s?\d+/);
-      if (modelMatch) {
-        filtered = filtered.filter((product) =>
-          product.name.toLowerCase().includes(modelMatch[0]),
+      if (parsed.model) {
+        filtered = filtered.filter((p) =>
+          p.name.toLowerCase().includes(parsed.model!),
         );
       }
 
-      const colors = ['black', 'white', 'lavender', 'sage'];
-      const foundColor = colors.find((color) =>
-        normalizedMessage.includes(color),
-      );
+      if (parsed.capacity) {
+        filtered = filtered.filter((p) =>
+          p.capacity?.includes(parsed.capacity!),
+        );
+      }
 
-      if (foundColor) {
+      if (parsed.color) {
         filtered = filtered.filter(
-          (product) => product.color.toLowerCase() === foundColor,
+          (p) => p.color?.toLowerCase() === parsed.color,
         );
       }
 
-      if (normalizedMessage.includes('білий')) {
-        filtered = filtered.filter((p) => p.color === 'white');
+      if (parsed.maxPrice) {
+        filtered = filtered.filter((p) => p.price <= parsed.maxPrice!);
       }
-
-      if (normalizedMessage.includes('чорний')) {
-        filtered = filtered.filter((p) => p.color === 'black');
-      }
-
-      if (normalizedMessage.includes('фіолет')) {
-        filtered = filtered.filter((p) => p.color === 'lavender');
-      }
-
-      if (
-        normalizedMessage.includes('порадь') ||
-        normalizedMessage.includes('щось')
-      ) {
-        filtered = [...allProducts]
-          .sort((a, b) => b.price - a.price)
-          .slice(0, 4);
-      }
-
-      if (normalizedMessage.includes('дешев')) {
-        filtered = [...filtered].sort((a, b) => a.price - b.price);
-      }
-
-      if (normalizedMessage.includes('дорог')) {
-        filtered = [...filtered].sort((a, b) => b.price - a.price);
-      }
-
-      setIsTyping(false);
 
       if (filtered.length > 0) {
         setMessages((prev) => [
@@ -178,13 +284,12 @@ export const SupportChat = () => {
         ]);
       } else {
         typeMessage(
-          'На жаль, я нічого не знайшов 😔 Спробуйте уточнити модель або колір.',
+          'Я не зовсім зрозумів 🤔 Спробуйте написати модель або "порадь телефон".',
         );
       }
     } catch (error) {
       console.error(error);
-      setIsTyping(false);
-      typeMessage('Сталася помилка при пошуку 😔');
+      typeMessage('Сталася помилка 😔');
     }
   };
 
@@ -282,7 +387,7 @@ export const SupportChat = () => {
           <div className={styles.inputArea}>
             <input
               type="text"
-              placeholder="Enter your message..."
+              placeholder="Напишіть повідомлення..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => {

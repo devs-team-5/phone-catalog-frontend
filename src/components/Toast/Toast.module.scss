@@ -5,16 +5,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px;
   z-index: 9999;
-  gap: 0;
+  gap: 12px;
 }
 
 .toast {
   position: relative;
   width: 380px;
   max-width: 90vw;
-  padding: 22px 22px;
+  padding: 22px;
   min-height: 88px;
   border-radius: 18px;
   overflow: hidden;
@@ -22,15 +21,16 @@
   display: flex;
   align-items: flex-start;
   gap: 14px;
+  will-change: transform;
 
-  background: rgba(28, 28, 30, 0.65);
+  background: var(--toast-bg);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--toast-border);
 
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.45),
+    0 10px 40px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   animation: slideIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -46,21 +46,21 @@
 
 .success {
   box-shadow:
-    0 10px 40px rgba(58, 58, 58, 0.45),
+    0 10px 40px rgba(0, 0, 0, 0.15),
     0 0 30px rgba(37, 216, 21, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .info {
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.45),
+    0 10px 40px rgba(0, 0, 0, 0.15),
     0 0 30px rgba(59, 130, 246, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .error {
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.45),
+    0 18px 50px rgba(0, 0, 0, 0.18),
     0 0 24px rgba(239, 68, 68, 0.25);
 }
 
@@ -96,26 +96,26 @@
   font-weight: 600;
   font-size: 15px;
   margin-bottom: 6px;
-  color: #fff;
+  color: var(--toast-title);
 }
 
 .message {
   font-size: 14px;
-  opacity: 0.8;
   line-height: 1.4;
+  color: var(--toast-text);
 }
 
 .close {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--toast-close);
   cursor: pointer;
   font-size: 16px;
   transition: 0.2s ease;
 }
 
 .close:hover {
-  color: #fff;
+  opacity: 1;
 }
 
 .progress {
