@@ -20,7 +20,7 @@ const SLIDES = [
   },
   {
     img: 'newModels.jpg',
-    link: '/phones/apple-iphone-17-pro-max-1tb-cosmicorange',
+    link: '/phones',
   },
 ];
 

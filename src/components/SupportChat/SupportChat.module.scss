@@ -188,7 +188,6 @@
 
   &:hover {
     transform: translateY(-2px);
-    background: var(--elements-color);
   }
 }
 
@@ -228,6 +227,6 @@
   transition: $duration ease;
 
   &:hover {
-    background: var(--primary-color);
+    background: var(--icons-color);
   }
 }
