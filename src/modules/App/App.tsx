@@ -17,6 +17,8 @@ import { ProfilePage } from '../ProfilePage/ProfilePage';
 import { useEffect } from 'react';
 import { useThemeStore } from '../../hooks/ThemeStore';
 import { ContactsPage } from '../ContactsPage/ContactsPage';
+import { ToastContainer } from '@/components/Toast';
+import { SupportChat } from '@/components/SupportChat/SupportChat';
 
 function App() {
   const isDark = useThemeStore((state) => state.isDark);
@@ -133,6 +135,10 @@ function App() {
       </main>
 
       <Footer />
+
+      <SupportChat />
+
+      <ToastContainer />
     </>
   );
 }
