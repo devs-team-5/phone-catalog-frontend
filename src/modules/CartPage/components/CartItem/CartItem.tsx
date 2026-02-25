@@ -6,16 +6,29 @@ import type { ProductWithCount } from '@/types/ProductWithCount';
 import { getImageUrl } from '@/api/products';
 import { useCart } from '@/hooks/cart';
 import { Link } from 'react-router-dom';
+import { useToastStore } from '@/store/toast';
 
 export const CartItem = ({ product }: { product: ProductWithCount }) => {
   const { toggleCart, increaseCount, decreaseCount } = useCart();
+  const { showToast } = useToastStore();
+
+  const handleRemoveClick = () => {
+    toggleCart(product.itemId);
+
+    showToast({
+      type: 'error',
+      title: 'Removed from cart',
+      message: `${product.name} has been removed.`,
+      icon: 'cart',
+    });
+  };
 
   return (
     <article className={styles.item}>
       <div className={styles.item__info}>
         <Button
           className={styles.item__remove}
-          onClick={() => toggleCart(product.itemId)}
+          onClick={handleRemoveClick}
         >
           <ICON_MAP.CLOSE_GRAY />
         </Button>

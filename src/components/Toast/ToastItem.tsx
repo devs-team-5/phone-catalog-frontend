@@ -51,6 +51,16 @@ export const ToastItem: React.FC<Props> = ({ toast, index }) => {
     setIsPaused(false);
   };
 
+  const renderIcon = () => {
+    if (toast.icon === 'heart') return <ICON_MAP.WISHLIST_RED />;
+    if (toast.icon === 'cart') return <ICON_MAP.CHECK />;
+
+    if (toast.type === 'success') return <ICON_MAP.CHECK />;
+    if (toast.type === 'error') return <ICON_MAP.INFO />;
+
+    return <ICON_MAP.INFO />;
+  };
+
   return (
     <div
       className={clsx(
@@ -60,22 +70,15 @@ export const ToastItem: React.FC<Props> = ({ toast, index }) => {
       )}
       style={{
         transform: `
-          translateY(${index * 10}px)
-            scale(${1 - index * 0.03})
-          `,
-        boxShadow: `
-          0 ${8 + index * 4}px ${30 + index * 10}px rgba(0,0,0,0.4)
-         `,
+          translateY(${index * -22}px)
+          scale(${1 - index * 0.05})
+        `,
         zIndex: 100 - index,
       }}
       onMouseEnter={pauseTimer}
       onMouseLeave={resumeTimer}
     >
-      <div className={styles.icon}>
-        {toast.type === 'success' ?
-          <ICON_MAP.CHECK />
-        : <ICON_MAP.INFO />}
-      </div>
+      <div className={styles.icon}>{renderIcon()}</div>
 
       <div className={styles.content}>
         <div className={styles.title}>{toast.title}</div>
