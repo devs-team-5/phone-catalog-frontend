@@ -53,7 +53,7 @@
 
 .item_container {
   z-index: 20;
-  background-color: var(--white-color);
+  background-color: color-mix(in srgb, var(--white-color), transparent 10%);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -64,6 +64,7 @@
   height: auto;
   max-height: 500px !important;
   overflow-y: auto !important;
+  box-shadow: 0 3px 13px 0 var(--box-shadow-color) !important;
 
   @include on-tablet {
     width: 550px;
