@@ -9,6 +9,7 @@ export interface Toast {
   message: string;
   duration: number;
   isLeaving?: boolean;
+  icon?: 'cart' | 'heart' | 'info';
 }
 
 interface ToastState {
