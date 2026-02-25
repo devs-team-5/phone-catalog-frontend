@@ -24,10 +24,11 @@ export const CartPage = () => {
     new URLSearchParams(window.location.search).get('payment') === 'success';
 
   useEffect(() => {
-    if (isPaymentSuccess && cart.length > 0 && clearCart) {
+    if (isPaymentSuccess && cart.length > 0) {
       clearCart();
     }
-  }, [isPaymentSuccess, cart.length, clearCart]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPaymentSuccess]);
 
   const [products, setProducts] = useState<Product[]>([]);
 

@@ -14,11 +14,20 @@ export const syncCartAndFavourites = async (user: User) => {
   const setLocalFavs = (favs: string[]) =>
     useFavourites.getState().syncWithServer(favs);
 
+  const isPaymentSuccess =
+    window.location.search.includes('payment=success') ||
+    window.location.hash.includes('payment=success');
+
   try {
-    const { data: serverCart } = await supabase
-      .from('cart_items')
-      .select('item_id, count')
-      .eq('user_id', user.id);
+    let serverCart: { item_id: string; count: number }[] | null = null;
+
+    if (!isPaymentSuccess) {
+      const { data } = await supabase
+        .from('cart_items')
+        .select('item_id, count')
+        .eq('user_id', user.id);
+      serverCart = data;
+    }
 
     const { data: serverFavs } = await supabase
       .from('favorites')
@@ -28,27 +37,38 @@ export const syncCartAndFavourites = async (user: User) => {
     const localCart = getLocalCart();
     const localFavs = getLocalFavs();
 
-    const mergedCart = new Map<string, { itemId: string; count: number }>();
+    if (!isPaymentSuccess) {
+      const mergedCart = new Map<string, { itemId: string; count: number }>();
 
-    serverCart?.forEach((item) => {
-      mergedCart.set(item.item_id, { itemId: item.item_id, count: item.count });
-    });
-
-    const itemsToAddToServerCart: {
-      user_id: string;
-      item_id: string;
-      count: number;
-    }[] = [];
-    localCart.forEach((item) => {
-      if (!mergedCart.has(item.itemId)) {
-        mergedCart.set(item.itemId, item);
-        itemsToAddToServerCart.push({
-          user_id: user.id,
-          item_id: item.itemId,
+      serverCart?.forEach((item) => {
+        mergedCart.set(item.item_id, {
+          itemId: item.item_id,
           count: item.count,
         });
+      });
+
+      const itemsToAddToServerCart: {
+        user_id: string;
+        item_id: string;
+        count: number;
+      }[] = [];
+      localCart.forEach((item) => {
+        if (!mergedCart.has(item.itemId)) {
+          mergedCart.set(item.itemId, item);
+          itemsToAddToServerCart.push({
+            user_id: user.id,
+            item_id: item.itemId,
+            count: item.count,
+          });
+        }
+      });
+
+      if (itemsToAddToServerCart.length > 0) {
+        await supabase.from('cart_items').insert(itemsToAddToServerCart);
       }
-    });
+
+      setLocalCart(Array.from(mergedCart.values()));
+    }
 
     const mergedFavs = new Set<string>();
     serverFavs?.forEach((item) => mergedFavs.add(item.item_id));
@@ -64,14 +84,10 @@ export const syncCartAndFavourites = async (user: User) => {
       }
     });
 
-    if (itemsToAddToServerCart.length > 0) {
-      await supabase.from('cart_items').insert(itemsToAddToServerCart);
-    }
     if (favsToAddToServer.length > 0) {
       await supabase.from('favorites').insert(favsToAddToServer);
     }
 
-    setLocalCart(Array.from(mergedCart.values()));
     setLocalFavs(Array.from(mergedFavs.values()));
   } catch (err) {
     console.error('Failed to sync data with server:', err);
