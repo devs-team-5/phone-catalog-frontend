@@ -63,6 +63,26 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     toggleCart(itemId);
   };
 
+  const handleFavouriteClick = () => {
+    toggleFavourite(itemId);
+
+    if (isFav) {
+      showToast({
+        type: 'error',
+        title: 'Removed from favourites',
+        message: `${name} has been removed.`,
+        icon: 'heart',
+      });
+    } else {
+      showToast({
+        type: 'success',
+        title: 'Added to favourites',
+        message: `${name} has been added.`,
+        icon: 'heart',
+      });
+    }
+  };
+
   return (
     <div className={styles.product}>
       <Link to={`/${category}/${itemId}`}>
@@ -133,7 +153,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <Button
           className={styles.favorite}
           size="40"
-          onClick={() => toggleFavourite(itemId)}
+          onClick={handleFavouriteClick}
         >
           {isFav ?
             <ICON_MAP.WISHLIST_RED />
