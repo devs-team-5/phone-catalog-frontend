@@ -10,9 +10,12 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { useCart } from '@/hooks/cart';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
+import { useToastStore } from '@/store/toast';
+
 type Props = {
   product: Product;
 };
+
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const {
     category,
@@ -37,9 +40,28 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const isProductOld = fullPrice > price;
   const { isFavourite, toggleFavourite } = useFavourites();
   const { toggleCart, isInCart } = useCart();
+  const { showToast } = useToastStore();
 
   const isFav = isFavourite(itemId);
   const isCart = isInCart(itemId);
+
+  const handleCartClick = () => {
+    if (isCart) {
+      showToast({
+        type: 'error',
+        title: 'Removed from cart',
+        message: `${name} has been removed.`,
+      });
+    } else {
+      showToast({
+        type: 'success',
+        title: 'Added to cart',
+        message: `${name} has been added.`,
+      });
+    }
+
+    toggleCart(itemId);
+  };
 
   return (
     <div className={styles.product}>
@@ -103,7 +125,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           className={cn(styles.button, {
             [styles.active]: isCart,
           })}
-          onClick={() => toggleCart(itemId)}
+          onClick={handleCartClick}
         >
           {isCart ? t('product.added') : t('product.addToCart')}
         </button>

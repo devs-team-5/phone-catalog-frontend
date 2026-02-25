@@ -1,0 +1,184 @@
+.container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  z-index: 9999;
+  gap: 0;
+}
+
+.toast {
+  position: relative;
+  width: 380px;
+  max-width: 90vw;
+  padding: 22px 22px;
+  min-height: 88px;
+  border-radius: 18px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  background: rgba(28, 28, 30, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  animation: slideIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.toast:hover {
+  transform: translateY(-2px);
+}
+
+.success {
+  box-shadow:
+    0 10px 40px rgba(58, 58, 58, 0.45),
+    0 0 30px rgba(37, 216, 21, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.info {
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(59, 130, 246, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.error {
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(239, 68, 68, 0.25);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2px;
+}
+
+.success .icon {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.info .icon {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.error .icon {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.message {
+  font-size: 14px;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.close:hover {
+  color: #fff;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  height: 3px;
+  width: 100%;
+
+  border-radius: 0 0 18px 18px;
+
+  transform-origin: left;
+  animation: progress linear forwards;
+}
+
+.success .progress {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.info .progress {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.95),
+    rgba(59, 130, 246, 0.4)
+  );
+}
+
+.error .progress {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.leaving {
+  animation: slideOut 0.25s ease forwards;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}

@@ -18,6 +18,8 @@ import {
   LuLinkedin,
   LuPhone,
   LuMail,
+  LuCheck,
+  LuInfo,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
@@ -53,4 +55,6 @@ export const ICON_MAP = {
   CHEVRON_RIGHT: LuChevronRight,
   CHEVRON_DOWN: LuChevronDown,
   CHEVRON_UP: LuChevronUp,
+  CHECK: () => <LuCheck size={18} />,
+  INFO: () => <LuInfo size={18} />,
 } as const;
