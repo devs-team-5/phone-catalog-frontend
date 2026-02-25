@@ -2,6 +2,10 @@ $color-main: #869096; // Колір цифр та лінії
 $color-bg: #ffffff; // Колір фону (обов'язково збігається з фоном сторінки)
 $line-thickness: 4px; // Товщина лінії (задаємо в пікселях для точності)
 
+.main {
+  padding: 50px;
+}
+
 .price-wrapper {
   position: relative;
   display: inline-block;
