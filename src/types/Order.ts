@@ -10,6 +10,8 @@ export interface Order {
   status: string;
   total_amount: number;
   currency: string;
+  delivery_city?: string;
+  delivery_branch?: string;
   created_at: string;
   order_items: OrderItem[];
 }

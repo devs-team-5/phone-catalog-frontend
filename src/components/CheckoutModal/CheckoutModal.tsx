@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { PaymentForm } from '@/components/PaymentForm/PaymentForm';
+import { DeliverySelector } from '@/modules/NovaPostApi/DeliverySelector';
 import type { ProductWithCount } from '@/types/ProductWithCount';
 import styles from './CheckoutModal.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
 
 import { useThemeStore } from '@/hooks/ThemeStore';
+import { useTranslation } from 'react-i18next';
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
@@ -31,6 +33,7 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
   });
   const [isReadyToPay, setIsReadyToPay] = useState(false);
   const isDark = useThemeStore((state) => state.isDark);
+  const { t } = useTranslation<'translation'>();
 
   const totalAmount = products.reduce(
     (acc, item) => acc + item.price * item.count,
@@ -111,42 +114,20 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
           </div>
         : !isReadyToPay ?
           <div className={styles.deliveryForm}>
-            <Typography
-              variant="h3"
-              className={styles.formTitle}
-            >
-              Delivery Details
-            </Typography>
-            <div className={styles.field}>
-              <label htmlFor="city">City</label>
-              <input
-                id="city"
-                type="text"
-                value={delivery.city}
-                onChange={(e) =>
-                  setDelivery((prev) => ({ ...prev, city: e.target.value }))
-                }
-                placeholder="Kyiv"
-              />
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="branch">Nova Post Branch</label>
-              <input
-                id="branch"
-                type="text"
-                value={delivery.branch}
-                onChange={(e) =>
-                  setDelivery((prev) => ({ ...prev, branch: e.target.value }))
-                }
-                placeholder="Branch #1"
-              />
-            </div>
+            <DeliverySelector
+              onChange={(city, warehouse) =>
+                setDelivery({
+                  city: city?.Description || '',
+                  branch: warehouse?.Description || '',
+                })
+              }
+            />
             <button
               className={styles.proceedBtn}
               onClick={() => setIsReadyToPay(true)}
               disabled={!delivery.city || !delivery.branch}
             >
-              Proceed to Payment
+              {t('cart.proceedToPayment')}
             </button>
           </div>
         : !clientSecret ?

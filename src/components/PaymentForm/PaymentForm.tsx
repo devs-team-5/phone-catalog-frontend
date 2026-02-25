@@ -99,7 +99,7 @@ export const PaymentForm = ({ amount, products, delivery }: Props) => {
       className={styles.form}
       onSubmit={handleSubmit}
     >
-      <Typography variant="h3">Complete your payment</Typography>
+      <Typography variant="h3">cart.completePayment</Typography>
 
       <div className={styles.form__express}>
         <ExpressCheckoutElement onConfirm={() => {}} />

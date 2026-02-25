@@ -77,7 +77,7 @@ export const LoginPage = () => {
           variant="h1"
           className={styles.title}
         >
-          {isLoginMode ? t('auth.signIn') : 'Sign Up'}
+          {isLoginMode ? 'auth.signIn' : 'auth.signUp'}
         </Typography>
 
         <form
@@ -87,7 +87,7 @@ export const LoginPage = () => {
           <div className={styles.field}>
             {!isLoginMode && (
               <>
-                <label htmlFor="fullName">Full Name</label>
+                <label htmlFor="fullName">{t('auth.fullName')}</label>
                 <input
                   id="fullName"
                   type="text"
@@ -132,7 +132,7 @@ export const LoginPage = () => {
               'Processing...'
             : isLoginMode ?
               t('auth.logIn')
-            : 'Sign Up'}
+            : t('auth.signUp')}
           </button>
 
           <button
@@ -141,7 +141,7 @@ export const LoginPage = () => {
             className={styles.googleBtn}
             disabled={loading}
           >
-            Sign in with Google
+            {t('auth.signInWithGoogle')}
           </button>
         </form>
 
@@ -151,9 +151,7 @@ export const LoginPage = () => {
             onClick={() => setIsLoginMode(!isLoginMode)}
             className={styles.toggleBtn}
           >
-            {isLoginMode ?
-              "Don't have an account? Sign up"
-            : 'Already have an account? Log in'}
+            {isLoginMode ? t('auth.signUpRedirect') : t('auth.logInRedirect')}
           </button>
         </div>
       </div>

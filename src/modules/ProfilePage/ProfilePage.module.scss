@@ -112,4 +112,23 @@
 .orderDetails {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.orderInfoLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderDelivery {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+
+  @include on-desktop {
+    max-width: 50%;
+  }
 }

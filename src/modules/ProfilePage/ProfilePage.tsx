@@ -5,12 +5,15 @@ import { getUserOrders } from '@/api/orders';
 import { Typography } from '@/components/ui/Typography/Typography';
 import type { Order } from '@/types/Order';
 import styles from './ProfilePage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const ProfilePage = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const { t } = useTranslation<'translation'>();
 
   const handleLogout = () => {
     logout();
@@ -75,7 +78,7 @@ export const ProfilePage = () => {
           className={styles.logoutButton}
           onClick={handleLogout}
         >
-          Logout
+          {t('profile.logout')}
         </button>
       </div>
 
@@ -84,17 +87,17 @@ export const ProfilePage = () => {
           variant="h2"
           className={styles.ordersTitle}
         >
-          Order History
+          {t('profile.orderHistory')}
         </Typography>
 
         {loading ?
-          <Typography variant="small">Loading orders...</Typography>
+          <Typography variant="small">{t('profile.loadingOrders')}</Typography>
         : orders.length === 0 ?
           <Typography
             variant="small"
             color="secondary"
           >
-            You have no previous orders.
+            {t('profile.noOrders')}
           </Typography>
         : <div className={styles.ordersList}>
             {orders.map((order) => (
@@ -107,7 +110,7 @@ export const ProfilePage = () => {
                     variant="small"
                     className={styles.orderId}
                   >
-                    Order #{order.id.slice(0, 8)}
+                    {t('profile.order')} #{order.id.slice(0, 8)}
                   </Typography>
                   <Typography
                     variant="small"
@@ -117,12 +120,28 @@ export const ProfilePage = () => {
                   </Typography>
                 </div>
                 <div className={styles.orderDetails}>
-                  <Typography variant="small">
-                    Status: {order.status}
-                  </Typography>
-                  <Typography variant="small">
-                    Total: {order.total_amount} {order.currency}
-                  </Typography>
+                  <div className={styles.orderInfoLeft}>
+                    <Typography variant="small">
+                      {t('profile.status')}: {order.status}
+                    </Typography>
+                    <Typography variant="small">
+                      {t('profile.total')}: {order.total_amount}{' '}
+                      {order.currency}
+                    </Typography>
+                  </div>
+                  {(order.delivery_city || order.delivery_branch) && (
+                    <div className={styles.orderDelivery}>
+                      <Typography
+                        variant="small"
+                        color="secondary"
+                      >
+                        {t('profile.deliveryAddress')}
+                      </Typography>
+                      <Typography variant="small">
+                        {order.delivery_city}, {order.delivery_branch}
+                      </Typography>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

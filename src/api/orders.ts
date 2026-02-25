@@ -10,6 +10,8 @@ export const getUserOrders = async (userId: string): Promise<Order[]> => {
       status,
       total_amount,
       currency,
+      delivery_city,
+      delivery_branch,
       created_at,
       order_items (
         id,
