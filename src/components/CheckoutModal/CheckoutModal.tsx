@@ -141,7 +141,16 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
           </div>
         : <Elements
             stripe={stripePromise}
-            options={{ clientSecret, appearance }}
+            options={{
+              clientSecret,
+              appearance,
+              // @ts-expect-error - developerTools is valid but not in types
+              developerTools: {
+                assistant: {
+                  enabled: false,
+                },
+              },
+            }}
           >
             <PaymentForm
               amount={totalAmount}
