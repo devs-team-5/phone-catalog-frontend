@@ -4,8 +4,9 @@ import styles from './DeliverySelector.module.scss';
 import { Typewriter } from 'react-simple-typewriter';
 import { Icon } from '@/components/ui/Icon/Icon';
 
-const API_KEY = '876c180abc9f9449116f6bea1eda6111';
-const API_URL = 'https://api.novaposhta.ua/v2.0/json/';
+const API_KEY = import.meta.env.VITE_NOVA_POST_KEY || '';
+const API_URL =
+  import.meta.env.VITE_NOVA_POST_URL || 'https://api.novaposhta.ua/v2.0/json/';
 
 const oblastCenters = [
   'Київ',
@@ -46,7 +47,6 @@ interface Warehouse {
   Description: string;
 }
 
-// Виправлено: типізація кешу замість any
 const cache: Record<string, City[] | Warehouse[]> = {};
 
 interface DeliverySelectorProps {
@@ -67,22 +67,21 @@ export const DeliverySelector = ({ onChange }: DeliverySelectorProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warehouseSearch, setWarehouseSearch] = useState('');
 
+  const hasMountedCities = useMountTransition(cities.length > 0, 300);
+
   const warehouseRef = useRef<HTMLDivElement>(null);
   const controllerRef = useRef<AbortController | null>(null);
 
-  // Виправлено: showHint тепер обчислювана змінна, а не стейт
   const isHintVisible = search.length === 0;
 
   const debouncedSearch = useDebounce(search, 400);
 
-  // Виправлено: додано onChange у залежності
   useEffect(() => {
     if (onChange && city && selectedWarehouse) {
       onChange(city, selectedWarehouse);
     }
   }, [city, selectedWarehouse, onChange]);
 
-  // Виправлено: логіка пошуку міст з обробкою активного індексу та очищенням
   useEffect(() => {
     if (city && debouncedSearch === city.Description) return;
 
@@ -198,6 +197,11 @@ export const DeliverySelector = ({ onChange }: DeliverySelectorProps) => {
     );
   }, [warehouses, warehouseSearch]);
 
+  const hasMountedWarehouses = useMountTransition(
+    dropdownOpen && filteredWarehouses.length > 0,
+    300,
+  );
+
   const visibleWarehouses = useMemo(
     () => filteredWarehouses.slice(0, visibleCount),
     [filteredWarehouses, visibleCount],
@@ -231,8 +235,10 @@ export const DeliverySelector = ({ onChange }: DeliverySelectorProps) => {
             </div>
           )}
 
-          {cities.length > 0 && (
-            <ul className={styles.dropdown}>
+          {hasMountedCities && (
+            <ul
+              className={`${styles.dropdown} ${cities.length > 0 ? styles.in : styles.out}`}
+            >
               {cities.map((c, i) => (
                 <li
                   key={c.Ref}
@@ -275,8 +281,10 @@ export const DeliverySelector = ({ onChange }: DeliverySelectorProps) => {
           />
         </div>
 
-        {dropdownOpen && filteredWarehouses.length > 0 && (
-          <ul className={styles.comboDropdown}>
+        {hasMountedWarehouses && (
+          <ul
+            className={`${styles.comboDropdown} ${dropdownOpen && filteredWarehouses.length > 0 ? styles.in : styles.out}`}
+          >
             {visibleWarehouses.map((w) => (
               <li
                 key={w.Ref}
@@ -306,4 +314,22 @@ function useDebounce<T>(value: T, delay: number) {
   }, [value, delay]);
 
   return state;
+}
+
+function useMountTransition(isMounted: boolean, unmountDelay: number) {
+  const [hasTransitionedIn, setHasTransitionedIn] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    if (isMounted && !hasTransitionedIn) {
+      timeoutId = setTimeout(() => setHasTransitionedIn(true), 0);
+    } else if (!isMounted && hasTransitionedIn) {
+      timeoutId = setTimeout(() => setHasTransitionedIn(false), unmountDelay);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [unmountDelay, isMounted, hasTransitionedIn]);
+
+  return hasTransitionedIn;
 }

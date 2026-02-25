@@ -7,6 +7,28 @@
   font-family: $font-family;
 }
 
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 300px;
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 300px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
 .inputWrapper {
   position: relative;
 }
@@ -45,35 +67,42 @@
   pointer-events: none;
   color: $secondary-color;
   font-size: 16px;
-  // font-family: $font-family;
 }
 
 .dropdown {
-  position: absolute;
-  top: 105%;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
+  margin-top: 4px;
   background-color: $white-color;
-  border: 1px solid $elements-color;
+  border: 1px solid $secondary-color;
   box-shadow: 0 4px 12px $box-shadow-color;
   z-index: 100;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-bottom: 0;
   max-height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
+
+  &.in {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  &.out {
+    animation: slideUp 0.3s ease-out forwards;
+  }
 }
 
 .dropdownItem {
   padding: 10px 12px;
   cursor: pointer;
-  border-bottom: 1px solid $primary-color;
   transition: background-color $duration;
+  color: $secondary-color;
 
   &:hover,
   &[data-active='true'] {
     background-color: $elements-color;
+    color: $primary-color;
   }
 
   &:last-child {
@@ -92,7 +121,7 @@
 
 .warehouseList {
   max-height: 300px;
-  overflow-y: scroll; /* Firefox */
+  overflow-y: scroll;
 }
 
 .warehouseList::-webkit-scrollbar {
@@ -135,23 +164,35 @@
 }
 
 .comboDropdown {
-  position: absolute;
+  position: relative;
+  margin-top: 4px;
   width: 100%;
-  max-height: 250px;
-  overflow: auto;
+  max-height: 300px;
   background: $white-color;
-  border: 1px solid $elements-color;
   z-index: 10;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
+  box-shadow: 0 4px 12px $box-shadow-color;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+
+  &.in {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  &.out {
+    animation: slideUp 0.3s ease-out forwards;
+  }
 }
 
 .comboItem {
   padding: 10px;
   cursor: pointer;
+  color: $secondary-color;
 }
 
 .comboItem:hover {
   background: $elements-color;
+  color: $primary-color;
   z-index: 10;
 }

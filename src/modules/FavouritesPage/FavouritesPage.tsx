@@ -77,6 +77,7 @@ export const FavouritesPage = () => {
           <ProductsList
             products={favouriteProducts}
             isLoading={isLoading}
+            count={favourites.length}
           />
         </>
       : <>
