@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { PageNotFound } from '../Core/NotFoundPage';
+import { ProtectedRoute } from '@/components/common/ProtectedRoute';
 
 import { Footer } from '@/components/common/Footer/Footer';
 import { Header } from '@/components/common/Header';
-import { AuthProvider } from '@/context/AuthContext';
 
 import styles from './App.module.scss';
 import { Test } from '../Test';
@@ -13,6 +13,7 @@ import { FavouritesPage } from '../FavouritesPage/FavouritesPage';
 import { CartPage } from '../CartPage/CartPage';
 import { ProductDetailsPage } from '../ProductDetalisPage';
 import { LoginPage } from '../Auth/LoginPage';
+import { ProfilePage } from '../ProfilePage/ProfilePage';
 import { useEffect } from 'react';
 import { useThemeStore } from '../../hooks/ThemeStore';
 import { ContactsPage } from '../ContactsPage/ContactsPage';
@@ -25,7 +26,7 @@ function App() {
   }, [isDark]);
 
   return (
-    <AuthProvider>
+    <>
       <Header />
 
       <main className={styles.main}>
@@ -101,6 +102,13 @@ function App() {
             element={<LoginPage />}
           />
 
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/profile"
+              element={<ProfilePage />}
+            />
+          </Route>
+
           <Route>
             <Route
               path="/favourites"
@@ -125,7 +133,7 @@ function App() {
       </main>
 
       <Footer />
-    </AuthProvider>
+    </>
   );
 }
 

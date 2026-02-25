@@ -12,6 +12,11 @@ const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
 );
 
+export type DeliveryDetails = {
+  city: string;
+  branch: string;
+};
+
 type Props = {
   products: ProductWithCount[];
   onClose: () => void;
@@ -20,6 +25,11 @@ type Props = {
 export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
   const [clientSecret, setClientSecret] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [delivery, setDelivery] = useState<DeliveryDetails>({
+    city: '',
+    branch: '',
+  });
+  const [isReadyToPay, setIsReadyToPay] = useState(false);
   const isDark = useThemeStore((state) => state.isDark);
 
   const totalAmount = products.reduce(
@@ -99,6 +109,46 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
               {error}
             </Typography>
           </div>
+        : !isReadyToPay ?
+          <div className={styles.deliveryForm}>
+            <Typography
+              variant="h3"
+              className={styles.formTitle}
+            >
+              Delivery Details
+            </Typography>
+            <div className={styles.field}>
+              <label htmlFor="city">City</label>
+              <input
+                id="city"
+                type="text"
+                value={delivery.city}
+                onChange={(e) =>
+                  setDelivery((prev) => ({ ...prev, city: e.target.value }))
+                }
+                placeholder="Kyiv"
+              />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="branch">Nova Post Branch</label>
+              <input
+                id="branch"
+                type="text"
+                value={delivery.branch}
+                onChange={(e) =>
+                  setDelivery((prev) => ({ ...prev, branch: e.target.value }))
+                }
+                placeholder="Branch #1"
+              />
+            </div>
+            <button
+              className={styles.proceedBtn}
+              onClick={() => setIsReadyToPay(true)}
+              disabled={!delivery.city || !delivery.branch}
+            >
+              Proceed to Payment
+            </button>
+          </div>
         : !clientSecret ?
           <div className={styles.loadingContainer}>
             <Typography
@@ -112,7 +162,11 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
             stripe={stripePromise}
             options={{ clientSecret, appearance }}
           >
-            <PaymentForm amount={totalAmount} />
+            <PaymentForm
+              amount={totalAmount}
+              products={products}
+              delivery={delivery}
+            />
           </Elements>
         }
       </div>
