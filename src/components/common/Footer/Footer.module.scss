@@ -47,6 +47,7 @@
     @include on-tablet {
       flex-direction: row;
       align-items: center;
+      margin-left: 80px;
       gap: 14px;
     }
 
