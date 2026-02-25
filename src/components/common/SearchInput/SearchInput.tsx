@@ -14,9 +14,11 @@ import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
 import { useTranslation } from 'react-i18next';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import { Typography } from '@/components/ui/Typography/Typography';
 
 export function SearchInput() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [message, setMessage] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [query, setQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,12 +27,24 @@ export function SearchInput() {
   const inputRef = useRef<HTMLInputElement>(null);
   const isLoading = query.length > 0 && query !== debouncedQuery;
   const { t } = useTranslation<'translation'>();
+  const showMessage = !isLoading && products.length === 0;
+
   useEffect(() => {
     if (!debouncedQuery.trim()) {
       return;
     }
 
-    getProductsByQuery(debouncedQuery).then(setProducts);
+    getProductsByQuery(debouncedQuery)
+      .then((items) => {
+        setProducts(items);
+
+        if (items.length === 0) {
+          setMessage('Nothing found');
+        }
+      })
+      .catch(() => {
+        setProducts([]);
+      });
   }, [debouncedQuery]);
 
   const handleSelectProduct = (product: Product | null) => {
@@ -48,6 +62,11 @@ export function SearchInput() {
     }
   };
 
+  const closeSearch = () => {
+    setIsExpanded(false);
+    setQuery('');
+  };
+
   return (
     <div className={styles.wrapper}>
       {!isExpanded && (
@@ -62,6 +81,7 @@ export function SearchInput() {
       <Combobox
         value={selectedProduct}
         onChange={handleSelectProduct}
+        onClose={closeSearch}
       >
         <div
           className={`${styles.search_overlay} ${isExpanded ? styles.active : ''}`}
@@ -70,7 +90,11 @@ export function SearchInput() {
             ref={inputRef}
             displayValue={(product: Product) => product?.name ?? query}
             className={styles.input_field}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setProducts([]);
+              setQuery(event.target.value);
+              setMessage('');
+            }}
             placeholder={t('filters.search')}
           />
 
@@ -86,8 +110,13 @@ export function SearchInput() {
             className={styles.item_container}
           >
             {isLoading ?
-              <SearchItemSkeleton />
-            : products.map((product) => (
+              <>
+                <SearchItemSkeleton />
+                <SearchItemSkeleton />
+                <SearchItemSkeleton />
+              </>
+            : products.length ?
+              products.map((product) => (
                 <ComboboxOption
                   key={product.id}
                   value={product}
@@ -95,6 +124,14 @@ export function SearchInput() {
                   <SearchItem product={product} />
                 </ComboboxOption>
               ))
+            : showMessage && (
+                <Typography
+                  variant="h4"
+                  className={styles.error}
+                >
+                  {message}
+                </Typography>
+              )
             }
           </ComboboxOptions>
         </div>
