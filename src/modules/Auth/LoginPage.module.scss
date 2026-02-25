@@ -65,4 +65,53 @@
   &:hover {
     opacity: 0.9;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.googleBtn {
+  background-color: transparent;
+  color: $primary-color;
+  padding: 14px;
+  border: 1px solid $primary-color;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: $elements-color;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.toggleMode {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: $primary-color;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:hover {
+    color: $secondary-color;
+  }
 }
