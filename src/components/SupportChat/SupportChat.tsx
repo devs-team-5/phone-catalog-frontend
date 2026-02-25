@@ -6,6 +6,8 @@ import { getProductsByQuery, getProducts } from '@/api/products';
 import { getImageUrl } from '@/api/products';
 import { useToastStore } from '@/store/toast';
 import { parseUserMessage } from '@/utils/chatParser';
+import { ICON_MAP } from '../ui/Icon/icons';
+import { Button } from '@headlessui/react';
 
 type Message =
   | {
@@ -295,7 +297,7 @@ export const SupportChat = () => {
 
   return (
     <>
-      <button
+      <Button
         className={styles.floatingButton}
         onClick={handleOpenChat}
         style={{
@@ -303,8 +305,8 @@ export const SupportChat = () => {
           pointerEvents: toasts.length > 0 ? 'none' : 'auto',
         }}
       >
-        💬
-      </button>
+        <ICON_MAP.MESSAGE />
+      </Button>
 
       {isOpen && toasts.length === 0 && (
         <div className={styles.chatWindow}>
