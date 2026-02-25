@@ -83,11 +83,11 @@
 
   &__img {
     height: 100%;
+    width: 100%;
     object-fit: contain;
 
     @include on-tablet {
-      width: 50%;
-      align-self: flex-end;
+      background-color: #000;
     }
   }
 
