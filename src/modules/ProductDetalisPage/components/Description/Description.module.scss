@@ -26,6 +26,7 @@
 }
 
 .tech {
+  white-space: line;
   display: flex;
   gap: 10px;
   justify-content: space-between;
@@ -50,6 +51,11 @@
   @include on-tablet {
     margin-bottom: 25px;
   }
+}
+
+.value {
+  display: flex;
+  text-align: end;
 }
 
 .readBtn {
