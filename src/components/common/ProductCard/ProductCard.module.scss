@@ -10,12 +10,14 @@
     border-color $duration,
     box-shadow $duration;
 
-  &:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
-    .image {
-      transition: transform $duration;
-      transform: scale(1.1);
+  @include on-tablet {
+    &:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 3px 13px 0 var(--box-shadow-color);
+      .image {
+        transition: transform $duration;
+        transform: scale(1.1);
+      }
     }
   }
 }
