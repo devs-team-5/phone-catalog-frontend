@@ -24,9 +24,9 @@ My core expertise lies in React and TypeScript, underpinned by a solid foundatio
   },
 
   {
-    id: 2,
+    id: 7,
     name: 'Illia Tryndiuk',
-    role: 'Frontend Developer (Project Manager)',
+    role: 'Full Stack Developer (Project Manager)',
     photo: illiaPhoto,
     email: 'tryndiuk.illia@gmail.com',
     linkedin: 'https://www.linkedin.com/in/illia-t-81543a382/',
@@ -40,7 +40,7 @@ My core expertise lies in React and TypeScript, underpinned by a solid foundatio
   {
     id: 3,
     name: 'Serhii Kusyi',
-    role: 'Frontend Developer',
+    role: 'Full Stack Developer',
     photo: sergiyPhoto,
     email: 'serhiikusyi.dev@gmail.com',
     linkedin: 'https://www.linkedin.com/in/serhii-kusyi-282783244/',
@@ -71,12 +71,12 @@ In my spare time, I build automated solutions using grammY (Telegram bots) and e
   {
     id: 5,
     name: 'Bohdan Moroz',
-    role: 'Frontend Developer',
+    role: 'Full Stack Developer',
     photo: bohdanPhoto,
     email: 'fs.bohdan.moroz@gmail.com',
     linkedin: 'https://www.linkedin.com/in/bohdan-m-71a522385/',
     github: 'https://github.com/bohdan8098',
-    about: `I am a Frontend Developer with practical experience in building responsive and user-friendly web applications. 
+    about: `I am a Full Stack Developer with practical experience in building responsive and user-friendly web applications. 
       
       My core tech stack includes React, JavaScript, and TypeScript. I have a strong understanding of component-based architecture and state management, which allows me to create efficient and maintainable code. 
       
