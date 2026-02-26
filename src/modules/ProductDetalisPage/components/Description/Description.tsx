@@ -16,7 +16,6 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
 
   const isUkrainian = i18n.language.startsWith('ua');
   const shouldShowDescription = !isUkrainian || showOriginal;
-  console.log('LANG:', i18n.language);
 
   return (
     <>
@@ -30,12 +29,14 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
 
         <hr className={styles.line} />
 
-        {isUkrainian && !showOriginal && (
+        {isUkrainian && (
           <button
-            className={styles.readBtn}
-            onClick={() => setShowOriginal(true)}
+            className={`${styles.readBtn} ${showOriginal ? styles.active : ''}`}
+            onClick={() => setShowOriginal((prev) => !prev)}
           >
-            {t('product.readOriginal')}
+            {showOriginal ?
+              t('product.hideOriginal')
+            : t('product.readOriginal')}
           </button>
         )}
 
@@ -47,7 +48,7 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
             >
               <Typography
                 variant="h4"
-                className={styles.title}
+                className={styles.articleTitle}
               >
                 {title}
               </Typography>
@@ -60,15 +61,6 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
               </Typography>
             </article>
           ))}
-
-        {isUkrainian && showOriginal && (
-          <button
-            className={styles.readBtn}
-            onClick={() => setShowOriginal(false)}
-          >
-            {t('product.hideOriginal')}
-          </button>
-        )}
       </section>
 
       <section className={styles.specs}>

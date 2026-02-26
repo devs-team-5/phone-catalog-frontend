@@ -38,7 +38,7 @@
     "itemsOnPage": "Items on page",
     "selectYear": "Select year",
     "selectCapacity": "Select capacity",
-    "selectModel": "selectModel"
+    "selectModel": "Select model"
   },
 
   "product": {
@@ -124,7 +124,7 @@
   },
 
   "chat": {
-    "welcome": "Hello 👋 I'm your AI store assistant. I can help with iPhones, tablets and accessories.",
+    "welcome": "Hi 👋 I’m your smart store assistant. I can help you compare models, choose the right storage, or find matching accessories.",
     "found": "Here's what I found ({{count}}) 👇",
     "recommendStart": "Let’s find the best option 🔥 What is your budget?",
     "askBudgetError": "Please enter your budget as a number 🙂",
@@ -138,6 +138,32 @@
     "error": "Something went wrong 😔",
     "view": "View →",
     "placeholder": "Type your message..."
+  },
+
+  "checkout": {
+    "deliveryTitle": "Delivery via Nova Poshta",
+    "cityPlaceholder": "Enter city",
+    "selectCity": "Select city first",
+    "proceed": "Proceed to Payment"
+  },
+  "delivery": {
+    "title": "Delivery via Nova Poshta",
+    "cityPlaceholder": "Enter city",
+    "warehousePlaceholder": "Enter branch number or address",
+    "selectCityFirst": "Select city first",
+    "oblastCenters": [
+      "Kyiv",
+      "Kharkiv",
+      "Odesa",
+      "Dnipro",
+      "Lviv",
+      "Cherkasy",
+      "Ternopil",
+      "Rivne",
+      "Ivano-Frankivsk",
+      "Lutsk",
+      "Uzhhorod"
+    ]
   },
 
   "footer": {

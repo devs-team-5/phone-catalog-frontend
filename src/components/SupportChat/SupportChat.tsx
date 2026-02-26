@@ -85,6 +85,7 @@ export const SupportChat = () => {
 
     const userMessage = inputValue.trim();
     const lower = userMessage.toLowerCase();
+    const parsed = parseUserMessage(userMessage);
 
     setMessages((prev) => [
       ...prev,
@@ -120,8 +121,8 @@ export const SupportChat = () => {
 
     const recommendKeywords =
       i18n.language === 'ua' ?
-        ['порад', 'мені треба']
-      : ['recommend', 'need phone'];
+        ['порад', 'мені треба', 'підбери', 'допоможи']
+      : ['recommend', 'need', 'pick', 'choose', 'advice', 'help'];
 
     if (
       chatStep === 'idle' &&
@@ -148,6 +149,66 @@ export const SupportChat = () => {
 
     if (chatStep === 'askMemory') {
       const capacityMatch = lower.match(/\d+/);
+
+      if (parsed.capacity || parsed.color || parsed.maxPrice) {
+        const updatedSelection = {
+          ...selection,
+          capacity: parsed.capacity || capacityMatch?.[0],
+          color: parsed.color,
+          budget: parsed.maxPrice || selection.budget,
+        };
+
+        setSelection(updatedSelection);
+
+        if (updatedSelection.capacity && updatedSelection.color) {
+          const allProducts = await getProducts();
+          let filtered = [...allProducts];
+
+          if (updatedSelection.budget) {
+            filtered = filtered.filter(
+              (p) => p.price <= updatedSelection.budget!,
+            );
+          }
+
+          filtered = filtered.filter((p) =>
+            p.capacity
+              ?.toLowerCase()
+              .includes(updatedSelection.capacity!.toLowerCase()),
+          );
+
+          if (updatedSelection.color) {
+            const userColor = updatedSelection.color.toLowerCase().trim();
+
+            filtered = filtered.filter((p) => {
+              const productColor = p.color?.toLowerCase().trim();
+
+              return productColor === userColor;
+            });
+          }
+
+          setChatStep('idle');
+          setSelection({});
+
+          if (filtered.length > 0) {
+            setMessages((prev) => [
+              ...prev,
+              {
+                type: 'text',
+                sender: 'bot',
+                text: t('chat.bestOptions', { count: filtered.length }),
+              },
+              ...filtered.slice(0, 6).map((product) => ({
+                type: 'product' as const,
+                product,
+              })),
+            ]);
+          } else {
+            typeMessage(t('chat.notFoundBudget'));
+          }
+
+          return;
+        }
+      }
 
       if (!capacityMatch) {
         typeMessage(t('chat.askMemoryError'));
@@ -226,13 +287,25 @@ export const SupportChat = () => {
       }
 
       if (parsed.color) {
-        filtered = filtered.filter(
-          (p) => p.color?.toLowerCase() === parsed.color,
+        filtered = filtered.filter((p) =>
+          p.color?.toLowerCase().includes(parsed.color!),
         );
       }
 
       if (parsed.maxPrice) {
         filtered = filtered.filter((p) => p.price <= parsed.maxPrice!);
+      }
+
+      if (parsed.minPrice) {
+        filtered = filtered.filter((p) => p.price >= parsed.minPrice!);
+      }
+
+      if (parsed.sort === 'asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      }
+
+      if (parsed.sort === 'desc') {
+        filtered.sort((a, b) => b.price - a.price);
       }
 
       if (filtered.length > 0) {

@@ -209,7 +209,7 @@ export const DeliverySelector = ({ onChange }: DeliverySelectorProps) => {
 
   return (
     <div className={styles.container}>
-      <Typography variant="h3">Доставка Новою Поштою</Typography>
+      <Typography variant="h3">checkout.deliveryTitle</Typography>
       <div className={styles.field}>
         <div className={styles.inputWrapper}>
           <input

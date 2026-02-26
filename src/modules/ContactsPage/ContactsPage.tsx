@@ -33,11 +33,12 @@ const TEAM_MEMBERS = [
     id: 2,
     name: 'Serhii Kusyi',
     role: 'Frontend Developer',
-    photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    email: 'alex@example.com',
+    photo: 'src/modules/ContactsPage/devInfo/Serhii_Kusyi.jpg',
+    email: 'serhiikusyi.dev@gmail.com',
     linkedin: 'https://linkedin.com/in/username',
-    about:
-      'Щось треба написати про цього хлопця, але я не знаю що саме. Він дуже крутий, це точно. :)',
+    about: `I'm Full Stack developer, looking for a dynamic and progressive company, where my skills are utilized in the maximum way possible.
+
+        I have knowledge of HTML5, CSS 3, SASS, JS(ES6), React, TypeScript Redux, REST API and I’m also good at communication, time management, and adaptability.`,
   },
 
   {
