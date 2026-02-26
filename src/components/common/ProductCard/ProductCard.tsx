@@ -49,14 +49,14 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     if (isCart) {
       showToast({
         type: 'error',
-        title: 'Removed from cart',
-        message: `${name} has been removed.`,
+        title: t('toast.cart.removedTitle'),
+        message: t('toast.cart.removedMessage', { name }),
       });
     } else {
       showToast({
         type: 'success',
-        title: 'Added to cart',
-        message: `${name} has been added.`,
+        title: t('toast.cart.addedTitle'),
+        message: t('toast.cart.addedMessage', { name }),
       });
     }
 
@@ -69,15 +69,15 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     if (isFav) {
       showToast({
         type: 'error',
-        title: 'Removed from favourites',
-        message: `${name} has been removed.`,
+        title: t('toast.favourites.removedTitle'),
+        message: t('toast.favourites.addedMessage', { name }),
         icon: 'heart',
       });
     } else {
       showToast({
         type: 'success',
-        title: 'Added to favourites',
-        message: `${name} has been added.`,
+        title: t('toast.favourites.addedTitle'),
+        message: t('toast.favourites.addedMessage', { name }),
         icon: 'heart',
       });
     }

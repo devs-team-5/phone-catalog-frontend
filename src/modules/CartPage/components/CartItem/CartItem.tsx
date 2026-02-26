@@ -7,18 +7,20 @@ import { getImageUrl } from '@/api/products';
 import { useCart } from '@/hooks/cart';
 import { Link } from 'react-router-dom';
 import { useToastStore } from '@/store/toast';
+import { useTranslation } from 'react-i18next';
 
 export const CartItem = ({ product }: { product: ProductWithCount }) => {
   const { toggleCart, increaseCount, decreaseCount } = useCart();
   const { showToast } = useToastStore();
+  const { t } = useTranslation<'translation'>();
 
   const handleRemoveClick = () => {
     toggleCart(product.itemId);
 
     showToast({
       type: 'error',
-      title: 'Removed from cart',
-      message: `${product.name} has been removed.`,
+      title: t('toast.cart.removedTitle'),
+      message: t('toast.cart.removedMessage', { name: product.name }),
       icon: 'cart',
     });
   };

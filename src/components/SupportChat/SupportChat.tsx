@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './SupportChat.module.scss';
 import type { Product } from '@/types/Product';
-import { getProductsByQuery, getProducts } from '@/api/products';
-import { getImageUrl } from '@/api/products';
+import { getProductsByQuery, getProducts, getImageUrl } from '@/api/products';
 import { useToastStore } from '@/store/toast';
 import { parseUserMessage } from '@/utils/chatParser';
+import { useTranslation } from 'react-i18next';
 
 type Message =
   | {
@@ -20,13 +20,12 @@ type Message =
 
 export const SupportChat = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const toasts = useToastStore((state) => state.toasts);
-
   const [chatStep, setChatStep] = useState<
     'idle' | 'askBudget' | 'askMemory' | 'askColor'
   >('idle');
@@ -37,20 +36,17 @@ export const SupportChat = () => {
     color?: string;
   }>({});
 
+  const toasts = useToastStore((state) => state.toasts);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
-  const WELCOME_TEXT =
-    'Вітаю 👋 Я AI-консультант магазину. Можу допомогти з iPhone, планшетами та аксесуарами.';
-
   const typeMessage = (fullText: string) => {
     let index = 0;
 
     setIsTyping(true);
-
     setMessages((prev) => [...prev, { type: 'text', sender: 'bot', text: '' }]);
 
     const interval = setInterval(() => {
@@ -78,12 +74,8 @@ export const SupportChat = () => {
     setIsOpen(true);
 
     if (messages.length === 0) {
-      typeMessage(WELCOME_TEXT);
+      typeMessage(t('chat.welcome'));
     }
-  };
-
-  const handleCloseChat = () => {
-    setIsOpen(false);
   };
 
   const handleSend = async () => {
@@ -109,7 +101,7 @@ export const SupportChat = () => {
             {
               type: 'text',
               sender: 'bot',
-              text: `Ось що я знайшов (${foundProducts.length}) 👇`,
+              text: t('chat.found', { count: foundProducts.length }),
             },
             ...foundProducts.slice(0, 6).map((product) => ({
               type: 'product' as const,
@@ -124,17 +116,17 @@ export const SupportChat = () => {
       }
     }
 
+    const recommendKeywords =
+      i18n.language === 'ua' ?
+        ['порад', 'мені треба']
+      : ['recommend', 'need phone'];
+
     if (
       chatStep === 'idle' &&
-      (lower.includes('порад') ||
-        lower.includes('recommend') ||
-        lower.includes('мені треба') ||
-        lower.includes('need phone'))
+      recommendKeywords.some((word) => lower.includes(word))
     ) {
       setChatStep('askBudget');
-
-      typeMessage('Зараз підберемо найкращий варіант 🔥 Який у вас бюджет?');
-
+      typeMessage(t('chat.recommendStart'));
       return;
     }
 
@@ -142,15 +134,13 @@ export const SupportChat = () => {
       const price = parseInt(lower.replace(/\D/g, ''));
 
       if (!price) {
-        typeMessage('Будь ласка, напишіть бюджет числом 🙂');
+        typeMessage(t('chat.askBudgetError'));
         return;
       }
 
       setSelection((prev) => ({ ...prev, budget: price }));
       setChatStep('askMemory');
-
-      typeMessage('Скільки потрібно памʼяті? (64GB, 128GB, 256GB...)');
-
+      typeMessage(t('chat.askMemory'));
       return;
     }
 
@@ -158,7 +148,7 @@ export const SupportChat = () => {
       const capacityMatch = lower.match(/\d+/);
 
       if (!capacityMatch) {
-        typeMessage('Напишіть обʼєм памʼяті, наприклад 128 🙂');
+        typeMessage(t('chat.askMemoryError'));
         return;
       }
 
@@ -168,37 +158,18 @@ export const SupportChat = () => {
       }));
 
       setChatStep('askColor');
-
-      typeMessage('Який колір вас цікавить?');
-
+      typeMessage(t('chat.askColor'));
       return;
     }
 
     if (chatStep === 'askColor') {
-      const colorMap: Record<string, string> = {
-        black: 'black',
-        white: 'white',
-        blue: 'blue',
-        red: 'red',
-        green: 'green',
-        gold: 'gold',
-        silver: 'silver',
-        purple: 'purple',
-        pink: 'pink',
-        yellow: 'yellow',
-      };
-
-      const detectedColor =
-        Object.keys(colorMap).find((c) => lower.includes(c)) || lower;
-
       setSelection((prev) => ({
         ...prev,
-        color: detectedColor,
+        color: lower,
       }));
 
       const allProducts = await getProducts();
-
-      let filtered = allProducts;
+      let filtered = [...allProducts];
 
       if (selection.budget) {
         filtered = filtered.filter((p) => p.price <= selection.budget!);
@@ -210,11 +181,7 @@ export const SupportChat = () => {
         );
       }
 
-      if (detectedColor) {
-        filtered = filtered.filter((p) =>
-          p.color?.toLowerCase().includes(detectedColor),
-        );
-      }
+      filtered = filtered.filter((p) => p.color?.toLowerCase().includes(lower));
 
       setChatStep('idle');
       setSelection({});
@@ -225,7 +192,7 @@ export const SupportChat = () => {
           {
             type: 'text',
             sender: 'bot',
-            text: `Ось найкращі варіанти для вас (${filtered.length}) 👇`,
+            text: t('chat.bestOptions', { count: filtered.length }),
           },
           ...filtered.slice(0, 6).map((product) => ({
             type: 'product' as const,
@@ -233,9 +200,7 @@ export const SupportChat = () => {
           })),
         ]);
       } else {
-        typeMessage(
-          'На жаль, нічого не знайшов 😔 Спробуйте трохи збільшити бюджет.',
-        );
+        typeMessage(t('chat.notFoundBudget'));
       }
 
       return;
@@ -244,7 +209,6 @@ export const SupportChat = () => {
     try {
       const allProducts = await getProducts();
       const parsed = parseUserMessage(userMessage);
-
       let filtered = [...allProducts];
 
       if (parsed.model) {
@@ -275,7 +239,7 @@ export const SupportChat = () => {
           {
             type: 'text',
             sender: 'bot',
-            text: `Ось що я можу запропонувати (${filtered.length}) 👇`,
+            text: t('chat.offer', { count: filtered.length }),
           },
           ...filtered.slice(0, 6).map((product) => ({
             type: 'product' as const,
@@ -283,13 +247,11 @@ export const SupportChat = () => {
           })),
         ]);
       } else {
-        typeMessage(
-          'Я не зовсім зрозумів 🤔 Спробуйте написати модель або "порадь телефон".',
-        );
+        typeMessage(t('chat.notUnderstood'));
       }
     } catch (error) {
       console.error(error);
-      typeMessage('Сталася помилка 😔');
+      typeMessage(t('chat.error'));
     }
   };
 
@@ -309,10 +271,10 @@ export const SupportChat = () => {
       {isOpen && toasts.length === 0 && (
         <div className={styles.chatWindow}>
           <div className={styles.header}>
-            <span>Support</span>
+            <span>{t('AI.support')}</span>
             <button
               className={styles.closeButton}
-              onClick={handleCloseChat}
+              onClick={() => setIsOpen(false)}
             >
               ✕
             </button>
@@ -361,7 +323,7 @@ export const SupportChat = () => {
                       </div>
 
                       <button className={styles.viewButton}>
-                        Переглянути →
+                        {t('chat.view')}
                       </button>
                     </div>
                   </div>
@@ -387,7 +349,7 @@ export const SupportChat = () => {
           <div className={styles.inputArea}>
             <input
               type="text"
-              placeholder="Напишіть повідомлення..."
+              placeholder={t('chat.placeholder')}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => {
