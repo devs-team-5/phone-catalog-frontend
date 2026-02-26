@@ -3,13 +3,18 @@ import { Breadcrumbs } from '@/components/common/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '@/components/common/BackButton/BackButton';
 import styles from './ContactsPage.module.scss';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
+import dmytroPhoto from '@/modules/ContactsPage/devInfo/Dmytro_Krylov.png';
+import illiaPhoto from '@/modules/ContactsPage/devInfo/Illia_Tryndiuk.jpeg';
+import sergiyPhoto from '@/modules/ContactsPage/devInfo/Sergiy_Kusiy.jpg';
+import antonPhoto from '@/modules/ContactsPage/devInfo/Anton_Lemishko.jpg';
+import bohdanPhoto from '@/modules/ContactsPage/devInfo/Bohdan_Moroz.png';
 
 const TEAM_MEMBERS = [
   {
     id: 1,
     name: 'Dmytro Krylov',
     role: 'Frontend Developer (Lead)',
-    photo: 'src/modules/ContactsPage/devInfo/Dmytro_Krylov.png',
+    photo: dmytroPhoto,
     email: 'alex@example.com',
     linkedin: 'https://www.linkedin.com/in/dmytro-krylov/',
     github: 'https://github.com/Dimononon',
@@ -24,10 +29,10 @@ From developing cryptographic platforms like WebScrambler to managing server env
   },
 
   {
-    id: 3,
+    id: 2,
     name: 'Illia Tryndiuk',
     role: 'Frontend Developer (Project Manager)',
-    photo: 'src/modules/ContactsPage/devInfo/Illia_Tryndiuk.jpeg', // треба змінити на реальні фото
+    photo: illiaPhoto,
     email: 'tryndiuk.illia@gmail.com',
     linkedin: 'https://www.linkedin.com/in/illia-t-81543a382/',
     github: 'https://github.com/illia-001',
@@ -38,22 +43,23 @@ From developing cryptographic platforms like WebScrambler to managing server env
       Open to networking and new opportunities.`,
   },
   {
-    id: 2,
+    id: 3,
     name: 'Serhii Kusyi',
     role: 'Frontend Developer',
-    photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    email: 'alex@example.com',
-    linkedin: 'https://linkedin.com/in/username',
+    photo: sergiyPhoto,
+    email: 'serhiikusyi.dev@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/serhii-kusyi-282783244/',
     github: 'https://github.com/SergiyKusiy',
-    about:
-      'Щось треба написати про цього хлопця, але я не знаю що саме. Він дуже крутий, це точно. :)',
+    about: `I'm Full Stack developer, looking for a dynamic and progressive company, where my skills are utilized in the maximum way possible.
+
+I have knowledge of HTML5, CSS 3, SASS, JS(ES6), React, TypeScript Redux, REST API and I’m also good at communication, time management, and adaptability.`,
   },
 
   {
-    id: 3,
+    id: 4,
     name: 'Anton Lemishko',
     role: 'Full Stack Developer',
-    photo: 'src/modules/ContactsPage/devInfo/Anton_Lemishko.jpg',
+    photo: antonPhoto,
     email: 'anlemishko@gmail.com',
     linkedin: 'https://www.linkedin.com/in/anton-lemishko-39281a44/',
     github: 'https://github.com/NastyBaster',
@@ -71,7 +77,7 @@ In my spare time, I build automated solutions using grammY (Telegram bots) and e
     id: 5,
     name: 'Bohdan Moroz',
     role: 'Frontend Developer',
-    photo: 'src/modules/ContactsPage/devInfo/Bohdan_Moroz.png',
+    photo: bohdanPhoto,
     email: 'fs.bohdan.moroz@gmail.com',
     linkedin: 'https://www.linkedin.com/in/bohdan-m-71a522385/',
     github: 'https://github.com/bohdan8098',
