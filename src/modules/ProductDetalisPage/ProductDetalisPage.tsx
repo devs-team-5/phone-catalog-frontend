@@ -90,6 +90,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
     description,
     ram,
     colorsAvailable,
+    code,
   } = product;
 
   const colors = [...colorsAvailable].sort((colorA, colorB) => {
@@ -157,6 +158,7 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
           capacityAvailable={capacityAvailable}
           priceDiscount={priceDiscount}
           mainSpecs={mainSpecs}
+          code={code}
           getColorUrl={getColorUrl}
           getCapacityUrl={getCapacityUrl}
         />
