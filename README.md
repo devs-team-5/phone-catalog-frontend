@@ -1,38 +1,69 @@
-# Current deployed version
+# Phone Catalog Frontend
 
-[Link](https://devs-team-5.github.io/phone-catalog-frontend/)
+A modern, responsive e-commerce frontend application for browsing and purchasing phones, tablets, and accessories.
 
-# Workflow
+## Deployed Version
 
-For adding new feature
+[Live Preview](https://devs-team-5.github.io/phone-catalog-frontend/)
 
-1. be sure that you are in `main` branch localy. If not - `git switch main`
-2. update repo `git pull origin main`
-3. create your personal branch `git checkout -b {branch_name}`
-   ex: `git checkout -b feat/PC-2-api-fetch`
-4. implement your task
-5. run `git add .`
-6. run `git commit -m "{commit_name}"`
-   ex: `git commit -m "feat(PC-2): implement api fetch"`
-7. run `git pull origin main`
-8. run `git push origin {branch_name}`
+## Features
 
-9. go to GitHub repo
-10. Find tab `Pull requests` and press `New pull request`.
+- **Product Catalog:** Browse through different categories (Phones, Tablets, Accessories) with pagination, sorting, and filtering options.
+- **Product Details:** View comprehensive details, image galleries, and technical specifications for each product.
+- **Shopping Cart & Checkout:** Add items to the cart, manage quantities, and securely checkout using **Stripe**.
+- **Favorites:** Save favorite items for quick access.
+- **Authentication & Database:** Powered by **Supabase** for backend services, database management, and user authentication.
+- **Delivery Integration:** Integrated with the **Nova Post API** for seamless delivery selection (`Nova Poshta`).
+- **Internationalization:** Multi-language support implemented with `i18next`.
+- **Responsive UI:** Fully responsive and accessible layout built with **Tailwind CSS** and **Radix UI** primitives.
 
-11. choose branches:
+## Tech Stack
 
-- base: main.
-- compare: `{branch_name}` ex: `feat/PC-2-api-fetch`
-- Give a name to PR ex: `feat(PC-2): implement api fetch`
+- **Framework:** React 19, Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4, Radix UI, SCSS
+- **State Management:** Zustand, React Context
+- **Routing:** React Router v7
+- **Backend/DB/Auth:** Supabase (`@supabase/supabase-js`)
+- **Payments:** Stripe (`@stripe/react-stripe-js`, `@stripe/stripe-js`)
+- **i18n:** `i18next`, `react-i18next`
+- **Code Quality:** ESLint, Prettier, Husky, lint-staged
 
-12. add description :
+## Getting Started
 
-- Що зроблено?
-- Чи є залежності від інших PR?
-- Чи потрібні додаткові перевірки?
-- Чи є щось, на що варто звернути увагу при код-рев’ю?
+### Prerequisites
 
-13. Add reviewers(or just Dimononon).
+- Node.js (v18 or higher recommended)
+- npm (or yarn)
 
-14. Press "Create pull request".
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/devs-team-5/phone-catalog-frontend.git
+   cd phone-catalog-frontend
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory and add the necessary configuration keys for Supabase, Stripe, and the Nova Post API, as referenced in the project.
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+## Available Scripts
+
+- `npm run dev`: Starts the local development server using Vite.
+- `npm run build`: Compiles TypeScript and builds the app for production.
+- `npm run preview`: Bootstraps a local static web server that serves the files of the production build.
+- `npm run lint`: Runs ESLint to check for code issues.
+- `npm run format`: Formats code using Prettier.
+- `npm run fix-style`: Formats code and fixes linting issues simultaneously.
