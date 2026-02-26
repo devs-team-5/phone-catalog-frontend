@@ -1,4 +1,5 @@
 import {
+  LuGithub,
   LuHouse,
   LuSearch,
   LuShoppingBag,
@@ -24,6 +25,7 @@ import {
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
+  GIT: LuGithub,
   DARKTHEME: LuMoon,
   MAIL: LuMail,
   PHONE: LuPhone,
