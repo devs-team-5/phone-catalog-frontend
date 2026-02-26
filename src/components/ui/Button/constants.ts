@@ -29,7 +29,7 @@ export const BUTTON_COLORS = {
   ULTRAMARINE: '8396df',
   BLACK: '3e3e40',
   BLUE: 'b3def3',
-
+  DESERTTITANIUM: 'c4b2a6',
   COSMICORANGE: 'f78747',
   DEEPBLUE: '414659',
   LAVENDER: 'eadeee',
