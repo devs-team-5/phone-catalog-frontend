@@ -19,6 +19,7 @@ type Props = {
   priceRegular: number;
   mainSpecs: MainSpecs[];
   id: string;
+  code: string;
   getColorUrl: (newColor: string) => string;
   getCapacityUrl: (newCapacity: string) => string;
 };
@@ -32,6 +33,7 @@ export const ProductActions: React.FC<Props> = ({
   capacityAvailable,
   priceDiscount,
   mainSpecs,
+  code,
   getColorUrl,
   getCapacityUrl,
 }) => {
@@ -61,7 +63,7 @@ export const ProductActions: React.FC<Props> = ({
           variant="body"
           color="secondary"
         >
-          ID: 802390
+          {`ID: ${code}`}
         </Typography>
       </article>
 
