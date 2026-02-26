@@ -27,7 +27,7 @@ export function SearchInput() {
   const inputRef = useRef<HTMLInputElement>(null);
   const isLoading = query.length > 0 && query !== debouncedQuery;
   const { t } = useTranslation<'translation'>();
-  const showMessage = !isLoading && products.length === 0;
+  const showMessage = !isLoading && products.length === 0 && message;
 
   useEffect(() => {
     if (!debouncedQuery.trim()) {
@@ -94,6 +94,13 @@ export function SearchInput() {
               setProducts([]);
               setQuery(event.target.value);
               setMessage('');
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') {
+                event.stopPropagation();
+                setIsExpanded(false);
+                setQuery('');
+              }
             }}
             placeholder={t('filters.search')}
           />
