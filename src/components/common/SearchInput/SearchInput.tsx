@@ -12,9 +12,11 @@ import type { Product } from '@/types/Product';
 import { getProductsByQuery } from '@/api/products';
 import { useNavigate } from 'react-router-dom';
 import { SearchItemSkeleton } from './components/SearchItem/SearchItemSkeleton';
-import { useTranslation } from 'react-i18next';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Typography } from '@/components/ui/Typography/Typography';
+import { Typewriter } from 'react-simple-typewriter';
+
+const hints = ['iPhone 17', 'Apple Watch', 'iPad Pro'];
 
 export function SearchInput() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -26,8 +28,8 @@ export function SearchInput() {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const isLoading = query.length > 0 && query !== debouncedQuery;
-  const { t } = useTranslation<'translation'>();
-  const showMessage = !isLoading && products.length === 0 && message;
+  const showMessage = !isLoading && products.length === 0;
+  const isHintVisible = query.length === 0;
 
   useEffect(() => {
     if (!debouncedQuery.trim()) {
@@ -89,6 +91,7 @@ export function SearchInput() {
           <ComboboxInput
             ref={inputRef}
             displayValue={(product: Product) => product?.name ?? query}
+            style={isHintVisible ? { caretColor: 'transparent' } : {}}
             className={styles.input_field}
             onChange={(event) => {
               setProducts([]);
@@ -102,8 +105,19 @@ export function SearchInput() {
                 setQuery('');
               }
             }}
-            placeholder={t('filters.search')}
           />
+          {isHintVisible && (
+            <div className={styles.hintOverlay}>
+              <Typewriter
+                words={hints}
+                loop={0}
+                cursor
+                typeSpeed={150}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </div>
+          )}
 
           <button
             onClick={() => setIsExpanded(false)}
