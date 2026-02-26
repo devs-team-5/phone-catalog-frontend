@@ -98,6 +98,13 @@ export function SearchInput() {
               setQuery(event.target.value);
               setMessage('');
             }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') {
+                event.stopPropagation();
+                setIsExpanded(false);
+                setQuery('');
+              }
+            }}
           />
           {isHintVisible && (
             <div className={styles.hintOverlay}>
