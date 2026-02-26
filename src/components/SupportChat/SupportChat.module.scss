@@ -15,6 +15,10 @@
 
   box-shadow: 0 0 5px var(--box-shadow-color);
   z-index: 10000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .floatingButton:hover {
@@ -184,7 +188,6 @@
 
   &:hover {
     transform: translateY(-2px);
-    background: var(--elements-color);
   }
 }
 
@@ -224,6 +227,6 @@
   transition: $duration ease;
 
   &:hover {
-    background: var(--primary-color);
+    background: var(--icons-color);
   }
 }

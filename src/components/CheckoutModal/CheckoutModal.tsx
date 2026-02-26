@@ -2,15 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { PaymentForm } from '@/components/PaymentForm/PaymentForm';
+import { DeliverySelector } from '@/modules/NovaPostApi/DeliverySelector';
 import type { ProductWithCount } from '@/types/ProductWithCount';
 import styles from './CheckoutModal.module.scss';
 import { Typography } from '@/components/ui/Typography/Typography';
 
 import { useThemeStore } from '@/hooks/ThemeStore';
+import { useTranslation } from 'react-i18next';
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
 );
+
+export type DeliveryDetails = {
+  city: string;
+  branch: string;
+};
 
 type Props = {
   products: ProductWithCount[];
@@ -20,7 +27,13 @@ type Props = {
 export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
   const [clientSecret, setClientSecret] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [delivery, setDelivery] = useState<DeliveryDetails>({
+    city: '',
+    branch: '',
+  });
+  const [isReadyToPay, setIsReadyToPay] = useState(false);
   const isDark = useThemeStore((state) => state.isDark);
+  const { t } = useTranslation<'translation'>();
 
   const totalAmount = products.reduce(
     (acc, item) => acc + item.price * item.count,
@@ -99,6 +112,24 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
               {error}
             </Typography>
           </div>
+        : !isReadyToPay ?
+          <div className={styles.deliveryForm}>
+            <DeliverySelector
+              onChange={(city, warehouse) =>
+                setDelivery({
+                  city: city?.Description || '',
+                  branch: warehouse?.Description || '',
+                })
+              }
+            />
+            <button
+              className={styles.proceedBtn}
+              onClick={() => setIsReadyToPay(true)}
+              disabled={!delivery.city || !delivery.branch}
+            >
+              {t('cart.proceedToPayment')}
+            </button>
+          </div>
         : !clientSecret ?
           <div className={styles.loadingContainer}>
             <Typography
@@ -110,9 +141,22 @@ export const CheckoutModal: React.FC<Props> = ({ products, onClose }) => {
           </div>
         : <Elements
             stripe={stripePromise}
-            options={{ clientSecret, appearance }}
+            options={{
+              clientSecret,
+              appearance,
+              // @ts-expect-error - developerTools is valid but not in types
+              developerTools: {
+                assistant: {
+                  enabled: false,
+                },
+              },
+            }}
           >
-            <PaymentForm amount={totalAmount} />
+            <PaymentForm
+              amount={totalAmount}
+              products={products}
+              delivery={delivery}
+            />
           </Elements>
         }
       </div>

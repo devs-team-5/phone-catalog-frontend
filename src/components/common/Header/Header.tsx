@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import logo from '@/assets/nice_gadgets_logo.svg';
 import darkLogo from '@/assets/nice_gadgets_logo_dark.svg';
 import { Icon } from '@/components/ui/Icon/Icon';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MobileMenu } from './components/MobileMenu/MobileMenu';
 import { Typography } from '@/components/ui/Typography/Typography';
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { useFavourites } from '@/hooks/favourites';
 import { useCart } from '@/hooks/cart';
 import { LanguageSwitcher } from './components/Languages/LanguageSwitcher';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/hooks/auth';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from './components/ThemeSwitcher/ThemeSwitcher';
 import { SearchInput } from '../SearchInput';
@@ -19,9 +19,8 @@ import { SearchInput } from '../SearchInput';
 export const Header = () => {
   const { getFavouritesCount } = useFavourites();
   const { getCartCount } = useCart();
-  const { isLoggedIn, logout, user } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
   const { isDark } = useThemeStore();
 
   useEffect(() => {
@@ -31,11 +30,6 @@ export const Header = () => {
       document.body.style.overflow = '';
     }
   }, [isMenuOpen]);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
 
   return (
     <>
@@ -147,22 +141,22 @@ export const Header = () => {
               <div className={styles.userSection}>
                 {isLoggedIn ?
                   <div className={styles.accountInfo}>
-                    <Typography
-                      variant="small"
-                      color="secondary"
+                    <Link
+                      to="/profile"
+                      className={styles.profileLink}
                     >
-                      {user?.username || user?.email}
-                    </Typography>
-                    <button
-                      onClick={handleLogout}
-                      className={styles.logoutBtn}
-                      title="Logout"
-                    >
-                      <Icon
-                        name="CLOSE"
-                        size={20}
-                      />
-                    </button>
+                      <div className={styles.avatar}>
+                        {user?.user_metadata?.avatar_url ?
+                          <img
+                            src={user.user_metadata.avatar_url}
+                            alt="User Avatar"
+                          />
+                        : <div className={styles.avatarPlaceholder}>
+                            {user?.email?.charAt(0).toUpperCase()}
+                          </div>
+                        }
+                      </div>
+                    </Link>
                   </div>
                 : <Link
                     to="/login"

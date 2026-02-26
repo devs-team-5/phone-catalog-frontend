@@ -20,6 +20,7 @@ import {
   LuMail,
   LuCheck,
   LuInfo,
+  LuMessageCircleMore,
 } from 'react-icons/lu';
 
 export const ICON_MAP = {
@@ -57,4 +58,11 @@ export const ICON_MAP = {
   CHEVRON_UP: LuChevronUp,
   CHECK: () => <LuCheck size={18} />,
   INFO: () => <LuInfo size={18} />,
+  MESSAGE: () => (
+    <LuMessageCircleMore
+      color="#B4BDC3"
+      size={36}
+      style={{ transform: 'scaleX(-1)' }}
+    />
+  ),
 } as const;

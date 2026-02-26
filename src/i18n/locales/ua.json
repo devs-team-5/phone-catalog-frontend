@@ -63,7 +63,9 @@
     "item_one": "товар",
     "item_few": "товари",
     "item_many": "товарів",
-    "item_other": "товару"
+    "item_other": "товару",
+    "proceedToPayment": "Перейти до оплати",
+    "completePayment": "Завершити оплату"
   },
 
   "specs": {
@@ -82,10 +84,15 @@
 
   "auth": {
     "signIn": "Увійти",
+    "fullName": "Ім'я",
     "email": "Електронна пошта",
     "password": "Пароль",
     "logIn": "Увійти",
-    "emailPlaceholder": "example@mail.com"
+    "signUp": "Реєстрація",
+    "emailPlaceholder": "example@mail.com",
+    "signUpRedirect": "Немає акаунту? Створи новий",
+    "logInRedirect": "Маєш акаунт? Увійти",
+    "signInWithGoogle": "Увійти через Google"
   },
 
   "pagination": {
@@ -139,5 +146,16 @@
     "contacts": "Контакти",
     "rights": "Права",
     "backToTop": "Повернутися вгору"
+  },
+
+  "profile": {
+    "logout": "Вийти",
+    "orderHistory": "Історія замовлень",
+    "loadingOrders": "Завантаження замовлень",
+    "noOrders": "У Вас немає попередніх замовлень",
+    "order": "Замовлення",
+    "status": "Статус",
+    "total": "Всього",
+    "deliveryAddress": "Адреса доставки"
   }
 }

@@ -61,7 +61,9 @@
     "empty": "Your cart is empty",
     "addFirstProduct": "Add your first product to the cart",
     "item_one": "item",
-    "item_other": "items"
+    "item_other": "items",
+    "proceedToPayment": "Proceed to Payment",
+    "completePayment": "Complete your payment"
   },
 
   "specs": {
@@ -80,10 +82,15 @@
 
   "auth": {
     "signIn": "Sign In",
+    "fullName": "Full Name",
     "email": "Email",
     "password": "Password",
     "logIn": "Log In",
-    "emailPlaceholder": "example@mail.com"
+    "signUp": "Sign Up",
+    "emailPlaceholder": "example@mail.com",
+    "signUpRedirect": "Don't have an account? Sign up",
+    "logInRedirect": "Already have an account? Log in",
+    "signInWithGoogle": "Sign in with Google"
   },
 
   "pagination": {
@@ -138,5 +145,16 @@
     "contacts": "Contacts",
     "rights": "Rights",
     "backToTop": "Back to top"
+  },
+
+  "profile": {
+    "logout": "Logout",
+    "orderHistory": "Order history",
+    "loadingOrders": "Loading orders",
+    "noOrders": "You have no previous orders",
+    "order": "Order",
+    "status": "Status",
+    "total": "Total",
+    "deliveryAddress": "Delivery address"
   }
 }

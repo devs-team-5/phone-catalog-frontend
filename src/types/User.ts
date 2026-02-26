@@ -1,6 +1,13 @@
 export type User = {
-  id: number;
-  username: string;
-  email: string;
-  // Додайте інші поля, які є у вашому користувачі
+  id: string;
+  email?: string;
+  user_metadata?: {
+    full_name?: string;
+    avatar_url?: string;
+    [key: string]: unknown;
+  };
+  app_metadata?: {
+    provider?: string;
+    [key: string]: unknown;
+  };
 };

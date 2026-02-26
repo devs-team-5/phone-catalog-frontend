@@ -11,6 +11,7 @@ import { BadgeIcon } from '@/components/ui/BageIcon/BageIcon';
 import { useThemeStore } from '@/hooks/ThemeStore';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import { LanguageSwitcher } from '../Languages/LanguageSwitcher';
+import { useAuth } from '@/hooks/auth';
 
 type Props = {
   isOpen: boolean;
@@ -26,6 +27,7 @@ export const MobileMenu: React.FC<Props> = ({
   favouritesCount,
 }) => {
   const { isDark } = useThemeStore();
+  const { isLoggedIn, user } = useAuth();
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(styles.link, {
@@ -156,6 +158,36 @@ export const MobileMenu: React.FC<Props> = ({
               count={cartCount}
             />
           </NavLink>
+
+          {isLoggedIn ?
+            <NavLink
+              to="/profile"
+              onClick={onClose}
+              className={getBottomLinkClass}
+            >
+              <div className={styles.avatar}>
+                {user?.user_metadata?.avatar_url ?
+                  <img
+                    src={user.user_metadata.avatar_url}
+                    alt="User Avatar"
+                  />
+                : <div className={styles.avatarPlaceholder}>
+                    {user?.email?.charAt(0).toUpperCase()}
+                  </div>
+                }
+              </div>
+            </NavLink>
+          : <NavLink
+              to="/login"
+              onClick={onClose}
+              className={getBottomLinkClass}
+            >
+              <Icon
+                name="USER"
+                size={20}
+              />
+            </NavLink>
+          }
         </div>
       </div>
     </div>
