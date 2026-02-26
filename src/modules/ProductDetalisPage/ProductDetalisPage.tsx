@@ -36,7 +36,6 @@ export const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({
       return;
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     getProductDetails(category, slug).then((data) => {
       setProduct(data);
       setLoadedSlug(slug);
