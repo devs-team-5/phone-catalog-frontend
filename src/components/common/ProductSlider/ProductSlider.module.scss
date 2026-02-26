@@ -22,9 +22,11 @@
   height: 32px;
   border: 1px solid var(--secondary-color);
 
-  &:hover {
-    box-shadow: 0 3px 13px 0 var(--box-shadow-color);
-    border-color: var(--primary-color);
+  @include on-tablet {
+    &:hover {
+      box-shadow: 0 0 5px 0 var(--box-shadow-color);
+      border-color: var(--primary-color);
+    }
   }
 }
 
