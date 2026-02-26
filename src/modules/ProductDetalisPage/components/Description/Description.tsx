@@ -94,7 +94,12 @@ export const Description: React.FC<DescriptionProps> = ({ about, specs }) => {
                 {label}
               </Typography>
 
-              <Typography variant="body">{value}</Typography>
+              <Typography
+                variant="body"
+                className={styles.value}
+              >
+                {value}
+              </Typography>
             </article>
           : null,
         )}
