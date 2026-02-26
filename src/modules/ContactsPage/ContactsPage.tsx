@@ -13,19 +13,14 @@ const TEAM_MEMBERS = [
   {
     id: 1,
     name: 'Dmytro Krylov',
-    role: 'Frontend Developer (Lead)',
+    role: 'Full Stack Developer (Lead)',
     photo: dmytroPhoto,
-    email: 'alex@example.com',
+    email: 'dmytriy.krylov@gmail.com',
     linkedin: 'https://www.linkedin.com/in/dmytro-krylov/',
     github: 'https://github.com/Dimononon',
-    about: `Team Lead & Frontend Developer (React & TS)
-Bridging the gap between robust backend logic and secure, high-performance user interfaces.
+    about: `Lead Full Stack Developer with a background in Cybersecurity. I am dedicated to building high-performance, "secure by design" web applications that are as safe as they are user-friendly.
 
-Technical Foundation:
-Expertise in React and TypeScript, backed by a solid foundation in C# ASP.NET and Cybersecurity. I specialize in building "secure by design" applications with a deep understanding of protocols and system architecture.
-
-Leadership & Strategy:
-From developing cryptographic platforms like WebScrambler to managing server environments (Ubuntu, Kali), I bring a disciplined, full-cycle approach to development. I focus on code integrity, cross-team collaboration, and building scalable web ecosystems.`,
+My core expertise lies in React and TypeScript, underpinned by a solid foundation in C# ASP.NET and server management. This unique blend allows me to bridge the gap between complex backend logic and dynamic, interactive user interfaces.`,
   },
 
   {
