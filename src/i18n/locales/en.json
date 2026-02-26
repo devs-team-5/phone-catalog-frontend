@@ -38,7 +38,7 @@
     "itemsOnPage": "Items on page",
     "selectYear": "Select year",
     "selectCapacity": "Select capacity",
-    "selectModel": "selectModel"
+    "selectModel": "Select model"
   },
 
   "product": {
@@ -101,6 +101,69 @@
   "buttons": {
     "back": "Back",
     "shopNow": "Shop now"
+  },
+
+  "toast": {
+    "cart": {
+      "addedTitle": "Added to cart",
+      "removedTitle": "Removed from cart",
+      "addedMessage": "{{name}} has been added.",
+      "removedMessage": "{{name}} has been removed."
+    },
+
+    "favourites": {
+      "addedTitle": "Added to favourites",
+      "removedTitle": "Removed from favourites",
+      "addedMessage": "{{name}} has been added.",
+      "removedMessage": "{{name}} has been removed."
+    }
+  },
+
+  "AI": {
+    "support": "Support"
+  },
+
+  "chat": {
+    "welcome": "Hi 👋 I’m your smart store assistant. I can help you compare models, choose the right storage, or find matching accessories.",
+    "found": "Here's what I found ({{count}}) 👇",
+    "recommendStart": "Let’s find the best option 🔥 What is your budget?",
+    "askBudgetError": "Please enter your budget as a number 🙂",
+    "askMemory": "How much storage do you need? (64GB, 128GB, 256GB...)",
+    "askMemoryError": "Please enter storage size, for example 128 🙂",
+    "askColor": "Which color are you interested in?",
+    "bestOptions": "Here are the best options for you ({{count}}) 👇",
+    "notFoundBudget": "Unfortunately, I couldn't find anything 😔 Try increasing your budget.",
+    "offer": "Here’s what I can offer ({{count}}) 👇",
+    "notUnderstood": "I didn't quite understand 🤔 Try typing a model or \"recommend a phone\".",
+    "error": "Something went wrong 😔",
+    "view": "View →",
+    "placeholder": "Type your message..."
+  },
+
+  "checkout": {
+    "deliveryTitle": "Delivery via Nova Poshta",
+    "cityPlaceholder": "Enter city",
+    "selectCity": "Select city first",
+    "proceed": "Proceed to Payment"
+  },
+  "delivery": {
+    "title": "Delivery via Nova Poshta",
+    "cityPlaceholder": "Enter city",
+    "warehousePlaceholder": "Enter branch number or address",
+    "selectCityFirst": "Select city first",
+    "oblastCenters": [
+      "Kyiv",
+      "Kharkiv",
+      "Odesa",
+      "Dnipro",
+      "Lviv",
+      "Cherkasy",
+      "Ternopil",
+      "Rivne",
+      "Ivano-Frankivsk",
+      "Lutsk",
+      "Uzhhorod"
+    ]
   },
 
   "footer": {

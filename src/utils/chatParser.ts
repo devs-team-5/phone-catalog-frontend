@@ -9,38 +9,98 @@ export type ParsedQuery = {
 };
 
 export const parseUserMessage = (message: string): ParsedQuery => {
-  const text = message.toLowerCase();
+  const text = message.toLowerCase().trim();
   const result: ParsedQuery = {};
 
-  const modelMatch = text.match(/iphone\s?\d+/);
+  const modelMatch = text.match(/iphone\s?\d+\s?(pro|max|plus)?/i);
+
   if (modelMatch) {
-    result.model = modelMatch[0];
+    result.model = modelMatch[0].trim();
   }
 
-  const capacityMatch = text.match(/(128|256|512|1024)\s?gb/);
+  const capacityMatch = text.match(/(64|128|256|512|1024)\s?(gb|гб)?/i);
+
   if (capacityMatch) {
     result.capacity = capacityMatch[1];
   }
 
-  if (text.includes('білий') || text.includes('white')) result.color = 'white';
+  const maxPriceMatch = text.match(/до\s?(\d+)/) || text.match(/under\s?(\d+)/);
 
-  if (text.includes('чорний') || text.includes('black')) result.color = 'black';
-
-  if (text.includes('фіолет') || text.includes('lavender'))
-    result.color = 'lavender';
-
-  if (text.includes('sage')) result.color = 'sage';
-
-  const maxPriceMatch = text.match(/до\s?(\d+)/);
   if (maxPriceMatch) {
     result.maxPrice = Number(maxPriceMatch[1]);
   }
 
-  if (text.includes('дешев')) result.sort = 'asc';
+  const minPriceMatch = text.match(/від\s?(\d+)/) || text.match(/from\s?(\d+)/);
 
-  if (text.includes('дорог')) result.sort = 'desc';
+  if (minPriceMatch) {
+    result.minPrice = Number(minPriceMatch[1]);
+  }
 
-  if (text.includes('порадь') || text.includes('щось')) result.recommend = true;
+  const colorMap: Record<string, string> = {
+    білий: 'white',
+    белый: 'white',
+    white: 'white',
+
+    чорний: 'black',
+    черный: 'black',
+    black: 'black',
+
+    синій: 'blue',
+    blue: 'blue',
+
+    червоний: 'red',
+    red: 'red',
+
+    зелений: 'green',
+    green: 'green',
+
+    фіолет: 'purple',
+    purple: 'purple',
+    lavender: 'purple',
+
+    золотий: 'gold',
+    gold: 'gold',
+
+    сірий: 'gray',
+    gray: 'gray',
+    grey: 'gray',
+
+    рожевий: 'pink',
+    pink: 'pink',
+
+    sage: 'sage',
+  };
+
+  Object.keys(colorMap).forEach((key) => {
+    if (text.includes(key)) {
+      result.color = colorMap[key];
+    }
+  });
+
+  if (
+    text.includes('дешев') ||
+    text.includes('cheap') ||
+    text.includes('cheapest')
+  ) {
+    result.sort = 'asc';
+  }
+
+  if (
+    text.includes('дорог') ||
+    text.includes('expensive') ||
+    text.includes('premium')
+  ) {
+    result.sort = 'desc';
+  }
+
+  if (
+    text.includes('порад') ||
+    text.includes('рекоменду') ||
+    text.includes('recommend') ||
+    text.includes('help me choose')
+  ) {
+    result.recommend = true;
+  }
 
   return result;
 };

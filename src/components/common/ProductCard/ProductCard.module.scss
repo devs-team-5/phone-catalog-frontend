@@ -118,3 +118,67 @@
 .favorite {
   aspect-ratio: 1 / 1;
 }
+
+.heartWrapper {
+  position: relative;
+}
+
+@keyframes heartPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heartActive {
+  animation: heartPop 0.4s ease;
+}
+
+.floatingHeart {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  pointer-events: none;
+  font-size: 16px;
+  animation: floatUp 0.8s ease forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.6);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.broken {
+  animation:
+    floatUp 0.8s ease forwards,
+    shake 0.3s ease;
+}

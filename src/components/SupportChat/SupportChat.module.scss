@@ -14,7 +14,7 @@
   color: var(--white-color);
 
   box-shadow: 0 0 5px var(--box-shadow-color);
-  z-index: 10000;
+  z-index: 3;
 
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@
   flex-direction: column;
 
   overflow: hidden;
-  z-index: 10001;
+  z-index: 3;
 
   animation: chatAppear $duration ease;
   transform-origin: bottom right;
@@ -228,5 +228,19 @@
 
   &:hover {
     background: var(--icons-color);
+  }
+}
+
+:root {
+  --mobile-nav-height: 64px;
+}
+
+@media (max-width: 768px) {
+  .floatingButton {
+    bottom: calc(var(--mobile-nav-height) + 20px);
+  }
+
+  .chatWindow {
+    bottom: calc(var(--mobile-nav-height) + 100px);
   }
 }

@@ -126,7 +126,10 @@ export const Header = () => {
               </Link>
 
               <Link to="/cart">
-                <Button size="64">
+                <Button
+                  size="64"
+                  data-cart-icon
+                >
                   <BadgeIcon
                     name="CART"
                     count={getCartCount()}

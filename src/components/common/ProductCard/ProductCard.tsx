@@ -1,7 +1,7 @@
 import styles from './ProductCard.module.scss';
 import { Link } from 'react-router-dom';
 import type { Product } from '@/types/Product';
-import type React from 'react';
+import React, { useState, useRef } from 'react';
 import { getImageUrl } from '@/api/products';
 import { ICON_MAP } from '@/components/ui/Icon/icons';
 import { Button } from '@/components/ui/Button';
@@ -41,52 +41,120 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const { isFavourite, toggleFavourite } = useFavourites();
   const { toggleCart, isInCart } = useCart();
   const { showToast } = useToastStore();
+  const [isHeartAnimating, setIsHeartAnimating] = useState(false);
+  const [showFloatingHeart, setShowFloatingHeart] = useState(false);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
   const isFav = isFavourite(itemId);
   const isCart = isInCart(itemId);
 
   const handleCartClick = () => {
-    if (isCart) {
-      showToast({
-        type: 'error',
-        title: 'Removed from cart',
-        message: `${name} has been removed.`,
-      });
-    } else {
-      showToast({
-        type: 'success',
-        title: 'Added to cart',
-        message: `${name} has been added.`,
-      });
+    if (!isCart) {
+      flyToCart();
     }
 
     toggleCart(itemId);
+
+    if (isCart) {
+      showToast({
+        type: 'error',
+        title: t('toast.cart.removedTitle'),
+        message: t('toast.cart.removedMessage', { name }),
+      });
+    } else {
+      showToast({
+        type: 'success',
+        title: t('toast.cart.addedTitle'),
+        message: t('toast.cart.addedMessage', { name }),
+      });
+    }
   };
 
   const handleFavouriteClick = () => {
+    const wasFav = isFav;
+
     toggleFavourite(itemId);
 
-    if (isFav) {
+    setIsHeartAnimating(true);
+    setShowFloatingHeart(true);
+
+    setTimeout(() => setIsHeartAnimating(false), 400);
+    setTimeout(() => setShowFloatingHeart(false), 800);
+
+    if (wasFav) {
       showToast({
         type: 'error',
-        title: 'Removed from favourites',
-        message: `${name} has been removed.`,
+        title: t('toast.favourites.removedTitle'),
+        message: t('toast.favourites.removedMessage', { name }),
         icon: 'heart',
       });
     } else {
       showToast({
         type: 'success',
-        title: 'Added to favourites',
-        message: `${name} has been added.`,
+        title: t('toast.favourites.addedTitle'),
+        message: t('toast.favourites.addedMessage', { name }),
         icon: 'heart',
       });
     }
+  };
+
+  const flyToCart = () => {
+    if (window.innerWidth <= 768) return;
+
+    const image = imageRef.current;
+    if (!image) return;
+
+    const cart = document.querySelector<HTMLElement>('[data-cart-icon]');
+    if (!cart) return;
+
+    const imageRect = image.getBoundingClientRect();
+    const cartRect = cart.getBoundingClientRect();
+
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.inset = '0';
+    overlay.style.pointerEvents = 'none';
+    overlay.style.zIndex = '9999';
+
+    document.documentElement.appendChild(overlay);
+
+    const flyingImage = image.cloneNode(true) as HTMLImageElement;
+
+    flyingImage.style.position = 'absolute';
+    flyingImage.style.left = `${imageRect.left}px`;
+    flyingImage.style.top = `${imageRect.top}px`;
+    flyingImage.style.width = `${imageRect.width}px`;
+    flyingImage.style.height = `${imageRect.height}px`;
+    flyingImage.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+    flyingImage.style.willChange = 'transform';
+
+    overlay.appendChild(flyingImage);
+
+    // Летимо НЕ в центр, а трохи перед корзиною
+    const deltaX = cartRect.left - imageRect.left - imageRect.width * 0.3;
+
+    const deltaY = cartRect.top - imageRect.top - imageRect.height * 0.3;
+
+    requestAnimationFrame(() => {
+      flyingImage.style.transform = `
+      translate(${deltaX}px, ${deltaY}px)
+      scale(0.3)
+    `;
+      flyingImage.style.opacity = '0';
+    });
+
+    setTimeout(() => {
+      overlay.remove();
+      cart.classList.add('cartBounce');
+      setTimeout(() => cart.classList.remove('cartBounce'), 400);
+    }, 600);
   };
 
   return (
     <div className={styles.product}>
       <Link to={`/${category}/${itemId}`}>
         <img
+          ref={imageRef}
           src={imageUrl}
           className={styles.image}
           alt={name}
@@ -150,15 +218,29 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           {isCart ? t('product.added') : t('product.addToCart')}
         </button>
 
-        <Button
-          className={styles.favorite}
-          size="40"
-          onClick={handleFavouriteClick}
-        >
-          {isFav ?
-            <ICON_MAP.WISHLIST_RED />
-          : <ICON_MAP.WISHLIST />}
-        </Button>
+        <div className={styles.heartWrapper}>
+          <Button
+            className={cn(styles.favorite, {
+              [styles.heartActive]: isHeartAnimating,
+            })}
+            size="40"
+            onClick={handleFavouriteClick}
+          >
+            {isFav ?
+              <ICON_MAP.WISHLIST_RED />
+            : <ICON_MAP.WISHLIST />}
+          </Button>
+
+          {showFloatingHeart && (
+            <span
+              className={cn(styles.floatingHeart, {
+                [styles.broken]: isFav,
+              })}
+            >
+              {isFav ? '❤️' : '💔'}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
