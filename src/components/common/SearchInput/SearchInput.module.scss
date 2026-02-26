@@ -41,6 +41,7 @@
   outline: none;
   font-size: 16px;
   background: transparent;
+  color: var(--secondary-color);
 }
 
 .close_btn {
@@ -69,6 +70,19 @@
   @include on-tablet {
     width: 550px;
     left: auto;
+  }
+}
+
+.hintOverlay {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  pointer-events: none;
+  color: var(--secondary-color);
+  font-size: 16px;
+
+  @include on-tablet {
+    top: 24px;
   }
 }
 

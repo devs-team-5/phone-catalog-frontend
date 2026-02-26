@@ -23,6 +23,7 @@ export interface BaseProductDetails {
   zoom: string;
   ram: string;
   cell: string[];
+  code: string;
 }
 
 export interface PhoneDetails extends BaseProductDetails {
