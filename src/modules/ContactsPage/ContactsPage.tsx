@@ -10,7 +10,6 @@ const TEAM_MEMBERS = [
     name: 'Dmytro Krylov',
     role: 'Frontend Developer (Lead)',
     photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    phone: '+380 99 000 00 00',
     email: 'alex@example.com',
     linkedin: 'https://linkedin.com/in/username',
     about:
@@ -18,23 +17,23 @@ const TEAM_MEMBERS = [
   },
 
   {
-    id: 1,
+    id: 3,
     name: 'Illia Tryndiuk',
     role: 'Frontend Developer (Project Manager)',
-    photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    phone: '+380 99 000 00 00',
-    email: 'alex@example.com',
-    linkedin: 'https://linkedin.com/in/username',
-    about:
-      'Щось треба написати про цього хлопця, але я не знаю що саме. Він дуже крутий, це точно. :)',
-  },
+    photo: 'src/modules/ContactsPage/devInfo/Illia_Tryndiuk.jpeg', // треба змінити на реальні фото
+    email: 'tryndiuk.illia@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/illia-t-81543a382/',
+    about: `Full Stack Developer focused on building modern web applications.
 
+      I possess practical experience with React, TypeScript, and CSS/Flexbox. I specialize in turning complex designs into pixel-perfect interfaces.
+
+      Open to networking and new opportunities.`,
+  },
   {
-    id: 1,
+    id: 2,
     name: 'Serhii Kusyi',
     role: 'Frontend Developer',
     photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    phone: '+380 99 000 00 00',
     email: 'alex@example.com',
     linkedin: 'https://linkedin.com/in/username',
     about:
@@ -42,11 +41,10 @@ const TEAM_MEMBERS = [
   },
 
   {
-    id: 1,
+    id: 3,
     name: 'Anton Lemishko',
     role: 'Frontend Developer',
     photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
-    phone: '+380 99 000 00 00',
     email: 'alex@example.com',
     linkedin: 'https://linkedin.com/in/username',
     about:
@@ -54,7 +52,7 @@ const TEAM_MEMBERS = [
   },
 
   {
-    id: 1,
+    id: 5,
     name: 'Bohdan Moroz',
     role: 'Frontend Developer',
     photo: 'https://via.placeholder.com/200', // треба змінити на реальні фото
@@ -118,13 +116,6 @@ export const ContactsPage = () => {
                 >
                   <ICON_MAP.MAIL size={20} />
                   <Typography variant="body">{member.email}</Typography>
-                </a>
-                <a
-                  href={`tel:${member.phone}`}
-                  className={styles.link}
-                >
-                  <ICON_MAP.PHONE size={20} />
-                  <Typography variant="body">{member.phone}</Typography>
                 </a>
                 <a
                   href={member.linkedin}
